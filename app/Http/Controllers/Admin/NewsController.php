@@ -3,34 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\News\StoreNewsRequest;
+use App\Http\Requests\Admin\News\UpdateNewsRequest;
 use App\Models\News;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $news = News::latest()->paginate(10);
         return view('admin.news.index', compact('news'));
     }
 
-    public function create()
+    public function create(): View
     {
         return view('admin.news.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreNewsRequest $request): RedirectResponse
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'label' => 'nullable|string|max:50',
-            'description' => 'nullable|string',
-            'content' => 'nullable|string',
-            'image_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'image_url' => 'nullable|url',
-            'col_span' => 'nullable|string',
-            'row_span' => 'nullable|string',
-        ]);
+        $data = $request->validated();
 
         if ($request->hasFile('image_file')) {
             $data['image'] = $request->file('image_file')->store('news', 'public');
@@ -42,26 +36,17 @@ class NewsController extends Controller
 
         News::create($data);
 
-        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil ditambahkan!');
+        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil ditambahkan.');
     }
 
-    public function edit(News $news)
+    public function edit(News $news): View
     {
         return view('admin.news.edit', compact('news'));
     }
 
-    public function update(Request $request, News $news)
+    public function update(UpdateNewsRequest $request, News $news): RedirectResponse
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'label' => 'nullable|string|max:50',
-            'description' => 'nullable|string',
-            'content' => 'nullable|string',
-            'image_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'image_url' => 'nullable|url',
-            'col_span' => 'nullable|string',
-            'row_span' => 'nullable|string',
-        ]);
+        $data = $request->validated();
 
         if ($request->hasFile('image_file')) {
             $data['image'] = $request->file('image_file')->store('news', 'public');
@@ -73,12 +58,12 @@ class NewsController extends Controller
 
         $news->update($data);
 
-        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil diperbarui!');
+        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil diperbarui.');
     }
 
-    public function destroy(News $news)
+    public function destroy(News $news): RedirectResponse
     {
         $news->delete();
-        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil dihapus!');
+        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil dihapus.');
     }
 }

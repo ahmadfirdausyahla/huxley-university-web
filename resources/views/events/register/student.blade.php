@@ -73,12 +73,15 @@
                     </p>
 
 
-                    @if($errors->has('registration'))
-
+                    @if($errors->any())
                         <div class="mt-5 bg-red-50 border border-red-200 text-red-600 rounded-xl p-4 text-xs">
-                            {{ $errors->first('registration') }}
+                            <p class="font-bold mb-1">Gagal mengirim pendaftaran:</p>
+                            <ul class="list-disc list-inside space-y-0.5">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-
                     @endif
 
 

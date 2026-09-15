@@ -57,8 +57,8 @@
                                 @endif
 
                                 <div class="absolute top-5 left-5">
-                                    @if($event->type === 'student')
-                                        <span class="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur text-brand-blue text-[10px] font-bold uppercase tracking-wider border border-white/10">Students</span>
+                                    @if($event->isMahasiswaOnly())
+                                        <span class="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur text-brand-blue text-[10px] font-bold uppercase tracking-wider border border-white/10">Mahasiswa</span>
                                     @else
                                         <span class="px-3 py-1.5 rounded-full bg-brand-blue text-white text-[10px] font-bold uppercase tracking-wider">Public</span>
                                     @endif
@@ -69,7 +69,9 @@
                         <div class="p-6">
                             <div class="flex items-center gap-2 text-[11px] text-brand-blue font-bold uppercase tracking-wider mb-3">
                                 <i class="fa-regular fa-calendar"></i>
-                                @if($event->date)
+                                @if($event->event_date)
+                                    {{ $event->event_date->format('d F Y') }}
+                                @elseif($event->date)
                                     {{ $event->date->format('d F Y') }}
                                 @else
                                     Date TBA
@@ -85,7 +87,12 @@
                             @endif
 
                             <div class="space-y-2 text-xs text-gray-400 mb-6">
-                                @if($event->time)
+                                @if($event->start_time)
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-regular fa-clock text-brand-blue w-4"></i>
+                                        <span>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} WIB</span>
+                                    </div>
+                                @elseif($event->time)
                                     <div class="flex items-center gap-2">
                                         <i class="fa-regular fa-clock text-brand-blue w-4"></i>
                                         <span>{{ \Carbon\Carbon::parse($event->time)->format('H:i') }} WIB</span>

@@ -14,6 +14,17 @@
         
         <h3 class="font-bold text-slate-900 text-sm pb-5 mb-6 border-b border-slate-100">Form Edit Event</h3>
 
+        @if($errors->any())
+            <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs">
+                <p class="font-bold mb-1">Periksa kembali data yang dimasukkan:</p>
+                <ul class="list-disc list-inside space-y-0.5 text-[11px]">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('admin.events.update', $event->id) }}" method="POST" enctype="multipart/form-data" class="space-y-5">
             @csrf
             @method('PUT')
@@ -26,10 +37,13 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">TARGET AUDIENCE *</label>
-                    <select name="audience" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 focus:border-blue-500 outline-none transition">
-                        <option value="public" {{ old('audience', $event->audience) == 'public' ? 'selected' : '' }}>Public (Umum)</option>
-                        <option value="student" {{ old('audience', $event->audience) == 'student' ? 'selected' : '' }}>Student (Internal Mahasiswa)</option>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">KATEGORI EVENT *</label>
+                    @php
+                        $currentCategory = old('category', $event->category?->value ?? ($event->audience === 'student' ? 'mahasiswa' : 'public'));
+                    @endphp
+                    <select name="category" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 focus:border-blue-500 outline-none transition">
+                        <option value="public" {{ $currentCategory == 'public' ? 'selected' : '' }}>Umum (Public)</option>
+                        <option value="mahasiswa" {{ $currentCategory == 'mahasiswa' ? 'selected' : '' }}>Khusus Mahasiswa</option>
                     </select>
                 </div>
 

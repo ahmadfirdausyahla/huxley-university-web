@@ -3,102 +3,71 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Event\StoreEventRequest;
+use App\Http\Requests\Admin\Event\UpdateEventRequest;
 use App\Models\Event;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use App\Services\EventService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class EventController extends Controller
 {
-    public function index()
+    public function __construct(
+        protected EventService $eventService
+    ) {}
+
+    public function index(): View
     {
         $events = Event::latest('event_date')->paginate(10);
+
         return view('admin.events.index', compact('events'));
     }
 
-    public function create()
+    public function create(): View
     {
         return view('admin.events.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreEventRequest $request): RedirectResponse
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'content' => 'nullable|string',
-            'image_file' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'image_url' => 'nullable|url',
-            'audience' => 'required|in:public,student',
-            'event_date' => 'required|date',
-            'start_time' => 'nullable', // DIUBAH JADI NULLABLE
-            'end_time' => 'nullable',
-            'location' => 'required|string|max:255',
-            'quota' => 'nullable|integer|min:1',
-            'registration_open' => 'nullable|boolean',
-        ]);
+        $this->eventService->createEvent(
+            $request->validated(),
+            $request->file('image_file')
+        );
 
-        if ($request->hasFile('image_file')) {
-            $data['image'] = $request->file('image_file')->store('events', 'public');
-        } elseif ($request->filled('image_url')) {
-            $data['image'] = $request->image_url;
-        }
-
-        unset($data['image_file'], $data['image_url']);
-
-        $data['slug'] = Str::slug($data['title']);
-        $data['registration_open'] = $request->boolean('registration_open');
-
-        Event::create($data);
-
-        return redirect()->route('admin.events.index')->with('success', 'Event berhasil ditambahkan.');
+        return redirect()
+            ->route('admin.events.index')
+            ->with('success', 'Event berhasil ditambahkan.');
     }
 
-    public function edit(Event $event)
+    public function edit(Event $event): View
     {
         return view('admin.events.edit', compact('event'));
     }
 
-    public function update(Request $request, Event $event)
+    public function update(UpdateEventRequest $request, Event $event): RedirectResponse
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'content' => 'nullable|string',
-            'image_file' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'image_url' => 'nullable|url',
-            'audience' => 'required|in:public,student',
-            'event_date' => 'required|date',
-            'start_time' => 'nullable', // DIUBAH JADI NULLABLE
-            'end_time' => 'nullable',
-            'location' => 'required|string|max:255',
-            'quota' => 'nullable|integer|min:1',
-            'registration_open' => 'nullable|boolean',
-        ]);
+        $this->eventService->updateEvent(
+            $event,
+            $request->validated(),
+            $request->file('image_file')
+        );
 
-        if ($request->hasFile('image_file')) {
-            $data['image'] = $request->file('image_file')->store('events', 'public');
-        } elseif ($request->filled('image_url')) {
-            $data['image'] = $request->image_url;
-        }
-
-        unset($data['image_file'], $data['image_url']);
-
-        $data['slug'] = Str::slug($data['title']);
-        $data['registration_open'] = $request->boolean('registration_open');
-
-        $event->update($data);
-
-        return redirect()->route('admin.events.index')->with('success', 'Event berhasil diperbarui.');
+        return redirect()
+            ->route('admin.events.index')
+            ->with('success', 'Event berhasil diperbarui.');
     }
 
-    public function destroy(Event $event)
+    public function destroy(Event $event): RedirectResponse
     {
-        $event->delete();
+        $this->eventService->deleteEvent($event);
 
-        return redirect()->route('admin.events.index')->with('success', 'Event berhasil dihapus.');
+        return redirect()
+            ->route('admin.events.index')
+            ->with('success', 'Event berhasil dihapus.');
     }
 
-    public function registrations(Event $event)
+    public function registrations(Event $event): View
     {
         $registrations = $event->registrations()->latest()->paginate(20);
 

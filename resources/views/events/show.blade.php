@@ -11,6 +11,18 @@
             <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
         </a>
 
+        @if(session('success'))
+            <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-3 shadow-sm">
+                <div class="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-check text-sm"></i>
+                </div>
+                <div>
+                    <span class="font-bold block text-sm">Sukses</span>
+                    <span>{{ session('success') }}</span>
+                </div>
+            </div>
+        @endif
+
         <!-- Main Grid Container -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
@@ -30,8 +42,8 @@
                             </div>
                         @endif
 
-                        <span class="absolute top-4 left-4 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
-                            {{ $event->audience === 'public' ? 'Umum' : 'Mahasiswa' }}
+                        <span class="absolute top-4 left-4 {{ $event->isMahasiswaOnly() ? 'bg-indigo-600' : 'bg-blue-600' }} text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
+                            {{ $event->category_label }}
                         </span>
                     </div>
 
@@ -112,7 +124,7 @@
                     <!-- Action Button -->
                     <div class="pt-4 border-t border-slate-100">
                         @if($event->registration_open)
-                            <a href="{{ $event->audience === 'public' ? route('events.register.public', $event) : route('events.register.student', $event) }}" 
+                            <a href="{{ $event->isMahasiswaOnly() ? route('events.register.student', $event) : route('events.register.public', $event) }}" 
                                class="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3.5 px-4 rounded-xl transition shadow-md shadow-blue-500/10">
                                 <span>Daftar Event Sekarang</span>
                                 <i class="fa-solid fa-arrow-right"></i>

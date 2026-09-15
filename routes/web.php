@@ -41,20 +41,31 @@ Route::get('/events', function () {
     return view('events_index', compact('events'));
 })->name('events.index');
 
-Route::get('/events/{event}/register/student', [EventController::class, 'registerStudent'])
-    ->name('events.register.student');
-
-// ADD THIS ROUTE:
-Route::get('/events/{event}/register/public', [EventController::class, 'registerPublic'])
-    ->name('events.register.public');
-
 Route::get('/events/{event}', function (Event $event) {
     return view('events_show', compact('event'));
 })->name('events.show');
 
-// Event Registration
-Route::get('/events/{event}/register', [EventRegistrationController::class, 'create'])->name('events.register');
-Route::post('/events/{event}/register', [EventRegistrationController::class, 'store'])->name('events.register.store');
+// Event Registration Routes
+Route::get('/events/{event}/register/public', [EventRegistrationController::class, 'publicForm'])
+    ->name('events.register.public');
+Route::post('/events/{event}/register/public', [EventRegistrationController::class, 'storePublic'])
+    ->name('events.register.public.store');
+
+Route::get('/events/{event}/register/student', [EventRegistrationController::class, 'studentForm'])
+    ->name('events.register.student');
+Route::post('/events/{event}/register/student', [EventRegistrationController::class, 'storeStudent'])
+    ->name('events.register.student.store');
+
+Route::get('/events/{event}/register/mahasiswa', [EventRegistrationController::class, 'studentForm'])
+    ->name('events.register.mahasiswa');
+Route::post('/events/{event}/register/mahasiswa', [EventRegistrationController::class, 'storeStudent'])
+    ->name('events.register.mahasiswa.store');
+
+Route::get('/events/{event}/register', function (Event $event) {
+    return $event->isMahasiswaOnly()
+        ? redirect()->route('events.register.student', $event)
+        : redirect()->route('events.register.public', $event);
+})->name('events.register');
 
 // Fasilitas & Program Studi (Public)
 Route::get('/facility', function () {
@@ -93,6 +104,7 @@ Route::middleware(['auth'])
 
         // Management CRUD
         Route::resource('/news', NewsController::class);
+        Route::get('/events/{event}/registrations', [EventController::class, 'registrations'])->name('events.registrations');
         Route::resource('/events', EventController::class);
         Route::resource('/scholarships', ScholarshipController::class);
         Route::resource('/civitas', CivitasController::class);
