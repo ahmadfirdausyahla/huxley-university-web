@@ -73,4 +73,32 @@ class EventController extends Controller
 
         return view('admin.events.registrations', compact('event', 'registrations'));
     }
+
+    public function allRegistrations(\Illuminate\Http\Request $request): View
+    {
+        $query = \App\Models\EventRegistration::with('event')->latest();
+
+        if ($request->filled('type')) {
+            $query->where('type', $request->type);
+        }
+
+        if ($request->filled('event_id')) {
+            $query->where('event_id', $request->event_id);
+        }
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('nim', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('campus_email', 'like', "%{$search}%");
+            });
+        }
+
+        $registrations = $query->paginate(20)->withQueryString();
+        $events = Event::select('id', 'title')->orderBy('title')->get();
+
+        return view('admin.events.all_registrations', compact('registrations', 'events'));
+    }
 }

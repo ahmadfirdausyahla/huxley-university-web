@@ -13,9 +13,13 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ScholarshipController;
 use App\Http\Controllers\Admin\CivitasController;
 use App\Http\Controllers\Admin\FacilityController;
+use App\Http\Controllers\Admin\AcademicProgramController;
 
 use App\Models\News;
 use App\Models\Event;
+use App\Models\Facility;
+use App\Models\AcademicProgram;
+use App\Models\Scholarship;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,14 +71,72 @@ Route::get('/events/{event}/register', function (Event $event) {
         : redirect()->route('events.register.public', $event);
 })->name('events.register');
 
-// Fasilitas & Program Studi (Public)
-Route::get('/facility', function () {
-    return view('facility_index');
+// Fasilitas Kampus (Public)
+Route::get('/facility', function (\Illuminate\Http\Request $request) {
+    $query = Facility::active();
+    if ($request->filled('category')) {
+        $query->where('category', $request->category);
+    }
+    if ($request->filled('search')) {
+        $search = $request->search;
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', "%{$search}%")
+              ->orWhere('location', 'like', "%{$search}%")
+              ->orWhere('description', 'like', "%{$search}%");
+        });
+    }
+    $facilities = $query->latest()->paginate(9)->withQueryString();
+    return view('facility_index', compact('facilities'));
 })->name('facility.index');
+Route::get('/fasilitas', fn() => redirect()->route('facility.index'));
 
-Route::get('/programs', function () {
-    return view('programs_index');
+// Program Studi & Akademik (Public)
+Route::get('/programs', function (\Illuminate\Http\Request $request) {
+    $query = AcademicProgram::active();
+    if ($request->filled('degree')) {
+        $query->where('degree', $request->degree);
+    }
+    if ($request->filled('search')) {
+        $search = $request->search;
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', "%{$search}%")
+              ->orWhere('faculty', 'like', "%{$search}%");
+        });
+    }
+    $programs = $query->latest()->paginate(9)->withQueryString();
+    return view('programs_index', compact('programs'));
 })->name('programs.index');
+Route::get('/program-studi', fn() => redirect()->route('programs.index'));
+
+// Beasiswa & Grants (Public)
+Route::get('/scholarships', function (\Illuminate\Http\Request $request) {
+    $query = Scholarship::active();
+    if ($request->filled('coverage_type')) {
+        $query->where('coverage_type', $request->coverage_type);
+    }
+    if ($request->filled('search')) {
+        $search = $request->search;
+        $query->where(function ($q) use ($search) {
+            $q->where('title', 'like', "%{$search}%")
+              ->orWhere('provider', 'like', "%{$search}%");
+        });
+    }
+    $scholarships = $query->latest()->paginate(9)->withQueryString();
+    return view('scholarships_index', compact('scholarships'));
+})->name('scholarships.index');
+Route::get('/beasiswa', fn() => redirect()->route('scholarships.index'));
+
+// Vision & Mission (Public - Statis & Elegan)
+Route::get('/about', function () {
+    return view('about_vision_mission');
+})->name('about.vision-mission');
+Route::get('/vision-mission', fn() => redirect()->route('about.vision-mission'));
+
+// Our Campus (Public - Statis & Interaktif)
+Route::get('/kampus', function () {
+    return view('our_campus');
+})->name('campus.index');
+Route::get('/our-campus', fn() => redirect()->route('campus.index'));
 
 
 /*
@@ -104,11 +166,21 @@ Route::middleware(['auth'])
 
         // Management CRUD
         Route::resource('/news', NewsController::class);
+
+        // Rekap Pendaftar Event
+        Route::get('/events/all-registrations', [EventController::class, 'allRegistrations'])->name('events.all-registrations');
         Route::get('/events/{event}/registrations', [EventController::class, 'registrations'])->name('events.registrations');
         Route::resource('/events', EventController::class);
-        Route::resource('/scholarships', ScholarshipController::class);
-        Route::resource('/civitas', CivitasController::class);
 
-        // CRUD Fasilitas Kampus (Slot Khusus Anda)
+        // CRUD Program Beasiswa
+        Route::resource('/scholarships', ScholarshipController::class);
+
+        // CRUD Fasilitas Kampus
         Route::resource('/facilities', FacilityController::class);
+
+        // CRUD Program Studi & Akademik
+        Route::resource('/programs', AcademicProgramController::class);
+
+        // CRUD Manajemen Mahasiswa & Staff (Civitas)
+        Route::resource('/civitas', CivitasController::class);
     });

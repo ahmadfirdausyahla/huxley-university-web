@@ -17,7 +17,8 @@ class RegisterMahasiswaRequest extends FormRequest
             'name' => ['required', 'string', 'max:100'],
             'nim' => ['required', 'string', 'min:5', 'max:30'],
             'study_program' => ['required', 'string', 'max:150'], // Jurusan / Program Studi
-            'campus_email' => ['required', 'email', 'max:150'],
+            'email' => ['required_without:campus_email', 'nullable', 'email', 'max:150'],
+            'campus_email' => ['nullable', 'email', 'max:150'],
             'faculty' => ['nullable', 'string', 'max:150'],
             'phone' => ['required', 'string', 'max:30'],
             'notes' => ['nullable', 'string', 'max:1000'],
@@ -30,7 +31,8 @@ class RegisterMahasiswaRequest extends FormRequest
             'name' => 'Nama Lengkap Mahasiswa',
             'nim' => 'Nomor Induk Mahasiswa (NIM)',
             'study_program' => 'Jurusan / Program Studi',
-            'campus_email' => 'Email Kampus Mahasiswa',
+            'email' => 'Email Pendaftar',
+            'campus_email' => 'Email Pendaftar',
             'faculty' => 'Fakultas',
             'phone' => 'Nomor WhatsApp / Telepon',
             'notes' => 'Catatan Tambahan',
@@ -41,6 +43,7 @@ class RegisterMahasiswaRequest extends FormRequest
     {
         return [
             'required' => ':attribute wajib diisi.',
+            'required_without' => ':attribute wajib diisi.',
             'email' => ':attribute harus berupa alamat email yang valid.',
             'min' => ':attribute minimal terdiri dari :min karakter.',
             'max' => ':attribute tidak boleh melebihi :max karakter.',

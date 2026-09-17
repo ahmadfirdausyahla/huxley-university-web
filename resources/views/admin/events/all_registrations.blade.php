@@ -1,41 +1,58 @@
 @extends('layouts.admin')
 
-@section('title', 'Daftar Pendaftar Event')
-@section('page_title', 'DATA PENDAFTARAN EVENT')
+@section('title', 'Semua Pendaftaran Event')
+@section('page_title', 'SEMUA PENDAFTARAN EVENT')
 
 @section('content')
 <div class="space-y-6">
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <a href="{{ route('admin.events.index') }}" class="text-xs text-slate-500 hover:text-slate-800 transition inline-flex items-center gap-1.5 mb-2 font-semibold">
-                <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Event
-            </a>
-            <div class="flex items-center gap-3">
-                <h2 class="text-xl font-bold text-slate-900">{{ $event->title }}</h2>
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider {{ $event->isMahasiswaOnly() ? 'bg-blue-100 text-blue-800' : 'bg-emerald-100 text-emerald-800' }}">
-                    {{ $event->category_label }}
-                </span>
-            </div>
-            <p class="text-xs text-slate-400 mt-1">
-                Jadwal: {{ $event->event_date->format('d M Y') }} &bull; Lokasi: {{ $event->location ?? 'Kampus Huxley' }} &bull; Total Kuota: {{ $event->quota ?? 'Unlimited' }}
-            </p>
+            <h2 class="text-xl font-bold text-slate-900">Rekap Seluruh Pendaftar Event</h2>
+            <p class="text-xs text-slate-400 mt-1">Pantau seluruh pendaftaran mahasiswa dan umum pada seluruh kegiatan Huxley University.</p>
         </div>
-        
-        <div class="flex items-center gap-3">
-            <div class="bg-blue-50 border border-blue-100 px-4 py-2 rounded-xl text-center">
-                <span class="text-[10px] uppercase font-bold text-blue-600 block">Total Pendaftar</span>
-                <span class="text-lg font-extrabold text-blue-900">{{ $registrations->total() }}</span>
-            </div>
-        </div>
+        <a href="{{ route('admin.events.index') }}" 
+           class="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white border border-slate-200 px-4 py-2 rounded-xl transition">
+            <i class="fa-regular fa-calendar-check"></i> Kelola Acara
+        </a>
     </div>
 
-    <!-- Main Table Container -->
+    <!-- Main Card Container -->
     <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm overflow-hidden p-6">
+        
+        <!-- Filter & Search Bar -->
+        <form method="GET" action="{{ route('admin.events.all-registrations') }}" class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+            <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+                <div class="relative w-full sm:w-64">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama, NIM, email..." 
+                           class="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-800 focus:border-blue-500 outline-none placeholder-slate-400 transition">
+                </div>
+
+                <select name="event_id" onchange="this.form.submit()" 
+                        class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 focus:border-blue-500 outline-none transition max-w-xs">
+                    <option value="">Semua Event</option>
+                    @foreach($events as $ev)
+                        <option value="{{ $ev->id }}" {{ request('event_id') == $ev->id ? 'selected' : '' }}>{{ $ev->title }}</option>
+                    @endforeach
+                </select>
+
+                <select name="type" onchange="this.form.submit()" 
+                        class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 focus:border-blue-500 outline-none transition">
+                    <option value="">Semua Peserta</option>
+                    <option value="student" {{ request('type') == 'student' ? 'selected' : '' }}>Khusus Mahasiswa</option>
+                    <option value="public" {{ request('type') == 'public' ? 'selected' : '' }}>Peserta Umum</option>
+                </select>
+            </div>
+            <span class="text-[11px] font-medium text-slate-400">Total: {{ $registrations->total() }} Pendaftar</span>
+        </form>
+
+        <!-- Table Grid -->
         <div class="overflow-x-auto border border-slate-100 rounded-xl">
             <table class="w-full text-left text-xs text-slate-600">
                 <thead class="bg-slate-50/80 text-slate-400 font-bold uppercase text-[10px] tracking-wider border-b border-slate-100">
                     <tr>
+                        <th class="py-3.5 px-4">EVENT</th>
                         <th class="py-3.5 px-4">TIPE</th>
                         <th class="py-3.5 px-4">NAMA PESERTA</th>
                         <th class="py-3.5 px-4">IDENTITAS (NIM / INSTANSI)</th>
@@ -47,6 +64,11 @@
                 <tbody class="divide-y divide-slate-100">
                     @forelse($registrations as $reg)
                     <tr class="hover:bg-slate-50/60 transition">
+                        <td class="py-3.5 px-4 font-bold text-slate-900 max-w-xs">
+                            <a href="{{ route('admin.events.registrations', $reg->event_id) }}" class="hover:text-blue-600 transition line-clamp-1">
+                                {{ $reg->event->title ?? '-' }}
+                            </a>
+                        </td>
                         <td class="py-3.5 px-4">
                             @if($reg->type === 'student')
                                 <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
@@ -61,7 +83,7 @@
                         <td class="py-3.5 px-4">
                             <h4 class="font-bold text-slate-900 text-xs">{{ $reg->name }}</h4>
                             @if($reg->study_program)
-                                <p class="text-[10px] text-blue-600 font-medium">{{ $reg->study_program }} {{ $reg->faculty ? '• ' . $reg->faculty : '' }}</p>
+                                <p class="text-[10px] text-blue-600 font-medium">{{ $reg->study_program }}</p>
                             @endif
                         </td>
                         <td class="py-3.5 px-4">
@@ -90,12 +112,11 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center py-16 text-slate-400">
+                        <td colspan="7" class="text-center py-16 text-slate-400">
                             <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-xl flex items-center justify-center mx-auto mb-3">
                                 <i class="fa-regular fa-clipboard text-xl"></i>
                             </div>
-                            <p class="font-bold text-slate-700 text-xs">Belum Ada Peserta yang Mendaftar</p>
-                            <p class="text-[11px] text-slate-400 mt-1">Pendaftaran yang masuk melalui portal akan tampil di sini.</p>
+                            <p class="font-bold text-slate-700 text-xs">Belum Ada Pendaftaran Event</p>
                         </td>
                     </tr>
                     @endforelse

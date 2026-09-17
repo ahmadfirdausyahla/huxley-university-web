@@ -46,11 +46,10 @@
                        class="w-full bg-white border border-slate-300 rounded-xl p-3 text-xs text-slate-900 focus:border-brand-blue outline-none placeholder-slate-400">
             </div>
 
-            <!-- Upload Gambar Header -->
             <div>
                 <label class="block text-xs font-bold text-slate-800 mb-1.5 uppercase tracking-wider">Gambar Header / Cover</label>
                 <div class="border-2 border-dashed border-slate-300 hover:border-brand-blue rounded-xl p-6 text-center bg-slate-50 transition relative" id="upload-box">
-                    <input type="file" name="image" id="image-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
+                    <input type="file" name="image_file" id="image-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
                     <div id="upload-placeholder">
                         <i class="fa-solid fa-cloud-arrow-up text-2xl text-brand-blue mb-1"></i>
                         <p class="text-xs font-bold text-slate-700">Klik atau seret gambar ke sini</p>

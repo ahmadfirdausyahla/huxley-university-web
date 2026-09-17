@@ -56,26 +56,40 @@
 
                 <!-- CRUD Events -->
                 <a href="{{ route('admin.events.index') }}" 
-                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.events.*') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
+                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.events.*') && !request()->routeIs('admin.events.all-registrations') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
                     <i class="fa-regular fa-calendar-check w-4 text-center"></i> Events & Kegiatan
                 </a>
 
+                <!-- Pendaftaran Event -->
+                <a href="{{ route('admin.events.all-registrations') }}" 
+                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.events.all-registrations') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
+                    <i class="fa-solid fa-clipboard-list w-4 text-center"></i> Pendaftar Event
+                </a>
+
+                <p class="px-3 text-[10px] uppercase font-bold text-slate-400 tracking-wider mt-4 mb-2">Akademik & Fasilitas</p>
+
+                <!-- Program Studi -->
+                <a href="{{ route('admin.programs.index') }}" 
+                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.programs.*') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
+                    <i class="fa-solid fa-book-open w-4 text-center"></i> Program Studi
+                </a>
+
+                <!-- Fasilitas Kampus -->
+                <a href="{{ route('admin.facilities.index') }}" 
+                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.facilities.*') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
+                    <i class="fa-solid fa-building-columns w-4 text-center"></i> Fasilitas Kampus
+                </a>
+
                 <!-- Beasiswa -->
-                <a href="{{ Route::has('admin.scholarships.index') ? route('admin.scholarships.index') : '#' }}" 
+                <a href="{{ route('admin.scholarships.index') }}" 
                    class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.scholarships.*') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
                     <i class="fa-solid fa-graduation-cap w-4 text-center"></i> Program Beasiswa
                 </a>
 
                 <!-- Warga Sekolah / Civitas -->
-                <a href="{{ Route::has('admin.civitas.index') ? route('admin.civitas.index') : '#' }}" 
+                <a href="{{ route('admin.civitas.index') }}" 
                    class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.civitas.*') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
-                    <i class="fa-solid fa-users-gear w-4 text-center"></i> Warga Sekolah
-                </a>
-
-                <!-- Fasilitas Kampus -->
-                <a href="{{ Route::has('facility.index') ? route('facility.index') : '#' }}" 
-                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition text-slate-600 hover:bg-slate-50 hover:text-slate-900">
-                    <i class="fa-solid fa-building-columns w-4 text-center"></i> Fasilitas Kampus
+                    <i class="fa-solid fa-users-gear w-4 text-center"></i> Mahasiswa & Staff
                 </a>
             </nav>
         </div>

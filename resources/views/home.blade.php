@@ -191,16 +191,13 @@
                 @php
                     $colSpan = $index === 0 ? 'col-span-1 md:col-span-2' : 'col-span-1';
                     $rowSpan = $index === 0 ? 'row-span-1 md:row-span-2' : 'row-span-1';
-                    $imageUrl = filter_var($item->image, FILTER_VALIDATE_URL)
-                        ? $item->image
-                        : asset('storage/' . $item->image);
                 @endphp
 
                 <a href="{{ Route::has('news.show') ? route('news.show', $item->id) : url('/berita/' . $item->id) }}"
                     data-aos="fade-up"
                     class="{{ $colSpan }} {{ $rowSpan }} relative rounded-2xl overflow-hidden group cursor-pointer block"
                     aria-label="Read news: {{ $item->title }}">
-                    <img src="{{ $imageUrl }}" alt="{{ $item->title }}"
+                    <img src="{{ $item->image_url }}" alt="{{ $item->title }}"
                         class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent p-6 flex flex-col justify-end">
                         <span class="text-[10px] text-gray-300 font-bold tracking-widest mb-2">{{ $item->label ?? 'NEWS' }}</span>
@@ -211,6 +208,7 @@
                     </div>
                 </a>
             @endforeach
+
 
             <div data-aos="fade-up" class="col-span-1 row-span-1 bg-brand-blue rounded-2xl p-6 flex flex-col justify-center relative overflow-hidden group">
                 <div class="relative z-10">

@@ -94,75 +94,70 @@
 
 
                         <div>
-                            <label class="text-xs font-bold text-gray-700">
-                                Nama Lengkap
+                            <label class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
+                                Nama Lengkap <span class="text-red-500">*</span>
                             </label>
-
                             <input
                                 type="text"
                                 name="name"
                                 value="{{ old('name') }}"
-                                class="mt-2 w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none"
+                                placeholder="Contoh: Budi Santoso"
+                                class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none transition"
                                 required
                             >
                         </div>
 
-
                         <div>
-                            <label class="text-xs font-bold text-gray-700">
-                                Email
+                            <label class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
+                                Email Aktif <span class="text-red-500">*</span>
                             </label>
-
                             <input
                                 type="email"
                                 name="email"
                                 value="{{ old('email') }}"
-                                class="mt-2 w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none"
+                                placeholder="Contoh: budi@gmail.com"
+                                class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none transition"
                                 required
                             >
                         </div>
 
-
                         <div>
-                            <label class="text-xs font-bold text-gray-700">
-                                Nomor WhatsApp
+                            <label class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
+                                Nomor WhatsApp / Telepon <span class="text-red-500">*</span>
                             </label>
-
                             <input
                                 type="text"
                                 name="phone"
                                 value="{{ old('phone') }}"
-                                class="mt-2 w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none"
+                                placeholder="Contoh: 081234567890"
+                                class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none transition"
                                 required
                             >
                         </div>
 
-
                         <div>
-                            <label class="text-xs font-bold text-gray-700">
-                                Asal Institusi
+                            <label class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
+                                Asal Institusi / Perusahaan <span class="text-red-500">*</span>
                             </label>
-
                             <input
                                 type="text"
                                 name="institution"
                                 value="{{ old('institution') }}"
-                                placeholder="Sekolah / Universitas / Instansi"
-                                class="mt-2 w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none"
+                                placeholder="Sekolah / Universitas / Instansi / Umum"
+                                class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none transition"
                                 required
                             >
                         </div>
 
-
                         <div>
-                            <label class="text-xs font-bold text-gray-700">
-                                Catatan
+                            <label class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
+                                Catatan Tambahan (Opsional)
                             </label>
-
                             <textarea
                                 name="notes"
-                                rows="4"
-                                class="mt-2 w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none resize-none"
+                                rows="3"
+                                placeholder="Tuliskan pesan atau catatan tambahan..."
+                                class="w-full bg-white border border-gray-300 rounded-xl p-4 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none resize-none transition"
                             >{{ old('notes') }}</textarea>
                         </div>
 

@@ -82,17 +82,41 @@ class EventRegistrationService
                 ]);
             }
 
-            // Cegah registrasi ganda dengan NIM atau Email Kampus yang sama pada event ini
+            // Validasi keberadaan mahasiswa di database Civitas (jika data civitas mahasiswa telah diinput)
+            if (\App\Models\Civitas::where('type', 'mahasiswa')->exists()) {
+                $student = \App\Models\Civitas::where('nip', trim($data['nim']))
+                    ->where('type', 'mahasiswa')
+                    ->first();
+
+                if (!$student) {
+                    throw ValidationException::withMessages([
+                        'nim' => 'NIM "' . $data['nim'] . '" tidak terdaftar di pangkalan data mahasiswa Huxley University.',
+                    ]);
+                }
+
+                if (!$student->is_active) {
+                    throw ValidationException::withMessages([
+                        'nim' => 'Status akademik untuk NIM "' . $data['nim'] . '" sedang tidak aktif.',
+                    ]);
+                }
+            }
+
+            $participantEmail = $data['email'] ?? $data['campus_email'] ?? null;
+
+            // Cegah registrasi ganda dengan NIM atau Email yang sama pada event ini
             $alreadyRegistered = $lockedEvent->registrations()
-                ->where(function ($query) use ($data) {
-                    $query->where('nim', $data['nim'])
-                        ->orWhere('campus_email', $data['campus_email']);
+                ->where(function ($query) use ($data, $participantEmail) {
+                    $query->where('nim', $data['nim']);
+                    if ($participantEmail) {
+                        $query->orWhere('campus_email', $participantEmail)
+                              ->orWhere('email', $participantEmail);
+                    }
                 })
                 ->exists();
 
             if ($alreadyRegistered) {
                 throw ValidationException::withMessages([
-                    'nim' => 'NIM atau Email Kampus ini sudah terdaftar pada event ini.',
+                    'nim' => 'NIM atau Email ini sudah terdaftar pada event ini.',
                 ]);
             }
 
@@ -101,7 +125,8 @@ class EventRegistrationService
                 'type' => 'student',
                 'name' => $data['name'],
                 'nim' => $data['nim'],
-                'campus_email' => $data['campus_email'],
+                'email' => $participantEmail,
+                'campus_email' => $participantEmail,
                 'study_program' => $data['study_program'],
                 'faculty' => $data['faculty'] ?? null,
                 'phone' => $data['phone'],

@@ -35,8 +35,10 @@ class EventRegistrationController extends Controller
     {
         abort_if(!$event->registration_open, 404, 'Pendaftaran event telah ditutup.');
 
+        $departments = \App\Models\AcademicProgram::active()->orderBy('name')->get();
+
         $viewName = view()->exists('events.register.student') ? 'events.register.student' : 'events.register-student';
-        return view($viewName, compact('event'));
+        return view($viewName, compact('event', 'departments'));
     }
 
     /**
