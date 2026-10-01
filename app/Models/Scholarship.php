@@ -54,6 +54,11 @@ class Scholarship extends Model
         return $query->where('is_active', true);
     }
 
+    public function applications(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ScholarshipApplication::class);
+    }
+
     protected static function boot()
     {
         parent::boot();

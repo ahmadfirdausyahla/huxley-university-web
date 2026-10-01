@@ -19,10 +19,17 @@ class EventRegistrationController extends Controller
     /**
      * Tampilkan form registrasi umum.
      */
-    public function publicForm(Event $event): View
+    public function publicForm(Event $event): View|RedirectResponse
     {
-        abort_if($event->isMahasiswaOnly(), 404, 'Event ini khusus untuk mahasiswa.');
-        abort_if(!$event->registration_open, 404, 'Pendaftaran event telah ditutup.');
+        if ($event->isMahasiswaOnly()) {
+            return redirect()->route('events.register.student', $event)
+                ->with('info', 'Kegiatan ini dikhususkan bagi mahasiswa Huxley University.');
+        }
+
+        if (!$event->registration_open) {
+            return redirect()->route('events.show', $event)
+                ->with('error', 'Pendaftaran untuk kegiatan ini saat ini sedang ditutup.');
+        }
 
         $viewName = view()->exists('events.register.public') ? 'events.register.public' : 'events.register-public';
         return view($viewName, compact('event'));
@@ -31,9 +38,12 @@ class EventRegistrationController extends Controller
     /**
      * Tampilkan form registrasi mahasiswa.
      */
-    public function studentForm(Event $event): View
+    public function studentForm(Event $event): View|RedirectResponse
     {
-        abort_if(!$event->registration_open, 404, 'Pendaftaran event telah ditutup.');
+        if (!$event->registration_open) {
+            return redirect()->route('events.show', $event)
+                ->with('error', 'Pendaftaran untuk kegiatan ini saat ini sedang ditutup.');
+        }
 
         $departments = \App\Models\AcademicProgram::active()->orderBy('name')->get();
 

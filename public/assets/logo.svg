@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Royal University Blue Gradient -->
+    <linearGradient id="crestBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E40AF" />
+      <stop offset="50%" stop-color="#1E3A8A" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <!-- Subtle Gold Inlay -->
+    <linearGradient id="crestGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D" />
+      <stop offset="50%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+
+    <!-- Metallic Silver Border -->
+    <linearGradient id="crestSilver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#CBD5E1" />
+      <stop offset="100%" stop-color="#94A3B8" />
+    </linearGradient>
+
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Outer Ring Background -->
+  <circle cx="250" cy="250" r="235" fill="#0A0F1D" stroke="url(#crestSilver)" stroke-width="4" filter="url(#softShadow)" />
+  <circle cx="250" cy="250" r="222" fill="none" stroke="url(#crestGold)" stroke-width="2" stroke-dasharray="6,4" />
+
+  <!-- University Heraldic Shield -->
+  <path d="M 250,75 
+           C 340,75 385,85 385,150 
+           C 385,270 330,350 250,405 
+           C 170,350 115,270 115,150 
+           C 115,85 160,75 250,75 Z" 
+        fill="url(#crestBlue)" 
+        stroke="url(#crestGold)" 
+        stroke-width="5" 
+        stroke-linejoin="round" />
+
+  <!-- Inner Inlay Border -->
+  <path d="M 250,90 
+           C 328,90 368,98 368,155 
+           C 368,258 318,332 250,385 
+           C 182,332 132,258 132,155 
+           C 132,98 172,90 250,90 Z" 
+        fill="none" 
+        stroke="url(#crestSilver)" 
+        stroke-width="2" 
+        opacity="0.75" />
+
+  <!-- Shield Division Line (Academic Chevron / Cross) -->
+  <line x1="135" y1="215" x2="365" y2="215" stroke="url(#crestGold)" stroke-width="2" opacity="0.6" />
+
+  <!-- Top Center: Academic Torch of Knowledge -->
+  <g transform="translate(250, 150)">
+    <!-- Torch Flame -->
+    <path d="M 0,-38 C 12,-20 16,-6 10,6 C 6,12 -6,12 -10,6 C -16,-6 -12,-20 0,-38 Z" fill="url(#crestGold)" />
+    <path d="M 0,-28 C 6,-15 8,-5 5,3 C 3,7 -3,7 -5,3 C -8,-5 -6,-15 0,-28 Z" fill="#FFFFFF" opacity="0.8" />
+    <!-- Torch Handle & Bowl -->
+    <path d="M -14,6 L 14,6 L 8,20 L -8,20 Z" fill="url(#crestSilver)" stroke="#0F172A" stroke-width="1.5" />
+    <path d="M -5,20 L 5,20 L 3,42 L -3,42 Z" fill="url(#crestSilver)" />
+  </g>
+
+  <!-- Left Laurel Wreath Branch -->
+  <g fill="url(#crestGold)" opacity="0.9">
+    <path d="M 195,140 C 185,130 180,145 185,155 C 190,165 200,150 195,140 Z" />
+    <path d="M 180,165 C 170,158 168,172 174,180 C 180,188 190,175 180,165 Z" />
+    <path d="M 175,195 C 165,190 165,205 172,212 C 178,218 186,204 175,195 Z" />
+  </g>
+
+  <!-- Right Laurel Wreath Branch -->
+  <g fill="url(#crestGold)" opacity="0.9">
+    <path d="M 305,140 C 315,130 320,145 315,155 C 310,165 300,150 305,140 Z" />
+    <path d="M 320,165 C 330,158 332,172 326,180 C 320,188 310,175 320,165 Z" />
+    <path d="M 325,195 C 335,190 335,205 328,212 C 322,218 314,204 325,195 Z" />
+  </g>
+
+  <!-- Bottom Center: Open Book of Knowledge -->
+  <g transform="translate(250, 275)">
+    <!-- Book Pages -->
+    <path d="M 0,-15 C 22,-28 55,-28 72,-16 L 72,35 C 55,24 22,24 0,38 C -22,24 -55,24 -72,35 L -72,-16 C -55,-28 -22,-28 0,-15 Z" 
+          fill="#FFFFFF" 
+          stroke="#0F172A" 
+          stroke-width="3" />
+    <!-- Book Center Fold -->
+    <line x1="0" y1="-15" x2="0" y2="38" stroke="#1E3A8A" stroke-width="2.5" />
+    <!-- Book Page Lines Left -->
+    <line x1="-58" y1="-5" x2="-14" y2="-1" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+    <line x1="-58" y1="8" x2="-14" y2="12" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+    <line x1="-58" y1="21" x2="-22" y2="24" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+    <!-- Book Page Lines Right -->
+    <line x1="14" y1="-1" x2="58" y2="-5" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+    <line x1="14" y1="12" x2="58" y2="8" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+    <line x1="22" y1="24" x2="58" y2="21" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+  </g>
+
+  <!-- Big Monogram "HU" subtly in bottom crest -->
+  <text x="250" y="360" 
+        font-family="'Playfair Display', Georgia, serif" 
+        font-size="28" 
+        font-weight="bold" 
+        letter-spacing="6" 
+        fill="url(#crestGold)" 
+        text-anchor="middle">
+    H • U
+  </text>
+
+  <!-- Official University Name Banner (Bottom Ribbon) -->
+  <g transform="translate(0, 30)">
+    <!-- Ribbon Shadow/Fold -->
+    <path d="M 90,405 L 140,390 L 140,430 L 90,445 Z" fill="#0B132B" stroke="#000" stroke-width="1" />
+    <path d="M 410,405 L 360,390 L 360,430 L 410,445 Z" fill="#0B132B" stroke="#000" stroke-width="1" />
+    <!-- Ribbon Front -->
+    <path d="M 120,400 L 380,400 L 370,440 L 130,440 Z" 
+          fill="#0F172A" 
+          stroke="url(#crestGold)" 
+          stroke-width="3" />
+    <!-- Ribbon Text -->
+    <text x="250" y="426" 
+          font-family="'Inter', sans-serif" 
+          font-size="16" 
+          font-weight="800" 
+          letter-spacing="4" 
+          fill="#FFFFFF" 
+          text-anchor="middle">
+      HUXLEY UNIVERSITY
+    </text>
+  </g>
+
+  <!-- Founded Year Pill at Top -->
+  <rect x="205" y="48" width="90" height="22" rx="11" fill="#0F172A" stroke="url(#crestGold)" stroke-width="1.5" />
+  <text x="250" y="63" 
+        font-family="'Inter', sans-serif" 
+        font-size="9" 
+        font-weight="800" 
+        letter-spacing="2" 
+        fill="url(#crestGold)" 
+        text-anchor="middle">
+    EST. 1998
+  </text>
+</svg>

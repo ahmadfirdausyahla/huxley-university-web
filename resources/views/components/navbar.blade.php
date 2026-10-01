@@ -4,8 +4,8 @@
 
             {{-- Logo & Brand --}}
             <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <img src="{{ asset('storage/assets/logo.png') }}" alt="Huxley University"
-                    class="w-11 h-11 object-contain transition duration-300 group-hover:scale-105">
+                <img src="{{ asset('images/huxley-logo.jpg') }}" alt="Huxley University"
+                    class="w-11 h-11 object-cover rounded-lg transition duration-300 group-hover:scale-105">
 
                 <div class="hidden sm:block leading-none">
                     <span class="block text-sm font-bold text-white">

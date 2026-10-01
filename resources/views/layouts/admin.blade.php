@@ -24,97 +24,136 @@
 <body class="bg-slate-100 text-slate-800 font-sans flex h-screen overflow-hidden">
 
     <!-- Sidebar Navigation -->
-    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col justify-between hidden md:flex shrink-0">
+    <aside class="w-64 bg-slate-900 border-r border-slate-800 flex flex-col justify-between hidden md:flex shrink-0">
         <div>
-            <!-- Header Brand -->
-            <div class="p-5 border-b border-slate-200 flex items-center gap-3">
-                <div class="w-9 h-9 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center text-sm shadow-md shadow-blue-500/20">
-                    HU
-                </div>
+            <!-- Header Brand with Logo -->
+            <div class="px-5 py-4 border-b border-slate-800 flex items-center gap-3">
+                <img src="{{ asset('images/huxley-logo.jpg') }}" alt="Huxley University" class="w-8 h-8 rounded-lg object-cover">
                 <div>
-                    <h2 class="font-bold text-slate-900 text-sm leading-tight">Huxley Admin</h2>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">Control Panel</p>
+                    <h2 class="font-bold text-white text-sm leading-tight">Huxley Admin</h2>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">Control Panel</p>
                 </div>
             </div>
 
-            <!-- Menu Navigation Links (Lengkap) -->
-            <nav class="p-4 space-y-1">
-                <p class="px-3 text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-2">Utama</p>
-                
-                <a href="{{ route('admin.dashboard') }}" 
-                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.dashboard') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
-                    <i class="fa-solid fa-chart-pie w-4 text-center"></i> Dashboard
-                </a>
+            <!-- Menu Navigation Links -->
+            <nav class="p-3 space-y-4 overflow-y-auto">
+                <!-- Utama -->
+                <div>
+                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Utama</p>
+                    <a href="{{ route('admin.dashboard') }}" 
+                       class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.dashboard') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
+                        <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
 
-                <p class="px-3 text-[10px] uppercase font-bold text-slate-400 tracking-wider mt-5 mb-2">Manajemen Konten</p>
+                <!-- Event & Agenda -->
+                <div>
+                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Event & Agenda</p>
+                    <div class="space-y-0.5">
+                        <a href="{{ route('admin.events.index') }}" 
+                           class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.events.index') || request()->routeIs('admin.events.create') || request()->routeIs('admin.events.edit') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
+                            <i class="fa-regular fa-calendar-check w-4 text-center"></i>
+                            <span class="flex-1">Kelola Event</span>
+                        </a>
+                        <a href="{{ route('admin.events.all-registrations') }}" 
+                           class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.events.all-registrations') || request()->routeIs('admin.events.registrations') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
+                            <i class="fa-solid fa-inbox w-4 text-center"></i>
+                            <span class="flex-1">Kotak Masuk Event</span>
+                            @php
+                                $totalEventRegs = class_exists('App\Models\EventRegistration') ? \App\Models\EventRegistration::count() : 0;
+                            @endphp
+                            @if($totalEventRegs > 0)
+                                <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-200">{{ $totalEventRegs }}</span>
+                            @endif
+                        </a>
+                    </div>
+                </div>
 
-                <!-- CRUD Berita -->
-                <a href="{{ route('admin.news.index') }}" 
-                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.news.*') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
-                    <i class="fa-solid fa-newspaper w-4 text-center"></i> Berita & Artikel
-                </a>
+                <!-- Beasiswa & Bantuan -->
+                <div>
+                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Beasiswa & Bantuan</p>
+                    <div class="space-y-0.5">
+                        <a href="{{ route('admin.scholarships.index') }}" 
+                           class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.scholarships.index') || request()->routeIs('admin.scholarships.create') || request()->routeIs('admin.scholarships.edit') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
+                            <i class="fa-solid fa-graduation-cap w-4 text-center"></i>
+                            <span class="flex-1">Program Beasiswa</span>
+                        </a>
+                        <a href="{{ route('admin.scholarships.applications.index') }}" 
+                           class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.scholarships.applications.*') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
+                            <i class="fa-solid fa-envelope-open-text w-4 text-center"></i>
+                            <span class="flex-1">Kotak Masuk Beasiswa</span>
+                            @php
+                                $totalScholarshipApps = class_exists('App\Models\ScholarshipApplication') ? \App\Models\ScholarshipApplication::where('status', 'pending')->count() : 0;
+                            @endphp
+                            @if($totalScholarshipApps > 0)
+                                <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-200">{{ $totalScholarshipApps }}</span>
+                            @endif
+                        </a>
+                    </div>
+                </div>
 
-                <!-- CRUD Events -->
-                <a href="{{ route('admin.events.index') }}" 
-                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.events.*') && !request()->routeIs('admin.events.all-registrations') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
-                    <i class="fa-regular fa-calendar-check w-4 text-center"></i> Events & Kegiatan
-                </a>
+                <!-- Berita & Publikasi -->
+                <div>
+                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Berita & Publikasi</p>
+                    <a href="{{ route('admin.news.index') }}" 
+                       class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.news.*') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
+                        <i class="fa-solid fa-newspaper w-4 text-center"></i>
+                        <span>Berita & Artikel</span>
+                    </a>
+                </div>
 
-                <!-- Pendaftaran Event -->
-                <a href="{{ route('admin.events.all-registrations') }}" 
-                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.events.all-registrations') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
-                    <i class="fa-solid fa-clipboard-list w-4 text-center"></i> Pendaftar Event
-                </a>
+                <!-- Fasilitas & Akademik -->
+                <div>
+                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Fasilitas & Akademik</p>
+                    <div class="space-y-0.5">
+                        <a href="{{ route('admin.facilities.index') }}" 
+                           class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.facilities.*') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
+                            <i class="fa-solid fa-building-columns w-4 text-center"></i>
+                            <span>Fasilitas Kampus</span>
+                        </a>
+                        <a href="{{ route('admin.programs.index') }}" 
+                           class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.programs.*') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
+                            <i class="fa-solid fa-book-open w-4 text-center"></i>
+                            <span>Program Studi</span>
+                        </a>
+                    </div>
+                </div>
 
-                <p class="px-3 text-[10px] uppercase font-bold text-slate-400 tracking-wider mt-4 mb-2">Akademik & Fasilitas</p>
-
-                <!-- Program Studi -->
-                <a href="{{ route('admin.programs.index') }}" 
-                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.programs.*') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
-                    <i class="fa-solid fa-book-open w-4 text-center"></i> Program Studi
-                </a>
-
-                <!-- Fasilitas Kampus -->
-                <a href="{{ route('admin.facilities.index') }}" 
-                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.facilities.*') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
-                    <i class="fa-solid fa-building-columns w-4 text-center"></i> Fasilitas Kampus
-                </a>
-
-                <!-- Beasiswa -->
-                <a href="{{ route('admin.scholarships.index') }}" 
-                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.scholarships.*') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
-                    <i class="fa-solid fa-graduation-cap w-4 text-center"></i> Program Beasiswa
-                </a>
-
-                <!-- Warga Sekolah / Civitas -->
-                <a href="{{ route('admin.civitas.index') }}" 
-                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.civitas.*') ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
-                    <i class="fa-solid fa-users-gear w-4 text-center"></i> Mahasiswa & Staff
-                </a>
+                <!-- Civitas Kampus -->
+                <div>
+                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Civitas Kampus</p>
+                    <a href="{{ route('admin.civitas.index') }}" 
+                       class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.civitas.*') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
+                        <i class="fa-solid fa-users-gear w-4 text-center"></i>
+                        <span>Mahasiswa & Staff</span>
+                    </a>
+                </div>
             </nav>
         </div>
 
         <!-- User Profile & Logout -->
-        <div class="p-4 border-t border-slate-200 bg-slate-50/50">
+        <div class="p-3 border-t border-slate-800">
             <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3 overflow-hidden">
-                    <div class="w-8 h-8 rounded-full bg-blue-100 text-brand-blue font-bold flex items-center justify-center text-xs shrink-0">
+                <div class="flex items-center gap-2.5 overflow-hidden">
+                    <div class="w-7 h-7 rounded-lg bg-slate-700 text-slate-300 font-bold flex items-center justify-center text-xs shrink-0">
                         {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
                     </div>
                     <div class="text-xs overflow-hidden">
-                        <p class="font-bold text-slate-800 truncate">{{ auth()->user()->name ?? 'Administrator' }}</p>
-                        <p class="text-[10px] text-slate-400 truncate">{{ auth()->user()->email ?? 'admin@huxley.ac.id' }}</p>
+                        <p class="font-semibold text-slate-200 truncate text-[11px]">{{ auth()->user()->name ?? 'Administrator' }}</p>
+                        <p class="text-[10px] text-slate-500 truncate">{{ auth()->user()->email ?? 'admin@huxley.ac.id' }}</p>
                     </div>
                 </div>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="text-slate-400 hover:text-red-600 transition p-1.5" title="Logout">
+                    <button type="submit" class="text-slate-500 hover:text-slate-200 transition p-1.5" title="Logout">
                         <i class="fa-solid fa-right-from-bracket text-xs"></i>
                     </button>
                 </form>
             </div>
         </div>
     </aside>
+
 
     <!-- Main Content Area -->
     <div class="flex-1 flex flex-col h-screen overflow-y-auto">

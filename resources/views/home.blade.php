@@ -276,54 +276,82 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @forelse($events as $index => $event)
+                @php
+                    $eventDate = $event->event_date ?? $event->date;
+                    $imageUrl = filter_var($event->image, FILTER_VALIDATE_URL)
+                        ? $event->image
+                        : asset('storage/' . $event->image);
+                @endphp
                 <article data-aos="fade-up" data-aos-delay="{{ $index * 100 }}"
-                    class="group relative bg-white rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:-translate-y-2 hover:shadow-2xl transition-all duration-500">
-                    <div class="h-1.5 bg-brand-blue"></div>
-                    <div class="p-7">
-                        <div class="flex items-start justify-between gap-4 mb-7">
-                            @if($event->date)
-                                <div class="w-16 h-16 rounded-xl bg-blue-50 border border-blue-100 flex flex-col items-center justify-center text-brand-blue">
-                                    <span class="text-[10px] font-bold uppercase tracking-wider">{{ $event->date->format('M') }}</span>
-                                    <span class="text-2xl font-bold leading-none mt-1">{{ $event->date->format('d') }}</span>
-                                </div>
+                    class="group relative bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-amber-500/50 shadow-xl hover:-translate-y-2 hover:shadow-2xl transition-all duration-400 flex flex-col justify-between">
+                    <div>
+                        <!-- Header with Calendar Ticket Block -->
+                        <div class="relative h-44 bg-gray-950 overflow-hidden">
+                            @if($event->image)
+                                <img src="{{ $imageUrl }}" alt="{{ $event->title }}"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90">
                             @else
-                                <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-gray-400">
-                                    <i class="fa-regular fa-calendar"></i>
+                                <div class="w-full h-full flex items-center justify-center bg-gray-800 text-gray-500">
+                                    <i class="fa-regular fa-calendar text-3xl"></i>
                                 </div>
                             @endif
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent"></div>
 
-                            <span class="text-[9px] font-bold uppercase tracking-[0.15em] text-brand-blue bg-blue-50 px-3 py-1.5 rounded-full">
-                                {{ strtoupper($event->type ?? 'EVENT') }}
-                            </span>
-                        </div>
-
-                        <h3 class="text-lg font-bold text-gray-900 leading-snug mb-3 group-hover:text-brand-blue transition">
-                            {{ $event->title }}
-                        </h3>
-
-                        <div class="space-y-2 mb-6">
-                            @if($event->time)
-                                <div class="flex items-center gap-2 text-xs text-gray-500">
-                                    <i class="fa-regular fa-clock text-brand-blue w-4"></i>
-                                    <span>{{ \Carbon\Carbon::parse($event->time)->format('H:i') }} WIB</span>
+                            <!-- Calendar Ticket Badge -->
+                            <div class="absolute top-3 left-3 bg-black/90 backdrop-blur-md border border-white/20 rounded-xl overflow-hidden shadow-lg text-center min-w-[54px]">
+                                <div class="bg-amber-500 text-black text-[9px] font-extrabold uppercase py-0.5 px-1.5">
+                                    {{ $eventDate ? $eventDate->format('M') : 'TBA' }}
                                 </div>
-                            @endif
-
-                            @if($event->location)
-                                <div class="flex items-center gap-2 text-xs text-gray-500">
-                                    <i class="fa-solid fa-location-dot text-brand-blue w-4"></i>
-                                    <span class="line-clamp-1">{{ $event->location }}</span>
+                                <div class="py-1 px-1.5">
+                                    <span class="block text-xl font-black text-white leading-none">
+                                        {{ $eventDate ? $eventDate->format('d') : '01' }}
+                                    </span>
                                 </div>
-                            @endif
+                            </div>
+
+                            <!-- Audience Badge -->
+                            <div class="absolute top-3 right-3">
+                                <span class="px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider bg-black/80 backdrop-blur-md text-amber-300 border border-amber-500/30">
+                                    {{ $event->isMahasiswaOnly() ? 'Mahasiswa' : 'Umum & Mhs' }}
+                                </span>
+                            </div>
                         </div>
 
-                        <div class="pt-5 border-t border-gray-100 flex items-center justify-between">
-                            <span class="text-[10px] font-bold tracking-wider uppercase text-gray-400">Upcoming</span>
-                            <a href="{{ route('events.show', $event) }}"
-                                class="text-xs font-bold text-brand-blue inline-flex items-center gap-2 hover:gap-3 transition-all">
-                                VIEW EVENT <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                            </a>
+                        <div class="p-5">
+                            <span class="text-[9px] font-bold uppercase tracking-widest text-amber-400">CAMPUS AGENDA</span>
+                            <h3 class="text-base font-bold font-serif text-white leading-snug mt-1 mb-3 group-hover:text-amber-400 transition line-clamp-2">
+                                <a href="{{ route('events.show', $event) }}">{{ $event->title }}</a>
+                            </h3>
+
+                            <div class="space-y-1.5 text-xs text-gray-400">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-regular fa-clock text-amber-400 w-3.5 text-[11px]"></i>
+                                    <span class="text-[11px]">
+                                        {{ $event->time ? \Carbon\Carbon::parse($event->time)->format('H:i') . ' WIB' : '09:00 WIB' }}
+                                    </span>
+                                </div>
+
+                                @if($event->location)
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-location-dot text-amber-400 w-3.5 text-[11px]"></i>
+                                        <span class="text-[11px] line-clamp-1">{{ $event->location }}</span>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- Perforated Ticket Divider & Action -->
+                    <div class="p-4 pt-3 border-t border-dashed border-gray-800 flex items-center justify-between gap-2">
+                        <a href="{{ route('events.show', $event) }}"
+                            class="text-xs font-semibold text-gray-400 hover:text-white transition">
+                            Lihat Detail
+                        </a>
+                        <a href="{{ route('events.register', $event) }}"
+                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold transition shadow-md shadow-amber-500/10">
+                            <i class="fa-solid fa-ticket text-[10px]"></i>
+                            <span>Daftar</span>
+                        </a>
                     </div>
                 </article>
             @empty

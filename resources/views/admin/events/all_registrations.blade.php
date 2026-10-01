@@ -1,20 +1,46 @@
 @extends('layouts.admin')
 
-@section('title', 'Semua Pendaftaran Event')
-@section('page_title', 'SEMUA PENDAFTARAN EVENT')
+@section('title', 'Kotak Masuk Event')
+@section('page_title', 'KOTAK MASUK EVENT')
 
 @section('content')
 <div class="space-y-6">
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h2 class="text-xl font-bold text-slate-900">Rekap Seluruh Pendaftar Event</h2>
-            <p class="text-xs text-slate-400 mt-1">Pantau seluruh pendaftaran mahasiswa dan umum pada seluruh kegiatan Huxley University.</p>
+            <h2 class="text-xl font-bold text-slate-900">Kotak Masuk Pendaftar Event</h2>
+            <p class="text-xs text-slate-400 mt-1">Pantau seluruh pendaftaran mahasiswa dan masyarakat umum pada seluruh kegiatan Huxley University.</p>
         </div>
         <a href="{{ route('admin.events.index') }}" 
            class="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white border border-slate-200 px-4 py-2 rounded-xl transition">
             <i class="fa-regular fa-calendar-check"></i> Kelola Acara
         </a>
+    </div>
+
+    <!-- Quick Stats Bar -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="bg-white border border-slate-200/80 p-4 rounded-xl shadow-sm">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Pendaftar</p>
+            <p class="text-xl font-extrabold text-slate-800 mt-0.5">{{ \App\Models\EventRegistration::count() }}</p>
+        </div>
+        <div class="bg-blue-50/60 border border-blue-200 p-4 rounded-xl shadow-sm">
+            <p class="text-[10px] font-bold text-blue-700 uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-solid fa-graduation-cap"></i> Mahasiswa Huxley
+            </p>
+            <p class="text-xl font-extrabold text-blue-800 mt-0.5">{{ \App\Models\EventRegistration::where('type', 'student')->count() }}</p>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl shadow-sm">
+            <p class="text-[10px] font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-solid fa-user"></i> Peserta Umum
+            </p>
+            <p class="text-xl font-extrabold text-slate-800 mt-0.5">{{ \App\Models\EventRegistration::where('type', 'public')->count() }}</p>
+        </div>
+        <div class="bg-amber-50/60 border border-amber-200 p-4 rounded-xl shadow-sm">
+            <p class="text-[10px] font-bold text-amber-700 uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-regular fa-calendar-days"></i> Kegiatan Aktif
+            </p>
+            <p class="text-xl font-extrabold text-amber-800 mt-0.5">{{ \App\Models\Event::where('registration_open', true)->count() }}</p>
+        </div>
     </div>
 
     <!-- Main Card Container -->

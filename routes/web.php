@@ -5,12 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventRegistrationController;
+use App\Http\Controllers\ScholarshipApplicationController;
 
 // Admin Controllers
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ScholarshipController;
+use App\Http\Controllers\Admin\ScholarshipApplicationController as AdminScholarshipApplicationController;
 use App\Http\Controllers\Admin\CivitasController;
 use App\Http\Controllers\Admin\FacilityController;
 use App\Http\Controllers\Admin\AcademicProgramController;
@@ -126,6 +128,11 @@ Route::get('/scholarships', function (\Illuminate\Http\Request $request) {
 })->name('scholarships.index');
 Route::get('/beasiswa', fn() => redirect()->route('scholarships.index'));
 
+// Formulir Pendaftaran / Pengajuan Beasiswa (Public)
+Route::get('/scholarships/{scholarship}/apply', [ScholarshipApplicationController::class, 'create'])->name('scholarships.apply');
+Route::post('/scholarships/{scholarship}/apply', [ScholarshipApplicationController::class, 'store'])->name('scholarships.apply.store');
+Route::get('/beasiswa/{scholarship}/daftar', fn(Scholarship $scholarship) => redirect()->route('scholarships.apply', $scholarship));
+
 // Vision & Mission (Public - Statis & Elegan)
 Route::get('/about', function () {
     return view('about_vision_mission');
@@ -172,7 +179,11 @@ Route::middleware(['auth'])
         Route::get('/events/{event}/registrations', [EventController::class, 'registrations'])->name('events.registrations');
         Route::resource('/events', EventController::class);
 
-        // CRUD Program Beasiswa
+        // CRUD Program Beasiswa & Kotak Masuk Pengajuan Beasiswa
+        Route::get('/scholarships/applications', [AdminScholarshipApplicationController::class, 'index'])->name('scholarships.applications.index');
+        Route::get('/scholarships/applications/{application}', [AdminScholarshipApplicationController::class, 'show'])->name('scholarships.applications.show');
+        Route::patch('/scholarships/applications/{application}/status', [AdminScholarshipApplicationController::class, 'updateStatus'])->name('scholarships.applications.update-status');
+        Route::delete('/scholarships/applications/{application}', [AdminScholarshipApplicationController::class, 'destroy'])->name('scholarships.applications.destroy');
         Route::resource('/scholarships', ScholarshipController::class);
 
         // CRUD Fasilitas Kampus
