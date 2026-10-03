@@ -18,23 +18,23 @@
                     Explore high-end scientific laboratories, multi-disciplinary research facilities, digital resource centers, and athletic complexes designed to nurture breakthrough education.
                 </p>
 
-                <!-- Filter Kategori Quick Bar -->
+                <!-- Filter Category Quick Bar -->
                 <div class="flex flex-wrap gap-2.5 mt-8">
                     <a href="{{ route('facility.index') }}" 
                        class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition {{ !request('category') ? 'bg-brand-blue text-white shadow-lg shadow-blue-500/20' : 'bg-gray-800/80 text-gray-400 hover:text-white hover:bg-gray-800' }}">
-                        Semua Fasilitas
+                        All Facilities
                     </a>
                     <a href="{{ route('facility.index', ['category' => 'laboratorium']) }}" 
                        class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition {{ request('category') == 'laboratorium' ? 'bg-brand-blue text-white shadow-lg shadow-blue-500/20' : 'bg-gray-800/80 text-gray-400 hover:text-white hover:bg-gray-800' }}">
-                        Laboratorium
+                        Laboratory
                     </a>
                     <a href="{{ route('facility.index', ['category' => 'perpustakaan']) }}" 
                        class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition {{ request('category') == 'perpustakaan' ? 'bg-brand-blue text-white shadow-lg shadow-blue-500/20' : 'bg-gray-800/80 text-gray-400 hover:text-white hover:bg-gray-800' }}">
-                        Perpustakaan
+                        Library
                     </a>
                     <a href="{{ route('facility.index', ['category' => 'olahraga']) }}" 
                        class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition {{ request('category') == 'olahraga' ? 'bg-brand-blue text-white shadow-lg shadow-blue-500/20' : 'bg-gray-800/80 text-gray-400 hover:text-white hover:bg-gray-800' }}">
-                        Olahraga
+                        Sports
                     </a>
                     <a href="{{ route('facility.index', ['category' => 'aula']) }}" 
                        class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition {{ request('category') == 'aula' ? 'bg-brand-blue text-white shadow-lg shadow-blue-500/20' : 'bg-gray-800/80 text-gray-400 hover:text-white hover:bg-gray-800' }}">
@@ -59,11 +59,11 @@
                 @endif
                 <div class="relative w-full sm:w-72">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-xs text-gray-400"></i>
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama atau lokasi gedung..."
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Search building name or location..."
                            class="w-full bg-gray-900 border border-gray-800 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-gray-500 focus:border-brand-blue outline-none transition">
                 </div>
                 <button type="submit" class="px-4 py-2.5 bg-brand-blue hover:bg-blue-600 rounded-xl text-xs font-bold text-white transition">
-                    Cari
+                    Search
                 </button>
             </form>
         </div>
@@ -89,7 +89,7 @@
                                 @if($fac->capacity)
                                     <div class="absolute top-4 right-4">
                                         <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/10 backdrop-blur-md text-gray-200">
-                                            <i class="fa-solid fa-users text-[9px]"></i> {{ $fac->capacity }} Orang
+                                        <i class="fa-solid fa-users text-[9px]"></i> {{ $fac->capacity }} People
                                         </span>
                                     </div>
                                 @endif
@@ -104,12 +104,12 @@
                                 <h3 class="text-xl font-bold font-serif text-white group-hover:text-blue-400 transition">{{ $fac->name }}</h3>
                                 
                                 <p class="text-xs text-gray-400 mt-3 line-clamp-3 leading-relaxed">
-                                    {{ $fac->description ?: 'Fasilitas berstandar internasional yang menunjang aktivitas riset, pembelajaran, dan pengembangan potensi sivitas akademika.' }}
+                                    {{ $fac->description ?: 'International-standard facilities supporting research activities, learning, and developing the potential of academic community members.' }}
                                 </p>
 
                                 @if($fac->features)
                                     <div class="mt-4 pt-4 border-t border-gray-800/80">
-                                        <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">Fasilitas Penunjang:</p>
+                                        <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">Supporting Facilities:</p>
                                         <div class="flex flex-wrap gap-1.5">
                                             @foreach(explode(',', $fac->features) as $item)
                                                 <span class="text-[10px] bg-gray-800/90 px-2.5 py-1 rounded-lg text-gray-300">
@@ -126,7 +126,7 @@
                             <div class="w-full py-2.5 px-4 rounded-xl bg-gray-800/50 border border-gray-700/50 flex items-center justify-between text-xs">
                                 <span class="text-gray-400 flex items-center gap-1.5">
                                     <span class="w-2 h-2 rounded-full {{ $fac->is_active ? 'bg-emerald-500' : 'bg-amber-500' }}"></span>
-                                    {{ $fac->is_active ? 'Siap Digunakan' : 'Dalam Perawatan' }}
+                                    {{ $fac->is_active ? 'Ready to Use' : 'Under Maintenance' }}
                                 </span>
                                 <span class="text-brand-blue font-bold text-[11px]">Huxley Campus</span>
                             </div>
@@ -143,9 +143,9 @@
         @else
             <div class="py-24 text-center rounded-2xl border border-gray-800 bg-gray-900/50">
                 <i class="fa-solid fa-building-columns text-4xl text-gray-600 mb-4"></i>
-                <h3 class="text-lg font-bold text-white">Belum Ada Fasilitas yang Ditemukan</h3>
-                <p class="text-xs text-gray-400 mt-1">Coba gunakan kata kunci pencarian lain atau pilih kategori fasilitas.</p>
-                <a href="{{ route('facility.index') }}" class="inline-block mt-4 text-xs font-bold text-brand-blue hover:underline">Reset Pencarian</a>
+                <h3 class="text-lg font-bold text-white">No Facilities Found</h3>
+                <p class="text-xs text-gray-400 mt-1">Try using different search keywords or select a different facility category.</p>
+                <a href="{{ route('facility.index') }}" class="inline-block mt-4 text-xs font-bold text-brand-blue hover:underline">Reset Search</a>
             </div>
         @endif
     </main>

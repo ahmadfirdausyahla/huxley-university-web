@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('title', 'Detail Berita')
-@section('page_title', 'Preview Berita Admin')
+@section('page_title', 'News Preview - Admin')
 
 @section('content')
 <div class="max-w-4xl mx-auto space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <a href="{{ route('admin.news.index') }}" class="text-xs text-gray-400 hover:text-white transition flex items-center gap-2">
-            <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Berita
+            <i class="fa-solid fa-arrow-left"></i> Back to News List
         </a>
 
         <div class="flex items-center gap-3">
@@ -17,7 +17,7 @@
             </a>
             <a href="{{ route('news.show', $news->id) }}" target="_blank" 
                class="px-4 py-2.5 bg-gray-900 hover:bg-gray-800 border border-gray-700 text-gray-300 rounded-xl text-xs font-bold transition flex items-center gap-2">
-                <i class="fa-solid fa-globe"></i> Lihat Publik
+                <i class="fa-solid fa-globe"></i> View Public
             </a>
         </div>
     </div>
@@ -47,7 +47,7 @@
         @endif
 
         <div class="prose prose-invert max-w-none text-xs leading-relaxed text-gray-300 border-t border-border-dark pt-6">
-            {!! $news->content ?? $news->description ?? 'Tidak ada konten' !!}
+            {!! $news->content ?? $news->description ?? 'No content' !!}
         </div>
     </div>
 </div>

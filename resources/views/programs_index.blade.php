@@ -22,11 +22,11 @@
                 <div class="flex flex-wrap gap-2.5 mt-8">
                     <a href="{{ route('programs.index') }}" 
                        class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition {{ !request('degree') ? 'bg-brand-blue text-white shadow-lg shadow-blue-500/20' : 'bg-gray-800/80 text-gray-400 hover:text-white hover:bg-gray-800' }}">
-                        Semua Jenjang
+                        All Levels
                     </a>
                     <a href="{{ route('programs.index', ['degree' => 'S1']) }}" 
                        class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition {{ request('degree') == 'S1' ? 'bg-brand-blue text-white shadow-lg shadow-blue-500/20' : 'bg-gray-800/80 text-gray-400 hover:text-white hover:bg-gray-800' }}">
-                        Sarjana (S1)
+                        Bachelor (S1)
                     </a>
                     <a href="{{ route('programs.index', ['degree' => 'D3']) }}" 
                        class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition {{ request('degree') == 'D3' ? 'bg-brand-blue text-white shadow-lg shadow-blue-500/20' : 'bg-gray-800/80 text-gray-400 hover:text-white hover:bg-gray-800' }}">
@@ -34,7 +34,7 @@
                     </a>
                     <a href="{{ route('programs.index', ['degree' => 'S2']) }}" 
                        class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition {{ request('degree') == 'S2' ? 'bg-brand-blue text-white shadow-lg shadow-blue-500/20' : 'bg-gray-800/80 text-gray-400 hover:text-white hover:bg-gray-800' }}">
-                        Pascasarjana (S2)
+                        Master's (S2)
                     </a>
                 </div>
             </div>
@@ -55,11 +55,11 @@
                 @endif
                 <div class="relative w-full sm:w-72">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-xs text-gray-400"></i>
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari program studi..."
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Search study programs..."
                            class="w-full bg-gray-900 border border-gray-800 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-gray-500 focus:border-brand-blue outline-none transition">
                 </div>
                 <button type="submit" class="px-4 py-2.5 bg-brand-blue hover:bg-blue-600 rounded-xl text-xs font-bold text-white transition">
-                    Cari
+                    Search
                 </button>
             </form>
         </div>
@@ -80,7 +80,7 @@
                                         {{ $prog->degree }}
                                     </span>
                                     <span class="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider bg-black/60 backdrop-blur-md text-emerald-400 border border-emerald-500/30">
-                                        Akreditasi {{ $prog->accreditation }}
+                                        Accreditation {{ $prog->accreditation }}
                                     </span>
                                 </div>
                             </div>
@@ -90,12 +90,12 @@
                                 <h3 class="text-xl font-bold font-serif text-white mt-1 group-hover:text-blue-400 transition">{{ $prog->name }}</h3>
                                 
                                 <p class="text-xs text-gray-400 mt-3 line-clamp-3 leading-relaxed">
-                                    {{ $prog->description ?: 'Program studi unggulan Huxley University yang dirancang untuk menghasilkan lulusan kompeten dan siap kerja secara global.' }}
+                                    {{ $prog->description ?: 'A premier Huxley University study program designed to produce competent graduates ready to work globally.' }}
                                 </p>
 
                                 @if($prog->career_prospects)
                                     <div class="mt-4 pt-4 border-t border-gray-800/80">
-                                        <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">Prospek Karir:</p>
+                                        <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">Career Prospects:</p>
                                         <div class="flex flex-wrap gap-1.5">
                                             @foreach(array_slice(explode(',', $prog->career_prospects), 0, 3) as $career)
                                                 <span class="text-[10px] bg-gray-800 px-2.5 py-1 rounded-lg text-gray-300">
@@ -110,12 +110,12 @@
 
                         <div class="p-6 pt-0 border-t border-gray-800/50 flex items-center justify-between mt-4">
                             <div>
-                                <span class="text-[10px] text-gray-500 uppercase block tracking-wider">Durasi Studi</span>
+                                <span class="text-[10px] text-gray-500 uppercase block tracking-wider">Study Duration</span>
                                 <span class="text-xs font-bold text-gray-300">{{ $prog->duration_years }}</span>
                             </div>
                             <div class="text-right">
-                                <span class="text-[10px] text-gray-500 uppercase block tracking-wider">UKT / Semester</span>
-                                <span class="text-xs font-bold text-brand-blue">{{ $prog->tuition_fee ?: 'Sesuai Golongan' }}</span>
+                                <span class="text-[10px] text-gray-500 uppercase block tracking-wider">Tuition / Semester</span>
+                                <span class="text-xs font-bold text-brand-blue">{{ $prog->tuition_fee ?: 'Based on Classification' }}</span>
                             </div>
                         </div>
                     </article>
@@ -130,9 +130,9 @@
         @else
             <div class="py-24 text-center rounded-2xl border border-gray-800 bg-gray-900/50">
                 <i class="fa-solid fa-graduation-cap text-4xl text-gray-600 mb-4"></i>
-                <h3 class="text-lg font-bold text-white">Belum Ada Program Studi yang Ditemukan</h3>
-                <p class="text-xs text-gray-400 mt-1">Coba gunakan kata kunci pencarian lain atau ganti filter jenjang studi.</p>
-                <a href="{{ route('programs.index') }}" class="inline-block mt-4 text-xs font-bold text-brand-blue hover:underline">Reset Pencarian</a>
+                <h3 class="text-lg font-bold text-white">No Study Programs Found</h3>
+                <p class="text-xs text-gray-400 mt-1">Try using different search keywords or change the degree filter.</p>
+                <a href="{{ route('programs.index') }}" class="inline-block mt-4 text-xs font-bold text-brand-blue hover:underline">Reset Search</a>
             </div>
         @endif
     </main>

@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
-@section('title', 'Kotak Masuk Event')
-@section('page_title', 'KOTAK MASUK EVENT')
+@section('title', 'Event Inbox')
+@section('page_title', 'EVENT INBOX')
 
 @section('content')
 <div class="space-y-6">
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h2 class="text-xl font-bold text-slate-900">Kotak Masuk Pendaftar Event</h2>
-            <p class="text-xs text-slate-400 mt-1">Pantau seluruh pendaftaran mahasiswa dan masyarakat umum pada seluruh kegiatan Huxley University.</p>
+            <h2 class="text-xl font-bold text-slate-900">Event Registrations Inbox</h2>
+            <p class="text-xs text-slate-400 mt-1">Monitor all student and public registrations for all Huxley University activities.</p>
         </div>
         <a href="{{ route('admin.events.index') }}" 
            class="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white border border-slate-200 px-4 py-2 rounded-xl transition">
@@ -20,7 +20,7 @@
     <!-- Quick Stats Bar -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div class="bg-white border border-slate-200/80 p-4 rounded-xl shadow-sm">
-            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Pendaftar</p>
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Registrants</p>
             <p class="text-xl font-extrabold text-slate-800 mt-0.5">{{ \App\Models\EventRegistration::count() }}</p>
         </div>
         <div class="bg-blue-50/60 border border-blue-200 p-4 rounded-xl shadow-sm">
@@ -37,7 +37,7 @@
         </div>
         <div class="bg-amber-50/60 border border-amber-200 p-4 rounded-xl shadow-sm">
             <p class="text-[10px] font-bold text-amber-700 uppercase tracking-wider flex items-center gap-1">
-                <i class="fa-regular fa-calendar-days"></i> Kegiatan Aktif
+                <i class="fa-regular fa-calendar-days"></i> Active Events
             </p>
             <p class="text-xl font-extrabold text-amber-800 mt-0.5">{{ \App\Models\Event::where('registration_open', true)->count() }}</p>
         </div>
@@ -70,7 +70,7 @@
                     <option value="public" {{ request('type') == 'public' ? 'selected' : '' }}>Peserta Umum</option>
                 </select>
             </div>
-            <span class="text-[11px] font-medium text-slate-400">Total: {{ $registrations->total() }} Pendaftar</span>
+            <span class="text-[11px] font-medium text-slate-400">Total: {{ $registrations->total() }} Registrants</span>
         </form>
 
         <!-- Table Grid -->
@@ -79,12 +79,12 @@
                 <thead class="bg-slate-50/80 text-slate-400 font-bold uppercase text-[10px] tracking-wider border-b border-slate-100">
                     <tr>
                         <th class="py-3.5 px-4">EVENT</th>
-                        <th class="py-3.5 px-4">TIPE</th>
+                        <th class="py-3.5 px-4">TYPE</th>
                         <th class="py-3.5 px-4">NAMA PESERTA</th>
                         <th class="py-3.5 px-4">IDENTITAS (NIM / INSTANSI)</th>
-                        <th class="py-3.5 px-4">KONTAK</th>
+                        <th class="py-3.5 px-4">CONTACT</th>
                         <th class="py-3.5 px-4">CATATAN</th>
-                        <th class="py-3.5 px-4">WAKTU DAFTAR</th>
+                        <th class="py-3.5 px-4">REGISTRATION TIME</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -142,7 +142,7 @@
                             <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-xl flex items-center justify-center mx-auto mb-3">
                                 <i class="fa-regular fa-clipboard text-xl"></i>
                             </div>
-                            <p class="font-bold text-slate-700 text-xs">Belum Ada Pendaftaran Event</p>
+                            <p class="font-bold text-slate-700 text-xs">No Event Registrations Yet</p>
                         </td>
                     </tr>
                     @endforelse

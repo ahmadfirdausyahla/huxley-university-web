@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Daftar Pendaftar Event')
-@section('page_title', 'DATA PENDAFTARAN EVENT')
+@section('title', 'Event Registrants List')
+@section('page_title', 'EVENT REGISTRATION DATA')
 
 @section('content')
 <div class="space-y-6">
@@ -9,7 +9,7 @@
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
             <a href="{{ route('admin.events.index') }}" class="text-xs text-slate-500 hover:text-slate-800 transition inline-flex items-center gap-1.5 mb-2 font-semibold">
-                <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Event
+                <i class="fa-solid fa-arrow-left"></i> Back to Event List
             </a>
             <div class="flex items-center gap-3">
                 <h2 class="text-xl font-bold text-slate-900">{{ $event->title }}</h2>
@@ -18,13 +18,13 @@
                 </span>
             </div>
             <p class="text-xs text-slate-400 mt-1">
-                Jadwal: {{ $event->event_date->format('d M Y') }} &bull; Lokasi: {{ $event->location ?? 'Kampus Huxley' }} &bull; Total Kuota: {{ $event->quota ?? 'Unlimited' }}
+                Schedule: {{ $event->event_date->format('d M Y') }} &bull; Location: {{ $event->location ?? 'Huxley Campus' }} &bull; Total Quota: {{ $event->quota ?? 'Unlimited' }}
             </p>
         </div>
         
         <div class="flex items-center gap-3">
             <div class="bg-blue-50 border border-blue-100 px-4 py-2 rounded-xl text-center">
-                <span class="text-[10px] uppercase font-bold text-blue-600 block">Total Pendaftar</span>
+                <span class="text-[10px] uppercase font-bold text-blue-600 block">Total Registrants</span>
                 <span class="text-lg font-extrabold text-blue-900">{{ $registrations->total() }}</span>
             </div>
         </div>
@@ -39,9 +39,9 @@
                         <th class="py-3.5 px-4">TIPE</th>
                         <th class="py-3.5 px-4">NAMA PESERTA</th>
                         <th class="py-3.5 px-4">IDENTITAS (NIM / INSTANSI)</th>
-                        <th class="py-3.5 px-4">KONTAK</th>
-                        <th class="py-3.5 px-4">CATATAN</th>
-                        <th class="py-3.5 px-4">WAKTU DAFTAR</th>
+                        <th class="py-3.5 px-4">CONTACT</th>
+                        <th class="py-3.5 px-4">NOTES</th>
+                        <th class="py-3.5 px-4">REGISTRATION TIME</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -94,8 +94,8 @@
                             <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-xl flex items-center justify-center mx-auto mb-3">
                                 <i class="fa-regular fa-clipboard text-xl"></i>
                             </div>
-                            <p class="font-bold text-slate-700 text-xs">Belum Ada Peserta yang Mendaftar</p>
-                            <p class="text-[11px] text-slate-400 mt-1">Pendaftaran yang masuk melalui portal akan tampil di sini.</p>
+                            <p class="font-bold text-slate-700 text-xs">No Participants Registered Yet</p>
+                            <p class="text-[11px] text-slate-400 mt-1">Registrations coming through the portal will appear here.</p>
                         </td>
                     </tr>
                     @endforelse

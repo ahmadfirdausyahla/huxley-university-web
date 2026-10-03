@@ -59,7 +59,7 @@
                         <a href="{{ route('admin.events.all-registrations') }}" 
                            class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.events.all-registrations') || request()->routeIs('admin.events.registrations') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
                             <i class="fa-solid fa-inbox w-4 text-center"></i>
-                            <span class="flex-1">Kotak Masuk Event</span>
+                            <span class="flex-1">Event Inbox</span>
                             @php
                                 $totalEventRegs = class_exists('App\Models\EventRegistration') ? \App\Models\EventRegistration::count() : 0;
                             @endphp
@@ -70,19 +70,19 @@
                     </div>
                 </div>
 
-                <!-- Beasiswa & Bantuan -->
+                <!-- Scholarships & Assistance -->
                 <div>
-                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Beasiswa & Bantuan</p>
+                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Scholarships & Assistance</p>
                     <div class="space-y-0.5">
                         <a href="{{ route('admin.scholarships.index') }}" 
-                           class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.scholarships.index') || request()->routeIs('admin.scholarships.create') || request()->routeIs('admin.scholarships.edit') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
+                           class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.scholarships.*') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
                             <i class="fa-solid fa-graduation-cap w-4 text-center"></i>
-                            <span class="flex-1">Program Beasiswa</span>
+                            <span class="flex-1">Scholarship Programs</span>
                         </a>
                         <a href="{{ route('admin.scholarships.applications.index') }}" 
                            class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.scholarships.applications.*') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
                             <i class="fa-solid fa-envelope-open-text w-4 text-center"></i>
-                            <span class="flex-1">Kotak Masuk Beasiswa</span>
+                            <span class="flex-1">Scholarship Applications Inbox</span>
                             @php
                                 $totalScholarshipApps = class_exists('App\Models\ScholarshipApplication') ? \App\Models\ScholarshipApplication::where('status', 'pending')->count() : 0;
                             @endphp
@@ -93,40 +93,40 @@
                     </div>
                 </div>
 
-                <!-- Berita & Publikasi -->
+                <!-- News & Publications -->
                 <div>
-                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Berita & Publikasi</p>
+                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">News & Publications</p>
                     <a href="{{ route('admin.news.index') }}" 
                        class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.news.*') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
                         <i class="fa-solid fa-newspaper w-4 text-center"></i>
-                        <span>Berita & Artikel</span>
+                        <span>News & Articles</span>
                     </a>
                 </div>
 
-                <!-- Fasilitas & Akademik -->
+                <!-- Facilities & Academic -->
                 <div>
-                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Fasilitas & Akademik</p>
+                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Facilities & Academic</p>
                     <div class="space-y-0.5">
                         <a href="{{ route('admin.facilities.index') }}" 
                            class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.facilities.*') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
                             <i class="fa-solid fa-building-columns w-4 text-center"></i>
-                            <span>Fasilitas Kampus</span>
+                            <span>Campus Facilities</span>
                         </a>
                         <a href="{{ route('admin.programs.index') }}" 
                            class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.programs.*') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
                             <i class="fa-solid fa-book-open w-4 text-center"></i>
-                            <span>Program Studi</span>
+                            <span>Study Programs</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Civitas Kampus -->
+                <!-- Campus Community -->
                 <div>
-                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Civitas Kampus</p>
+                    <p class="px-3 text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-1">Campus Community</p>
                     <a href="{{ route('admin.civitas.index') }}" 
                        class="flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors {{ request()->routeIs('admin.civitas.*') ? 'bg-slate-700 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200' }}">
                         <i class="fa-solid fa-users-gear w-4 text-center"></i>
-                        <span>Mahasiswa & Staff</span>
+                        <span>Students & Staff</span>
                     </a>
                 </div>
             </nav>
@@ -160,7 +160,7 @@
         <header class="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center sticky top-0 z-40">
             <h1 class="text-xs font-bold text-slate-700 uppercase tracking-wider">@yield('page_title', 'Admin Panel')</h1>
             <a href="{{ route('home') }}" target="_blank" class="text-xs text-slate-600 hover:text-brand-blue flex items-center gap-1.5 font-medium transition">
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Lihat Portal Utama
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> View Main Portal
             </a>
         </header>
 

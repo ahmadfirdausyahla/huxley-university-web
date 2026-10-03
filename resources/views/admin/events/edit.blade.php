@@ -1,22 +1,22 @@
 @extends('layouts.admin')
 
 @section('title', 'Edit Event')
-@section('page_title', 'EDIT EVENT KAMPUS')
+@section('page_title', 'EDIT CAMPUS EVENT')
 
 @section('content')
 <div class="max-w-4xl mx-auto space-y-4">
     
     <a href="{{ route('admin.events.index') }}" class="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-800 transition font-medium">
-        <i class="fa-solid fa-arrow-left text-[10px]"></i> Kembali ke Daftar Event
+        <i class="fa-solid fa-arrow-left text-[10px]"></i> Back to Event List
     </a>
 
     <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm">
         
-        <h3 class="font-bold text-slate-900 text-sm pb-5 mb-6 border-b border-slate-100">Form Edit Event</h3>
+        <h3 class="font-bold text-slate-900 text-sm pb-5 mb-6 border-b border-slate-100">Event Edit Form</h3>
 
         @if($errors->any())
             <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs">
-                <p class="font-bold mb-1">Periksa kembali data yang dimasukkan:</p>
+                <p class="font-bold mb-1">Please check the data entered again:</p>
                 <ul class="list-disc list-inside space-y-0.5 text-[11px]">
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -37,7 +37,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">KATEGORI EVENT *</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">EVENT CATEGORY *</label>
                     @php
                         $currentCategory = old('category', $event->category?->value ?? ($event->audience === 'student' ? 'mahasiswa' : 'public'));
                     @endphp
@@ -48,7 +48,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">KUOTA PESERTA</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">PARTICIPANT QUOTA</label>
                     <input type="number" name="quota" value="{{ old('quota', $event->quota) }}" placeholder="Contoh: 100" 
                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
                 </div>
@@ -56,31 +56,31 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">TANGGAL EVENT *</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">EVENT DATE *</label>
                     <input type="date" name="event_date" value="{{ old('event_date', \Carbon\Carbon::parse($event->event_date)->format('Y-m-d')) }}" required 
                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 focus:border-blue-500 outline-none transition">
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">LOKASI PELAKSANAAN *</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">EVENT LOCATION *</label>
                     <input type="text" name="location" value="{{ old('location', $event->location) }}" placeholder="Contoh: Auditorium Gedung Utama" required 
                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
                 </div>
             </div>
 
             <div>
-                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">DESKRIPSI SINGKAT</label>
+                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">SHORT DESCRIPTION</label>
                 <input type="text" name="description" value="{{ old('description', $event->description) }}" placeholder="Ringkasan 1-2 kalimat..." 
                        class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
             </div>
 
             <div>
-                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">GAMBAR HEADER / COVER</label>
+                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">HEADER / COVER IMAGE</label>
                 
                 @if($event->image)
                 <div class="mb-3 flex items-center gap-3 p-3 bg-slate-50 border border-slate-200 rounded-xl">
                     <img src="{{ filter_var($event->image, FILTER_VALIDATE_URL) ? $event->image : asset('storage/' . $event->image) }}" class="w-16 h-12 object-cover rounded-lg border border-slate-200">
-                    <span class="text-[11px] text-slate-500">Gambar saat ini terpasang. Unggah baru jika ingin mengganti.</span>
+                    <span class="text-[11px] text-slate-500">Image is currently installed. Upload a new one if you want to change it.</span>
                 </div>
                 @endif
 
@@ -89,8 +89,8 @@
                     <div class="w-10 h-10 bg-blue-500/10 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition">
                         <i class="fa-solid fa-cloud-arrow-up text-lg"></i>
                     </div>
-                    <p class="text-xs font-bold text-slate-800">Klik atau seret gambar ke sini</p>
-                    <p class="text-[10px] text-slate-400 mt-1">Format PNG, JPG, WEBP (Maksimal 2MB)</p>
+                    <p class="text-xs font-bold text-slate-800">Click or drag image here</p>
+                    <p class="text-[10px] text-slate-400 mt-1">Format PNG, JPG, WEBP (Maximum 2MB)</p>
                 </div>
             </div>
 
@@ -112,7 +112,7 @@
                         <button type="button" class="p-1 hover:bg-slate-200 rounded"><i class="fa-solid fa-list-ul"></i></button>
                         <button type="button" class="p-1 hover:bg-slate-200 rounded"><i class="fa-solid fa-list-ol"></i></button>
                     </div>
-                    <textarea name="content" rows="6" placeholder="Tuliskan detail event..." 
+                    <textarea name="content" rows="6" placeholder="Write event details..." 
                               class="w-full p-4 text-xs text-slate-900 outline-none resize-none placeholder-slate-400">{{ old('content', $event->content) }}</textarea>
                 </div>
             </div>
@@ -120,7 +120,7 @@
             <div class="pt-2">
                 <label class="inline-flex items-center gap-2 cursor-pointer">
                     <input type="checkbox" name="registration_open" value="1" {{ old('registration_open', $event->registration_open) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 rounded border-slate-300">
-                    <span class="text-xs font-semibold text-slate-700">Status Pendaftaran Terbuka</span>
+                    <span class="text-xs font-semibold text-slate-700">Registration Status Open</span>
                 </label>
             </div>
 
@@ -129,7 +129,7 @@
                     Batal
                 </a>
                 <button type="submit" class="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shadow-sm">
-                    Simpan Perubahan
+                    Save Changes
                 </button>
             </div>
 

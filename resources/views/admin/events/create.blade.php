@@ -1,24 +1,24 @@
 @extends('layouts.admin')
 
 @section('title', 'Tambah Event')
-@section('page_title', 'BUAT EVENT BARU')
+@section('page_title', 'CREATE NEW EVENT')
 
 @section('content')
 <div class="max-w-4xl mx-auto space-y-4">
     
-    <!-- Link Kembali -->
+    <!-- Back Link -->
     <a href="{{ route('admin.events.index') }}" class="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-800 transition font-medium">
-        <i class="fa-solid fa-arrow-left text-[10px]"></i> Kembali ke Daftar Event
+        <i class="fa-solid fa-arrow-left text-[10px]"></i> Back to Event List
     </a>
 
     <!-- Form Card Container -->
     <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm">
         
-        <h3 class="font-bold text-slate-900 text-sm pb-5 mb-6 border-b border-slate-100">Form Publikasi Event</h3>
+        <h3 class="font-bold text-slate-900 text-sm pb-5 mb-6 border-b border-slate-100">Event Publication Form</h3>
 
         @if($errors->any())
             <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs">
-                <p class="font-bold mb-1">Periksa kembali data yang dimasukkan:</p>
+                <p class="font-bold mb-1">Please check the data entered again:</p>
                 <ul class="list-disc list-inside space-y-0.5 text-[11px]">
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -37,10 +37,10 @@
                        class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
             </div>
 
-            <!-- Target & Kuota -->
+            <!-- Target & Quota -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">KATEGORI EVENT *</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">EVENT CATEGORY *</label>
                     <select name="category" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 focus:border-blue-500 outline-none transition">
                         <option value="public" {{ old('category') == 'public' ? 'selected' : '' }}>Umum (Public)</option>
                         <option value="mahasiswa" {{ old('category') == 'mahasiswa' ? 'selected' : '' }}>Khusus Mahasiswa</option>
@@ -48,48 +48,48 @@
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">KUOTA PESERTA</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">PARTICIPANT QUOTA</label>
                     <input type="number" name="quota" value="{{ old('quota') }}" placeholder="Contoh: 100" 
                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
                 </div>
             </div>
 
-            <!-- Tanggal & Lokasi -->
+            <!-- Date & Location -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">TANGGAL EVENT *</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">EVENT DATE *</label>
                     <input type="date" name="event_date" value="{{ old('event_date') }}" required 
                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 focus:border-blue-500 outline-none transition">
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">LOKASI PELAKSANAAN *</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">EVENT LOCATION *</label>
                     <input type="text" name="location" value="{{ old('location') }}" placeholder="Contoh: Auditorium Gedung Utama" required 
                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
                 </div>
             </div>
 
-            <!-- Deskripsi Singkat -->
+            <!-- Short Description -->
             <div>
-                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">DESKRIPSI SINGKAT</label>
+                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">SHORT DESCRIPTION</label>
                 <input type="text" name="description" value="{{ old('description') }}" placeholder="Ringkasan 1-2 kalimat..." 
                        class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
             </div>
 
-            <!-- Drag & Drop Upload Gambar Header -->
+            <!-- Drag & Drop Upload Header Image -->
             <div>
-                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">GAMBAR HEADER / COVER</label>
+                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">HEADER / COVER IMAGE</label>
                 <div class="relative border-2 border-dashed border-blue-200 bg-blue-50/20 hover:bg-blue-50/40 rounded-2xl p-8 text-center transition cursor-pointer group">
                     <input type="file" name="image_file" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
                     <div class="w-10 h-10 bg-blue-500/10 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition">
                         <i class="fa-solid fa-cloud-arrow-up text-lg"></i>
                     </div>
-                    <p class="text-xs font-bold text-slate-800">Klik atau seret gambar ke sini</p>
-                    <p class="text-[10px] text-slate-400 mt-1">Format PNG, JPG, WEBP (Maksimal 2MB)</p>
+                    <p class="text-xs font-bold text-slate-800">Click or drag image here</p>
+                    <p class="text-[10px] text-slate-400 mt-1">Format PNG, JPG, WEBP (Maximum 2MB)</p>
                 </div>
             </div>
 
-            <!-- Isi Lengkap Acara (Simulasi Editor Toolbar) -->
+            <!-- Complete Event Information (Editor Toolbar Simulation) -->
             <div>
                 <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">ISI DETAIL EVENT LENGKAP</label>
                 <div class="border border-slate-200 rounded-xl overflow-hidden focus-within:border-blue-500 transition">
@@ -109,7 +109,7 @@
                         <button type="button" class="p-1 hover:bg-slate-200 rounded"><i class="fa-solid fa-list-ul"></i></button>
                         <button type="button" class="p-1 hover:bg-slate-200 rounded"><i class="fa-solid fa-list-ol"></i></button>
                     </div>
-                    <textarea name="content" rows="6" placeholder="Tuliskan jadwal, narasumber, serta alur pendaftaran secara lengkap..." 
+                    <textarea name="content" rows="6" placeholder="Write schedule, speakers, and complete registration flow..." 
                               class="w-full p-4 text-xs text-slate-900 outline-none resize-none placeholder-slate-400">{{ old('content') }}</textarea>
                 </div>
             </div>
@@ -118,7 +118,7 @@
             <div class="pt-2">
                 <label class="inline-flex items-center gap-2 cursor-pointer">
                     <input type="checkbox" name="registration_open" value="1" checked class="w-4 h-4 text-blue-600 rounded border-slate-300">
-                    <span class="text-xs font-semibold text-slate-700">Buka Pendaftaran Langsung Saat Diterbitkan</span>
+                    <span class="text-xs font-semibold text-slate-700">Open Registration Immediately When Published</span>
                 </label>
             </div>
 
@@ -128,7 +128,7 @@
                     Batal
                 </a>
                 <button type="submit" class="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shadow-sm">
-                    Publikasikan Event
+                    Publish Event
                 </button>
             </div>
 

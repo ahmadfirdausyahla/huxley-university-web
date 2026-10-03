@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Daftar Fasilitas')
+@section('title', 'Facilities List')
 @section('page_title', 'KELOLA FASILITAS KAMPUS')
 
 @section('content')
@@ -9,7 +9,7 @@
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h2 class="text-xl font-bold text-slate-900">Daftar Fasilitas Kampus</h2>
+            <h2 class="text-xl font-bold text-slate-900">Campus Facilities List</h2>
             <p class="text-xs text-slate-400 mt-1">Kelola gedung, laboratorium, perpustakaan, dan sarana prasarana mahasiswa.</p>
         </div>
         <a href="{{ route('admin.facilities.create') }}" 
@@ -27,12 +27,12 @@
             <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
                 <div class="relative w-full sm:w-72">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama fasilitas atau lokasi..." 
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Search facility name or location..." 
                            class="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-800 focus:border-blue-500 outline-none placeholder-slate-400 transition">
                 </div>
                 <select name="category" onchange="this.form.submit()" 
                         class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 focus:border-blue-500 outline-none transition">
-                    <option value="">Semua Kategori</option>
+                    <option value="">All Categories</option>
                     <option value="laboratorium" {{ request('category') == 'laboratorium' ? 'selected' : '' }}>Laboratorium</option>
                     <option value="perpustakaan" {{ request('category') == 'perpustakaan' ? 'selected' : '' }}>Perpustakaan</option>
                     <option value="olahraga" {{ request('category') == 'olahraga' ? 'selected' : '' }}>Olahraga & Kebugaran</option>
@@ -51,7 +51,7 @@
                     <tr>
                         <th class="py-3 px-4">FOTO</th>
                         <th class="py-3 px-4">NAMA FASILITAS</th>
-                        <th class="py-3 px-4">KATEGORI</th>
+                        <th class="py-3 px-4">CATEGORY</th>
                         <th class="py-3 px-4">LOKASI GEDUNG</th>
                         <th class="py-3 px-4">KAPASITAS</th>
                         <th class="py-3 px-4">STATUS</th>
@@ -95,10 +95,10 @@
                                 <a href="{{ route('admin.facilities.edit', $fac->id) }}" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-blue-600 transition" title="Edit">
                                     <i class="fa-solid fa-pen-to-square text-xs"></i>
                                 </a>
-                                <form action="{{ route('admin.facilities.destroy', $fac->id) }}" method="POST" class="inline" onsubmit="return confirm('Hapus fasilitas ini?');">
+                                <form action="{{ route('admin.facilities.destroy', $fac->id) }}" method="POST" class="inline" onsubmit="return confirm('Delete this facility?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-red-600 transition" title="Hapus">
+                                    <button type="submit" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-red-600 transition" title="Delete">
                                         <i class="fa-solid fa-trash-can text-xs"></i>
                                     </button>
                                 </form>
@@ -111,7 +111,7 @@
                             <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-xl flex items-center justify-center mx-auto mb-3">
                                 <i class="fa-solid fa-building-columns text-xl"></i>
                             </div>
-                            <p class="font-bold text-slate-700 text-xs">Belum Ada Fasilitas Terdaftar</p>
+                            <p class="font-bold text-slate-700 text-xs">No Facilities Registered Yet</p>
                         </td>
                     </tr>
                     @endforelse

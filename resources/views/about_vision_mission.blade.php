@@ -41,7 +41,7 @@
                         <i class="fa-solid fa-quote-left text-lg"></i>
                     </div>
                     <blockquote class="text-lg md:text-2xl font-serif text-white font-medium italic leading-relaxed">
-                        "Menjadi universitas riset dan teknologi terkemuka di tingkat global yang berakar pada integritas moral, kepeloporan inovasi, dan dedikasi abadi bagi kemaslahatan peradaban manusia."
+                        "To be a leading research and technology university at the global level rooted in moral integrity, pioneering innovation, and enduring dedication to human civilization's welfare."
                     </blockquote>
                     <div class="mt-6 flex items-center gap-3">
                         <div class="w-8 h-8 rounded-full bg-brand-blue flex items-center justify-center text-white text-xs font-bold">
@@ -70,9 +70,9 @@
                 <div class="w-12 h-12 rounded-xl bg-blue-600/10 text-brand-blue flex items-center justify-center text-xl mb-6">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-                <h3 class="text-xl font-bold font-serif text-white mb-3">1. Pendidikan Holistik & Transformatif</h3>
+                <h3 class="text-xl font-bold font-serif text-white mb-3">1. Holistic & Transformative Education</h3>
                 <p class="text-xs text-gray-400 leading-relaxed">
-                    Menyelenggarakan pendidikan tinggi berbasis kompetensi abad ke-21 dengan kurikulum adaptif, teknologi pembelajaran imersif, serta pembentukan karakter luhur dan jiwa kepemimpinan global.
+                    Providing higher education based on 21st-century competencies with adaptive curricula, immersive learning technology, and development of noble character and global leadership spirit.
                 </p>
             </div>
 
@@ -80,9 +80,9 @@
                 <div class="w-12 h-12 rounded-xl bg-blue-600/10 text-brand-blue flex items-center justify-center text-xl mb-6">
                     <i class="fa-solid fa-microchip"></i>
                 </div>
-                <h3 class="text-xl font-bold font-serif text-white mb-3">2. Riset Terapan & Inovasi Berkelanjutan</h3>
+                <h3 class="text-xl font-bold font-serif text-white mb-3">2. Applied Research & Sustainable Innovation</h3>
                 <p class="text-xs text-gray-400 leading-relaxed">
-                    Mendorong ekosistem penelitian multi-disiplin bereputasi internasional yang melahirkan paten, publikasi terindeks tinggi, serta hilirisasi teknologi yang menjawab tantangan industri dan masyarakat.
+                    Encouraging a multi-disciplinary international research ecosystem that produces patents, high-indexed publications, and technology commercialization addressing industry and societal challenges.
                 </p>
             </div>
 
@@ -90,9 +90,9 @@
                 <div class="w-12 h-12 rounded-xl bg-blue-600/10 text-brand-blue flex items-center justify-center text-xl mb-6">
                     <i class="fa-solid fa-hand-holding-heart"></i>
                 </div>
-                <h3 class="text-xl font-bold font-serif text-white mb-3">3. Pengabdian Berdampak Nyata</h3>
+                <h3 class="text-xl font-bold font-serif text-white mb-3">3. Community Engagement with Real Impact</h3>
                 <p class="text-xs text-gray-400 leading-relaxed">
-                    Mendedikasikan segenap kapasitas keilmuan dan keahlian untuk memajukan kesejahteraan masyarakat, inklusivitas sosial, dan pemberdayaan ekonomi regional dan nasional.
+                    Dedicating all scientific capacity and expertise to advance community welfare, social inclusivity, and economic empowerment at regional and national levels.
                 </p>
             </div>
 
@@ -100,9 +100,9 @@
                 <div class="w-12 h-12 rounded-xl bg-blue-600/10 text-brand-blue flex items-center justify-center text-xl mb-6">
                     <i class="fa-solid fa-earth-americas"></i>
                 </div>
-                <h3 class="text-xl font-bold font-serif text-white mb-3">4. Kolaborasi Jejaring Global</h3>
+                <h3 class="text-xl font-bold font-serif text-white mb-3">4. Global Network Collaboration</h3>
                 <p class="text-xs text-gray-400 leading-relaxed">
-                    Membangun aliansi strategis dengan universitas ternama dunia, korporasi multinasional, dan lembaga donor untuk memfasilitasi mobilitas internasional mahasiswa dan peneliti.
+                    Building strategic alliances with renowned universities, multinational corporations, and donor organizations to facilitate student and researcher international mobility.
                 </p>
             </div>
         </div>
@@ -119,25 +119,25 @@
             <div data-aos="zoom-in" data-aos-delay="100" class="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 text-center">
                 <span class="text-3xl font-serif font-bold text-brand-blue block mb-2">01</span>
                 <h4 class="font-bold text-white text-sm">Integrity</h4>
-                <p class="text-[11px] text-gray-400 mt-2">Kejujuran akademis, etika profesional, dan transparansi institusi.</p>
+                <p class="text-[11px] text-gray-400 mt-2">Academic honesty, professional ethics, and institutional transparency.</p>
             </div>
 
             <div data-aos="zoom-in" data-aos-delay="200" class="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 text-center">
                 <span class="text-3xl font-serif font-bold text-brand-blue block mb-2">02</span>
                 <h4 class="font-bold text-white text-sm">Innovation</h4>
-                <p class="text-[11px] text-gray-400 mt-2">Keberanian mengeksplorasi gagasan baru dan memecahkan batasan teknologi.</p>
+                <p class="text-[11px] text-gray-400 mt-2">Courage to explore new ideas and push the boundaries of technology.</p>
             </div>
 
             <div data-aos="zoom-in" data-aos-delay="300" class="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 text-center">
                 <span class="text-3xl font-serif font-bold text-brand-blue block mb-2">03</span>
                 <h4 class="font-bold text-white text-sm">Inclusivity</h4>
-                <p class="text-[11px] text-gray-400 mt-2">Merayakan keberagaman latar belakang, pemikiran, dan kesetaraan kesempatan.</p>
+                <p class="text-[11px] text-gray-400 mt-2">Celebrating diversity of backgrounds, perspectives, and equal opportunities.</p>
             </div>
 
             <div data-aos="zoom-in" data-aos-delay="400" class="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 text-center">
                 <span class="text-3xl font-serif font-bold text-brand-blue block mb-2">04</span>
                 <h4 class="font-bold text-white text-sm">Sustainability</h4>
-                <p class="text-[11px] text-gray-400 mt-2">Komitmen terhadap kelestarian lingkungan dan keberlanjutan bumi.</p>
+                <p class="text-[11px] text-gray-400 mt-2">Commitment to environmental conservation and planetary sustainability.</p>
             </div>
         </div>
     </section>

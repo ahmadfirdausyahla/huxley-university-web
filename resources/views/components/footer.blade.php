@@ -2,7 +2,7 @@
     <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-8">
         
         <div class="flex flex-col items-center md:items-start" data-aos="fade-up">
-            <img src="{{ asset('storage/assets/logo.png') }}" alt="Huxley University Logo" class="w-16 h-16 mb-4 object-contain">
+            <img src="{{ asset('/images/huxley-logo.jpg') }}" alt="Huxley University Logo" class="w-16 h-16 mb-4 object-contain">
             <h3 class="text-xl font-serif text-white">Huxley University</h3>
             <p class="text-xs text-gray-500 mt-2 text-center md:text-left">THE CHARACTER OF SUCCESS</p>
             <div class="flex gap-3 mt-4 text-brand-blue">

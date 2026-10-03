@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Dashboard')
-@section('page_title', 'Overview Sistem Admin')
+@section('page_title', 'Admin System Overview')
 
 @section('content')
 <div class="space-y-6">
@@ -10,13 +10,13 @@
     <div class="bg-slate-900 border border-slate-800 rounded-2xl p-7 text-white relative overflow-hidden">
         <div class="relative z-10 max-w-2xl space-y-2">
             <span class="inline-block px-2.5 py-1 rounded text-[10px] font-bold tracking-widest text-slate-400 bg-slate-800 border border-slate-700 uppercase">
-                PORTAL ADMINISTRATOR
+                ADMINISTRATOR PORTAL
             </span>
             <h2 class="text-2xl font-bold tracking-tight text-white">
                 Huxley University — Admin Panel
             </h2>
             <p class="text-xs text-slate-400 leading-relaxed">
-                Kelola publikasi berita, pendaftaran acara, beasiswa, serta data warga akademik dari satu tempat secara terstruktur.
+                Manage news publications, event registrations, scholarships, and academic community data from one place in a structured manner.
             </p>
         </div>
     </div>
@@ -31,7 +31,7 @@
                     {{ class_exists('App\Models\News') ? \App\Models\News::count() : 0 }}
                 </h3>
                 <p class="text-[10px] text-slate-500 mt-1 flex items-center gap-1">
-                    <i class="fa-solid fa-file-lines text-[9px]"></i> Berita terpublikasi
+                    <i class="fa-solid fa-file-lines text-[9px]"></i> Published news
                 </p>
             </div>
             <div class="w-11 h-11 bg-slate-100 text-slate-500 rounded-xl flex items-center justify-center text-base border border-slate-200">
@@ -47,7 +47,7 @@
                     {{ class_exists('App\Models\Event') ? \App\Models\Event::count() : 0 }}
                 </h3>
                 <p class="text-[10px] text-slate-500 mt-1 flex items-center gap-1">
-                    <i class="fa-regular fa-calendar-check text-[9px]"></i> Agenda terdaftar
+                    <i class="fa-regular fa-calendar-check text-[9px]"></i> Registered events
                 </p>
             </div>
             <div class="w-11 h-11 bg-slate-100 text-slate-500 rounded-xl flex items-center justify-center text-base border border-slate-200">
@@ -55,15 +55,15 @@
             </div>
         </div>
 
-        <!-- Program Beasiswa -->
+        <!-- Scholarship Program -->
         <div class="bg-white border border-slate-200 p-5 rounded-xl flex items-center justify-between">
             <div>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Program Beasiswa</p>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Scholarship Programs</p>
                 <h3 class="text-2xl font-bold text-slate-900 mt-1">
                     {{ class_exists('App\Models\Scholarship') ? \App\Models\Scholarship::count() : 0 }}
                 </h3>
                 <p class="text-[10px] text-slate-500 mt-1 flex items-center gap-1">
-                    <i class="fa-solid fa-circle-check text-[9px]"></i> Program aktif
+                    <i class="fa-solid fa-circle-check text-[9px]"></i> Active programs
                 </p>
             </div>
             <div class="w-11 h-11 bg-slate-100 text-slate-500 rounded-xl flex items-center justify-center text-base border border-slate-200">
@@ -74,12 +74,12 @@
         <!-- Warga Sekolah -->
         <div class="bg-white border border-slate-200 p-5 rounded-xl flex items-center justify-between">
             <div>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Pengguna Sistem</p>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">System Users</p>
                 <h3 class="text-2xl font-bold text-slate-900 mt-1">
                     {{ class_exists('App\Models\User') ? \App\Models\User::count() : 0 }}
                 </h3>
                 <p class="text-[10px] text-slate-500 mt-1 flex items-center gap-1">
-                    <i class="fa-solid fa-users text-[9px]"></i> Akun terverifikasi
+                    <i class="fa-solid fa-users text-[9px]"></i> Verified accounts
                 </p>
             </div>
             <div class="w-11 h-11 bg-slate-100 text-slate-500 rounded-xl flex items-center justify-center text-base border border-slate-200">
@@ -93,7 +93,7 @@
         <!-- Quick Actions -->
         <div class="lg:col-span-2 bg-white border border-slate-200 rounded-xl p-6">
             <h3 class="font-bold text-slate-900 text-sm">Pintasan Manajemen Konten</h3>
-            <p class="text-xs text-slate-400 mt-0.5 mb-5">Pilih tindakan cepat untuk memperbarui data portal kampus.</p>
+            <p class="text-xs text-slate-400 mt-0.5 mb-5">Choose a quick action to update the campus portal data.</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 <a href="{{ route('admin.news.create') }}"
@@ -102,7 +102,7 @@
                         <i class="fa-solid fa-plus text-sm"></i>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-white">Buat Berita</p>
+                        <p class="text-xs font-bold text-white">Create News</p>
                         <p class="text-[10px] text-slate-400 mt-0.5">Tambah warta kampus</p>
                     </div>
                 </a>
@@ -113,12 +113,12 @@
                         <i class="fa-regular fa-calendar-plus text-sm"></i>
                     </div>
                     <div>
-                        <p class="text-xs font-bold text-white">Buat Event</p>
+                        <p class="text-xs font-bold text-white">Create Event</p>
                         <p class="text-[10px] text-slate-400 mt-0.5">Atur agenda kegiatan</p>
                     </div>
                 </a>
 
-                <!-- Kotak Masuk Event -->
+                <!-- Event Inbox -->
                 <a href="{{ route('admin.events.all-registrations') }}"
                    class="bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 p-4 rounded-xl flex items-center gap-3 transition group">
                     <div class="w-9 h-9 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center shrink-0">
@@ -130,11 +130,11 @@
                             @php $eventRegCount = \App\Models\EventRegistration::count(); @endphp
                             <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded">{{ $eventRegCount }}</span>
                         </div>
-                        <p class="text-[10px] text-slate-400 mt-0.5">Rekap pendaftar</p>
+                        <p class="text-[10px] text-slate-400 mt-0.5">Registrant summary</p>
                     </div>
                 </a>
 
-                <!-- Kotak Masuk Beasiswa -->
+                <!-- Scholarship Inbox -->
                 <a href="{{ route('admin.scholarships.applications.index') }}"
                    class="bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 p-4 rounded-xl flex items-center gap-3 transition group">
                     <div class="w-9 h-9 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center shrink-0">
@@ -146,7 +146,7 @@
                             @php $schCount = \App\Models\ScholarshipApplication::where('status', 'pending')->count(); @endphp
                             <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded">{{ $schCount }}</span>
                         </div>
-                        <p class="text-[10px] text-slate-400 mt-0.5">Pengajuan masuk</p>
+                        <p class="text-[10px] text-slate-400 mt-0.5">Incoming applications</p>
                     </div>
                 </a>
             </div>
@@ -157,7 +157,7 @@
             <div>
                 <h3 class="font-bold text-slate-900 text-sm mb-2">Panduan Pengelolaan</h3>
                 <p class="text-xs text-slate-500 leading-relaxed">
-                    Pastikan gambar header berita dan event memiliki aspek rasio lanskap (16:9) dengan ukuran maksimal 2MB untuk hasil tampilan optimal.
+                    Ensure news and event header images have landscape aspect ratio (16:9) with maximum size 2MB for optimal display.
                 </p>
             </div>
             <div class="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">

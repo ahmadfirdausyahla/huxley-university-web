@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Daftar Program Studi')
+@section('title', 'Study Program List')
 @section('page_title', 'KELOLA PROGRAM AKADEMIK')
 
 @section('content')
@@ -9,13 +9,13 @@
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h2 class="text-xl font-bold text-slate-900">Program Studi & Akademik</h2>
-            <p class="text-xs text-slate-400 mt-1">Kelola jenjang diploma, sarjana, hingga pascasarjana di Huxley University.</p>
+            <h2 class="text-xl font-bold text-slate-900">Study Programs & Academics</h2>
+            <p class="text-xs text-slate-400 mt-1">Manage diploma, bachelor, and postgraduate degree levels at Huxley University.</p>
         </div>
         <a href="{{ route('admin.programs.create') }}" 
            class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition shadow-sm">
             <i class="fa-solid fa-plus"></i>
-            <span>Tambah Program Studi</span>
+            <span>Add Study Program</span>
         </a>
     </div>
 
@@ -27,14 +27,14 @@
             <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
                 <div class="relative w-full sm:w-72">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari program studi atau fakultas..." 
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Search study program or faculty..." 
                            class="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-800 focus:border-blue-500 outline-none placeholder-slate-400 transition">
                 </div>
                 <select name="degree" onchange="this.form.submit()" 
                         class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 focus:border-blue-500 outline-none transition">
-                    <option value="">Semua Jenjang</option>
+                    <option value="">All Levels</option>
                     <option value="D3" {{ request('degree') == 'D3' ? 'selected' : '' }}>Diploma 3 (D3)</option>
-                    <option value="S1" {{ request('degree') == 'S1' ? 'selected' : '' }}>Sarjana (S1)</option>
+                    <option value="S1" {{ request('degree') == 'S1' ? 'selected' : '' }}>Bachelor (S1)</option>
                     <option value="S2" {{ request('degree') == 'S2' ? 'selected' : '' }}>Magister (S2)</option>
                     <option value="S3" {{ request('degree') == 'S3' ? 'selected' : '' }}>Doktor (S3)</option>
                 </select>
@@ -47,10 +47,10 @@
             <table class="w-full text-left text-xs text-slate-600">
                 <thead class="bg-slate-50/80 text-slate-400 font-bold uppercase text-[10px] tracking-wider border-b border-slate-100">
                     <tr>
-                        <th class="py-3 px-4">GAMBAR / ICON</th>
-                        <th class="py-3 px-4">PROGRAM STUDI</th>
+                        <th class="py-3 px-4">IMAGE / ICON</th>
+                        <th class="py-3 px-4">STUDY PROGRAM</th>
                         <th class="py-3 px-4">FAKULTAS</th>
-                        <th class="py-3 px-4">AKREDITASI</th>
+                        <th class="py-3 px-4">ACCREDITATION</th>
                         <th class="py-3 px-4">BIAYA / SEMESTER</th>
                         <th class="py-3 px-4">STATUS</th>
                         <th class="py-3 px-4 text-center">AKSI</th>
@@ -86,9 +86,9 @@
                         </td>
                         <td class="py-3 px-4">
                             @if($prog->is_active)
-                                <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-emerald-100 text-emerald-700">Aktif</span>
+                                <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-emerald-100 text-emerald-700">Active</span>
                             @else
-                                <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-500">Non-aktif</span>
+                                <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-500">Inactive</span>
                             @endif
                         </td>
                         <td class="py-3 px-4 text-center whitespace-nowrap">
@@ -96,10 +96,10 @@
                                 <a href="{{ route('admin.programs.edit', $prog->id) }}" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-blue-600 transition" title="Edit">
                                     <i class="fa-solid fa-pen-to-square text-xs"></i>
                                 </a>
-                                <form action="{{ route('admin.programs.destroy', $prog->id) }}" method="POST" class="inline" onsubmit="return confirm('Hapus program studi ini?');">
+                                <form action="{{ route('admin.programs.destroy', $prog->id) }}" method="POST" class="inline" onsubmit="return confirm('Delete this study program?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-red-600 transition" title="Hapus">
+                                    <button type="submit" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-red-600 transition" title="Delete">
                                         <i class="fa-solid fa-trash-can text-xs"></i>
                                     </button>
                                 </form>
@@ -112,7 +112,7 @@
                             <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-xl flex items-center justify-center mx-auto mb-3">
                                 <i class="fa-solid fa-book-open text-xl"></i>
                             </div>
-                            <p class="font-bold text-slate-700 text-xs">Belum Ada Program Studi</p>
+                            <p class="font-bold text-slate-700 text-xs">No Study Programs Yet</p>
                         </td>
                     </tr>
                     @endforelse

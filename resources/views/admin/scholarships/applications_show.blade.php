@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Detail Pengajuan Beasiswa - ' . $application->name)
-@section('page_title', 'DETAIL PENGAJUAN BEASISWA')
+@section('title', 'Scholarship Application Details - ' . $application->name)
+@section('page_title', 'SCHOLARSHIP APPLICATION DETAILS')
 
 @section('content')
 <div class="space-y-6 max-w-5xl">
@@ -9,7 +9,7 @@
     <div class="flex items-center justify-between">
         <a href="{{ route('admin.scholarships.applications.index') }}" 
            class="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-slate-900 transition">
-            <i class="fa-solid fa-arrow-left"></i> Kembali ke Kotak Masuk Beasiswa
+            <i class="fa-solid fa-arrow-left"></i> Back to Scholarship Inbox
         </a>
 
         <div class="flex items-center gap-2">
@@ -42,7 +42,7 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 pt-6 border-t border-slate-100 text-xs">
                     <div>
-                        <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Email Pemohon</span>
+                        <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Applicant Email</span>
                         <a href="mailto:{{ $application->email }}" class="text-blue-600 font-semibold hover:underline">{{ $application->email }}</a>
                     </div>
                     <div>
@@ -52,9 +52,9 @@
                         </a>
                     </div>
                     <div>
-                        <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Kategori Pemohon</span>
+                        <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Applicant Category</span>
                         <span class="font-medium text-slate-800">
-                            {{ $application->applicant_type === 'student' ? 'Mahasiswa Aktif Huxley' : ($application->applicant_type === 'prospective_student' ? 'Calon Mahasiswa Baru' : 'Masyarakat Umum') }}
+                            {{ $application->applicant_type === 'student' ? 'Active Huxley Student' : ($application->applicant_type === 'prospective_student' ? 'Prospective New Student' : 'General Public') }}
                         </span>
                     </div>
                     <div>
@@ -62,7 +62,7 @@
                         <span class="font-mono font-bold text-slate-800">{{ $application->nim ?: ($application->current_institution ?: '-') }}</span>
                     </div>
                     <div>
-                        <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Program Studi / Jurusan</span>
+                        <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Study Program / Major</span>
                         <span class="font-medium text-slate-800">{{ $application->study_program ?: '-' }}</span>
                     </div>
                     <div>
@@ -80,7 +80,7 @@
             <!-- Motivation Letter -->
             <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm space-y-3">
                 <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
-                    <i class="fa-solid fa-feather text-blue-600"></i> Surat Motivasi & Alasan Pengajuan
+                    <i class="fa-solid fa-feather text-blue-600"></i> Motivation Letter & Application Reason
                 </h3>
                 <div class="p-4 bg-slate-50 rounded-xl text-slate-700 text-xs leading-relaxed whitespace-pre-line border border-slate-100">
                     {{ $application->motivation_letter }}
@@ -122,7 +122,7 @@
             <!-- Update Status Card -->
             <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm space-y-4">
                 <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
-                    <i class="fa-solid fa-sliders text-blue-600"></i> Keputusan Seleksi
+                    <i class="fa-solid fa-sliders text-blue-600"></i> Selection Decision
                 </h3>
 
                 <form action="{{ route('admin.scholarships.applications.update-status', $application) }}" method="POST" class="space-y-4">
@@ -130,34 +130,34 @@
                     @method('PATCH')
 
                     <div>
-                        <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">Status Pengajuan</label>
+                <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">Application Status</label>
                         <select name="status" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:border-blue-500 outline-none transition font-medium">
-                            <option value="pending" {{ $application->status === 'pending' ? 'selected' : '' }}>⏳ Menunggu Verifikasi</option>
-                            <option value="under_review" {{ $application->status === 'under_review' ? 'selected' : '' }}>🔍 Sedang Diseleksi / Wawancara</option>
-                            <option value="approved" {{ $application->status === 'approved' ? 'selected' : '' }}>✅ Diterima / Lolos Beasiswa</option>
-                            <option value="rejected" {{ $application->status === 'rejected' ? 'selected' : '' }}>❌ Tidak Lolos</option>
+                            <option value="pending" {{ $application->status === 'pending' ? 'selected' : '' }}>⏳ Waiting for Verification</option>
+                            <option value="under_review" {{ $application->status === 'under_review' ? 'selected' : '' }}>🔍 Under Review / Interview</option>
+                            <option value="approved" {{ $application->status === 'approved' ? 'selected' : '' }}>✅ Accepted / Scholarship Passed</option>
+                            <option value="rejected" {{ $application->status === 'rejected' ? 'selected' : '' }}>❌ Not Accepted</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">Catatan Administrator / Dewan Seleksi</label>
-                        <textarea name="admin_notes" rows="4" placeholder="Tuliskan catatan internal atau alasan kelolosan..."
+                        <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">Administrator / Selection Committee Notes</label>
+                        <textarea name="admin_notes" rows="4" placeholder="Write internal notes or reason for approval..."
                                   class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-slate-800 focus:border-blue-500 outline-none transition placeholder-slate-400">{{ old('admin_notes', $application->admin_notes) }}</textarea>
                     </div>
 
                     <button type="submit" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl shadow-md transition">
-                        Simpan Perubahan Status
+                        Save Status Change
                     </button>
                 </form>
             </div>
 
             <!-- Program Info Card -->
             <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-5 space-y-3">
-                <h4 class="text-[11px] font-bold uppercase tracking-wider text-slate-700">Tentang Program</h4>
+                <h4 class="text-[11px] font-bold uppercase tracking-wider text-slate-700">About Program</h4>
                 <p class="text-xs font-bold text-slate-900">{{ $application->scholarship->title ?? 'Program Beasiswa' }}</p>
                 <div class="text-[11px] text-slate-500 space-y-1">
                     <p><i class="fa-solid fa-building-ngo w-4 text-slate-400"></i> Mitra: {{ $application->scholarship->provider ?? '-' }}</p>
-                    <p><i class="fa-solid fa-gift w-4 text-slate-400"></i> Cakupan: {{ $application->scholarship->coverage_type_label ?? '-' }}</p>
+                    <p><i class="fa-solid fa-gift w-4 text-slate-400"></i> Coverage: {{ $application->scholarship->coverage_type_label ?? '-' }}</p>
                     @if($application->scholarship && $application->scholarship->amount)
                         <p><i class="fa-solid fa-coins w-4 text-slate-400"></i> Nilai: {{ $application->scholarship->amount }}</p>
                     @endif
@@ -165,11 +165,11 @@
             </div>
 
             <!-- Delete Form -->
-            <form action="{{ route('admin.scholarships.applications.destroy', $application) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data pengajuan ini secara permanen?')">
+            <form action="{{ route('admin.scholarships.applications.destroy', $application) }}" method="POST" onsubmit="return confirm('Are you sure you want to permanently delete this application data?')">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="w-full py-2.5 px-4 border border-rose-200 bg-rose-50/50 hover:bg-rose-100 text-rose-700 font-bold text-xs rounded-xl transition flex items-center justify-center gap-2">
-                    <i class="fa-regular fa-trash-can"></i> Hapus Berkas Pengajuan
+                    <i class="fa-regular fa-trash-can"></i> Delete Application Files
                 </button>
             </form>
 

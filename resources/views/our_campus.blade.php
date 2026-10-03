@@ -28,19 +28,19 @@
         <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
                 <span class="text-3xl md:text-4xl font-serif font-bold text-brand-blue">85+</span>
-                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Hektar Smart Campus</p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Hectare Smart Campus</p>
             </div>
             <div>
                 <span class="text-3xl md:text-4xl font-serif font-bold text-brand-blue">45+</span>
-                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Laboratorium Riset</p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Research Laboratories</p>
             </div>
             <div>
                 <span class="text-3xl md:text-4xl font-serif font-bold text-brand-blue">120+</span>
-                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Organisasi Mahasiswa</p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Student Organizations</p>
             </div>
             <div>
                 <span class="text-3xl md:text-4xl font-serif font-bold text-brand-blue">100%</span>
-                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Cakupan Wi-Fi 6 & IoT</p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Wi-Fi 6 & IoT Coverage</p>
             </div>
         </div>
     </section>
@@ -65,7 +65,7 @@
                     <span class="text-[10px] font-bold uppercase tracking-wider text-brand-blue">Heritage & Identity</span>
                     <h3 class="text-xl font-bold font-serif text-white mt-1">The Great Quadrangle</h3>
                     <p class="text-xs text-gray-400 mt-3 leading-relaxed">
-                        Pusat ikonik kehidupan sosial mahasiswa, tempat penyelenggaraan upacara wisuda, festival seni kampus, dan orientasi mahasiswa baru.
+                        Iconic center of student social life, host to graduation ceremonies, campus art festivals, and new student orientations.
                     </p>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                     <span class="text-[10px] font-bold uppercase tracking-wider text-brand-blue">Knowledge Sanctuary</span>
                     <h3 class="text-xl font-bold font-serif text-white mt-1">Sir Huxley Memorial Library</h3>
                     <p class="text-xs text-gray-400 mt-3 leading-relaxed">
-                        Perpustakaan 6 lantai dengan 500.000+ koleksi buku fisik, akses jurnal internasional tanpa batas, dan zona belajar hening 24 jam.
+                        6-story library with 500,000+ physical book collection, unlimited access to international journals, and 24-hour quiet study zones.
                     </p>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                     <span class="text-[10px] font-bold uppercase tracking-wider text-brand-blue">Startup Incubator</span>
                     <h3 class="text-xl font-bold font-serif text-white mt-1">Tech Venture Incubator</h3>
                     <p class="text-xs text-gray-400 mt-3 leading-relaxed">
-                        Ruang kolaboratif yang menjembatani riset mahasiswa dengan modal ventura dan industri teknologi terkemuka dunia.
+                        Collaborative space connecting student research with venture capital and leading global technology industries.
                     </p>
                 </div>
             </div>
@@ -110,12 +110,12 @@
                     <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-blue">Visit & Experience</span>
                     <h3 class="text-2xl md:text-3xl font-serif font-bold text-white mt-1">Campus Tours & Orientation</h3>
                     <p class="text-xs md:text-sm text-gray-400 mt-4 leading-relaxed">
-                        Kami mengundang calon mahasiswa, orang tua, dan mitra untuk merasakan langsung atmosfer akademis Huxley University. Tur kampus terbuka setiap hari Senin hingga Jumat.
+                        We invite prospective students, parents, and partners to experience directly the academic atmosphere of Huxley University. Campus tours are open Monday through Friday.
                     </p>
                     <div class="mt-6 flex flex-wrap gap-4 text-xs text-gray-300">
                         <div class="flex items-center gap-2">
                             <i class="fa-solid fa-map-pin text-brand-blue"></i>
-                            <span>Huxley Boulevard No. 1, Kota Pendidikan</span>
+                            <span>Huxley Boulevard No. 1, Education City</span>
                         </div>
                         <div class="flex items-center gap-2">
                             <i class="fa-solid fa-phone text-brand-blue"></i>
@@ -127,11 +127,11 @@
                 <div class="flex flex-col sm:flex-row gap-4 justify-end">
                     <a href="{{ route('facility.index') }}" 
                        class="px-6 py-3.5 rounded-xl bg-brand-blue hover:bg-blue-600 text-white text-xs font-bold text-center transition shadow-lg shadow-blue-500/20">
-                        Lihat Fasilitas Lengkap
+                        View All Facilities
                     </a>
                     <a href="{{ route('programs.index') }}" 
                        class="px-6 py-3.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-white text-xs font-bold text-center border border-gray-700 transition">
-                        Eksplor Program Studi
+                        Explore Study Programs
                     </a>
                 </div>
             </div>

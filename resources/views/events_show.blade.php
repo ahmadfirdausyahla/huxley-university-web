@@ -8,7 +8,7 @@
         
         <!-- Breadcrumb & Navigation -->
         <a href="{{ route('home') }}" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-blue-600 transition">
-            <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
+            <i class="fa-solid fa-arrow-left"></i> Back to Home
         </a>
 
         @if(session('success'))
@@ -17,7 +17,7 @@
                     <i class="fa-solid fa-check text-sm"></i>
                 </div>
                 <div>
-                    <span class="font-bold block text-sm">Sukses</span>
+                    <span class="font-bold block text-sm">Success</span>
                     <span>{{ session('success') }}</span>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                         @else
                             <div class="w-full h-full flex flex-col items-center justify-center text-slate-300 bg-slate-100">
                                 <i class="fa-regular fa-image text-4xl mb-2"></i>
-                                <span class="text-xs font-medium">Tidak ada gambar</span>
+                                <span class="text-xs font-medium">No image</span>
                             </div>
                         @endif
 
@@ -63,10 +63,10 @@
                 <!-- Content Article Card -->
                 <div class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-4">
                     <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider pb-3 border-b border-slate-100">
-                        Tentang Event Ini
+                        About This Event
                     </h2>
                     <div class="prose prose-slate prose-sm max-w-none text-xs sm:text-sm text-slate-700 leading-relaxed">
-                        {!! $event->content ?? '<p class="text-slate-400 italic">Belum ada rincian lengkap untuk event ini.</p>' !!}
+                        {!! $event->content ?? '<p class="text-slate-400 italic">No detailed information available for this event yet.</p>' !!}
                     </div>
                 </div>
 
@@ -77,45 +77,45 @@
                 
                 <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm sticky top-6 space-y-6">
                     <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider pb-4 border-b border-slate-100">
-                        Rincian Pelaksanaan
+                        Event Details
                     </h3>
 
                     <div class="space-y-4 text-xs">
-                        <!-- Tanggal Event -->
+                        <!-- Event Date -->
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 border border-blue-100">
                                 <i class="fa-regular fa-calendar-check text-base"></i>
                             </div>
                             <div>
-                                <span class="block text-[10px] font-bold uppercase text-slate-400">Tanggal</span>
+                                <span class="block text-[10px] font-bold uppercase text-slate-400">Date</span>
                                 <span class="font-bold text-slate-800 text-xs sm:text-sm">
-                                    {{ $event->event_date ? $event->event_date->format('d F Y') : 'Tanggal Belum Ditetapkan' }}
+                                    {{ $event->event_date ? $event->event_date->format('d F Y') : 'Date Not Set' }}
                                 </span>
                             </div>
                         </div>
 
-                        <!-- Lokasi Event -->
+                        <!-- Event Location -->
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 border border-blue-100">
                                 <i class="fa-solid fa-location-dot text-base"></i>
                             </div>
                             <div>
-                                <span class="block text-[10px] font-bold uppercase text-slate-400">Lokasi</span>
+                                <span class="block text-[10px] font-bold uppercase text-slate-400">Location</span>
                                 <span class="font-bold text-slate-800 text-xs sm:text-sm">
                                     {{ $event->location ?? 'Online / TBD' }}
                                 </span>
                             </div>
                         </div>
 
-                        <!-- Kuota Peserta -->
+                        <!-- Event Quota -->
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 border border-blue-100">
                                 <i class="fa-solid fa-users text-base"></i>
                             </div>
                             <div>
-                                <span class="block text-[10px] font-bold uppercase text-slate-400">Kuota</span>
+                                <span class="block text-[10px] font-bold uppercase text-slate-400">Quota</span>
                                 <span class="font-bold text-slate-800 text-xs sm:text-sm">
-                                    {{ $event->quota ? $event->quota . ' Orang' : 'Terbatas' }}
+                                    {{ $event->quota ? $event->quota . ' People' : 'Limited' }}
                                 </span>
                             </div>
                         </div>
@@ -126,12 +126,12 @@
                         @if($event->registration_open)
                             <a href="{{ $event->isMahasiswaOnly() ? route('events.register.student', $event) : route('events.register.public', $event) }}" 
                                class="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3.5 px-4 rounded-xl transition shadow-md shadow-blue-500/10">
-                                <span>Daftar Event Sekarang</span>
+                                <span>Register for Event Now</span>
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         @else
                             <button disabled class="w-full bg-slate-100 text-slate-400 font-bold text-xs py-3.5 px-4 rounded-xl cursor-not-allowed text-center">
-                                Pendaftaran Ditutup
+                                Registration Closed
                             </button>
                         @endif
                     </div>

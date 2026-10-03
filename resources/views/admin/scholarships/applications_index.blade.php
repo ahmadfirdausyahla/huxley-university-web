@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
-@section('title', 'Kotak Masuk Beasiswa')
-@section('page_title', 'KOTAK MASUK BEASISWA')
+@section('title', 'Scholarship Inbox')
+@section('page_title', 'SCHOLARSHIP INBOX')
 
 @section('content')
 <div class="space-y-6">
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h2 class="text-xl font-bold text-slate-900">Kotak Masuk Pengajuan Beasiswa</h2>
-            <p class="text-xs text-slate-400 mt-1">Kelola dan verifikasi seluruh formulir pendaftaran beasiswa dari mahasiswa dan calon mahasiswa.</p>
+            <h2 class="text-xl font-bold text-slate-900">Scholarship Applications Inbox</h2>
+            <p class="text-xs text-slate-400 mt-1">Manage and verify all scholarship application forms from students and prospective students.</p>
         </div>
         <div class="flex items-center gap-2">
             <a href="{{ route('admin.scholarships.index') }}" 
@@ -27,25 +27,25 @@
         </div>
         <div class="bg-amber-50/60 border border-amber-200 p-4 rounded-xl shadow-sm">
             <p class="text-[10px] font-bold text-amber-700 uppercase tracking-wider flex items-center gap-1">
-                <i class="fa-regular fa-clock"></i> Menunggu
+                <i class="fa-regular fa-clock"></i> Pending
             </p>
             <p class="text-xl font-extrabold text-amber-800 mt-0.5">{{ $stats['pending'] }}</p>
         </div>
         <div class="bg-blue-50/60 border border-blue-200 p-4 rounded-xl shadow-sm">
             <p class="text-[10px] font-bold text-blue-700 uppercase tracking-wider flex items-center gap-1">
-                <i class="fa-solid fa-magnifying-glass"></i> Seleksi
+                <i class="fa-solid fa-magnifying-glass"></i> Selection
             </p>
             <p class="text-xl font-extrabold text-blue-800 mt-0.5">{{ $stats['under_review'] }}</p>
         </div>
         <div class="bg-emerald-50/60 border border-emerald-200 p-4 rounded-xl shadow-sm">
             <p class="text-[10px] font-bold text-emerald-700 uppercase tracking-wider flex items-center gap-1">
-                <i class="fa-solid fa-circle-check"></i> Diterima
+                <i class="fa-solid fa-circle-check"></i> Accepted
             </p>
             <p class="text-xl font-extrabold text-emerald-800 mt-0.5">{{ $stats['approved'] }}</p>
         </div>
         <div class="bg-rose-50/60 border border-rose-200 p-4 rounded-xl shadow-sm">
             <p class="text-[10px] font-bold text-rose-700 uppercase tracking-wider flex items-center gap-1">
-                <i class="fa-solid fa-circle-xmark"></i> Ditolak
+                <i class="fa-solid fa-circle-xmark"></i> Rejected
             </p>
             <p class="text-xl font-extrabold text-rose-800 mt-0.5">{{ $stats['rejected'] }}</p>
         </div>
@@ -76,22 +76,22 @@
                 <select name="status" onchange="this.form.submit()" 
                         class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 focus:border-blue-500 outline-none transition">
                     <option value="">Semua Status</option>
-                    <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Menunggu Verifikasi</option>
-                    <option value="under_review" {{ request('status') == 'under_review' ? 'selected' : '' }}>Sedang Diseleksi</option>
-                    <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Diterima</option>
-                    <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Ditolak</option>
+                    <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Waiting for Verification</option>
+                    <option value="under_review" {{ request('status') == 'under_review' ? 'selected' : '' }}>Under Review</option>
+                    <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Accepted</option>
+                    <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Rejected</option>
                 </select>
 
                 <select name="applicant_type" onchange="this.form.submit()" 
                         class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 focus:border-blue-500 outline-none transition">
-                    <option value="">Semua Kategori Pemohon</option>
+                    <option value="">All Applicant Categories</option>
                     <option value="student" {{ request('applicant_type') == 'student' ? 'selected' : '' }}>Mahasiswa Huxley</option>
                     <option value="prospective_student" {{ request('applicant_type') == 'prospective_student' ? 'selected' : '' }}>Calon Mahasiswa</option>
                     <option value="general" {{ request('applicant_type') == 'general' ? 'selected' : '' }}>Umum</option>
                 </select>
             </div>
             <div class="text-[11px] font-medium text-slate-400 whitespace-nowrap">
-                Total: {{ $applications->total() }} Pengajuan
+                Total: {{ $applications->total() }} Applications
             </div>
         </form>
 
@@ -103,9 +103,9 @@
                         <th class="py-3.5 px-4">PEMOHON BEASISWA</th>
                         <th class="py-3.5 px-4">PROGRAM BEASISWA</th>
                         <th class="py-3.5 px-4">STATUS AKADEMIK</th>
-                        <th class="py-3.5 px-4">KONTAK</th>
-                        <th class="py-3.5 px-4">STATUS SELEKSI</th>
-                        <th class="py-3.5 px-4">WAKTU DAFTAR</th>
+                        <th class="py-3.5 px-4">CONTACT</th>
+                        <th class="py-3.5 px-4">SELECTION STATUS</th>
+                        <th class="py-3.5 px-4">REGISTRATION TIME</th>
                         <th class="py-3.5 px-4 text-center">AKSI</th>
                     </tr>
                 </thead>
@@ -175,10 +175,10 @@
                                    class="px-2.5 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-xs font-semibold transition" title="Lihat Berkas & Detail">
                                     <i class="fa-solid fa-eye mr-1 text-[10px]"></i> Detail
                                 </a>
-                                <form action="{{ route('admin.scholarships.applications.destroy', $app) }}" method="POST" onsubmit="return confirm('Hapus pengajuan dari {{ $app->name }}?')">
+                                <form action="{{ route('admin.scholarships.applications.destroy', $app) }}" method="POST" onsubmit="return confirm('Delete application from {{ $app->name }}?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="p-1.5 text-slate-400 hover:text-rose-600 transition" title="Hapus Pengajuan">
+                                    <button type="submit" class="p-1.5 text-slate-400 hover:text-rose-600 transition" title="Delete Application">
                                         <i class="fa-regular fa-trash-can text-xs"></i>
                                     </button>
                                 </form>
@@ -191,8 +191,8 @@
                             <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-xl flex items-center justify-center mx-auto mb-3">
                                 <i class="fa-solid fa-inbox text-xl"></i>
                             </div>
-                            <p class="font-bold text-slate-700 text-xs">Kotak Masuk Beasiswa Kosong</p>
-                            <p class="text-[11px] text-slate-400 mt-1">Belum ada pengajuan pendaftaran beasiswa yang masuk.</p>
+                            <p class="font-bold text-slate-700 text-xs">Scholarship Inbox Empty</p>
+                            <p class="text-[11px] text-slate-400 mt-1">No scholarship application submissions received yet.</p>
                         </td>
                     </tr>
                     @endforelse

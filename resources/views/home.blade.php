@@ -10,8 +10,8 @@
             <span class="absolute w-28 h-28 md:w-36 md:h-36 rounded-full border border-brand-blue/30 animate-[ping_2.5s_ease-out_infinite]"></span>
             <span class="absolute w-24 h-24 md:w-32 md:h-32 rounded-full bg-brand-blue/10 blur-xl animate-pulse"></span>
             <div class="relative w-20 h-20 md:w-28 md:h-28 rounded-full flex items-center justify-center animate-[heroPulse_2.5s_ease-in-out_infinite]">
-                <img src="{{ asset('storage/assets/logo.png') }}" alt="Huxley University Crest"
-                    class="w-full h-full object-contain drop-shadow-[0_0_25px_rgba(59,130,246,0.45)]">
+                <img src="{{ asset('/images/huxley-logo.jpg') }}" alt="Huxley University Crest"
+                    class="w-full h-full rounded-full object-contain drop-shadow-[0_0_25px_rgba(59,130,246,0.45)]">
             </div>
         </div>
 
@@ -123,7 +123,7 @@
 
             <div data-aos="fade-left" class="relative">
                 <div class="w-full h-[480px] rounded-2xl overflow-hidden shadow-xl">
-                    <img src="{{ asset('storage/assets/template.jpg') }}" alt="Huxley University Campus"
+                    <img src="{{ asset('/images/huxley-univ.jpg') }}" alt="Huxley University Campus"
                         class="w-full h-full object-cover">
                 </div>
 
@@ -245,6 +245,7 @@
 </section>
 
 <section id="events" class="relative py-28 bg-[#0d1526] overflow-hidden">
+    <!-- Background Effects -->
     <div class="absolute inset-0 pointer-events-none">
         <div class="absolute -top-32 -right-32 w-[420px] h-[420px] rounded-full bg-brand-blue/10 blur-3xl"></div>
         <div class="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-blue-500/5 blur-3xl"></div>
@@ -253,11 +254,12 @@
     </div>
 
     <div class="relative z-10 max-w-6xl mx-auto px-6">
+        <!-- Section Header -->
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12" data-aos="fade-up">
             <div>
                 <div class="flex items-center gap-3 mb-3">
-                    <span class="w-8 h-px bg-brand-blue"></span>
-                    <span class="text-[11px] font-bold tracking-[0.25em] text-brand-blue uppercase">Campus Agenda</span>
+                    <span class="w-8 h-px bg-blue-500"></span>
+                    <span class="text-[11px] font-bold tracking-[0.25em] text-blue-500 uppercase">Campus Agenda</span>
                 </div>
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-white">Upcoming Events</h2>
                 <p class="mt-3 text-sm text-gray-400 max-w-lg">
@@ -266,15 +268,16 @@
             </div>
 
             <a href="{{ route('events.index') }}"
-                class="group inline-flex items-center gap-3 text-xs font-bold tracking-wider text-white border border-white/20 rounded-full px-5 py-3 hover:bg-white hover:text-black transition-all duration-300">
+                class="group inline-flex items-center gap-3 text-xs font-bold tracking-wider text-white border border-white/15 rounded-full px-5 py-3 hover:bg-white hover:text-black transition-all duration-300 shadow-sm">
                 VIEW ALL EVENTS
-                <span class="w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center group-hover:bg-black transition">
+                <span class="w-6 h-6 rounded-full bg-white/10 text-white flex items-center justify-center group-hover:bg-black transition">
                     <i class="fa-solid fa-arrow-right text-[9px]"></i>
                 </span>
             </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Event Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             @forelse($events as $index => $event)
                 @php
                     $eventDate = $event->event_date ?? $event->date;
@@ -282,85 +285,90 @@
                         ? $event->image
                         : asset('storage/' . $event->image);
                 @endphp
+                
+                <!-- Ticket-Style Event Card -->
                 <article data-aos="fade-up" data-aos-delay="{{ $index * 100 }}"
-                    class="group relative bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-amber-500/50 shadow-xl hover:-translate-y-2 hover:shadow-2xl transition-all duration-400 flex flex-col justify-between">
-                    <div>
-                        <!-- Header with Calendar Ticket Block -->
-                        <div class="relative h-44 bg-gray-950 overflow-hidden">
+                    class="group relative flex flex-col bg-white rounded-[24px] overflow-hidden shadow-xl hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-white/10 transition-all duration-300">
+                    
+                    <!-- Top Content Area -->
+                    <div class="p-4 pb-6 bg-white relative z-10">
+                        <!-- Image Container (Rounded inside the card) -->
+                        <div class="relative h-56 rounded-2xl overflow-hidden mb-5">
                             @if($event->image)
                                 <img src="{{ $imageUrl }}" alt="{{ $event->title }}"
-                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90">
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
                             @else
-                                <div class="w-full h-full flex items-center justify-center bg-gray-800 text-gray-500">
-                                    <i class="fa-regular fa-calendar text-3xl"></i>
+                                <div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
+                                    <i class="fa-regular fa-calendar text-4xl"></i>
                                 </div>
                             @endif
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent"></div>
 
-                            <!-- Calendar Ticket Badge -->
-                            <div class="absolute top-3 left-3 bg-black/90 backdrop-blur-md border border-white/20 rounded-xl overflow-hidden shadow-lg text-center min-w-[54px]">
-                                <div class="bg-amber-500 text-black text-[9px] font-extrabold uppercase py-0.5 px-1.5">
-                                    {{ $eventDate ? $eventDate->format('M') : 'TBA' }}
-                                </div>
-                                <div class="py-1 px-1.5">
-                                    <span class="block text-xl font-black text-white leading-none">
-                                        {{ $eventDate ? $eventDate->format('d') : '01' }}
-                                    </span>
-                                </div>
+                            <!-- Overlay Gradient & QR Code mockup (Optional, like in reference) -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                            
+                            <!-- Category Badge inside Image -->
+                            <div class="absolute bottom-3 left-3">
+                                <span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-white/90 backdrop-blur-sm text-gray-900 shadow-sm">
+                                    {{ $event->isMahasiswaOnly() ? 'Student' : 'Campus Event' }}
+                                </span>
                             </div>
+                            
+                            <!-- Optional QR code / Icon (as seen in the reference) -->
+                            <div class="absolute bottom-3 right-3 bg-white p-1 rounded-md shadow-sm w-10 h-10 flex items-center justify-center">
+                                <i class="fa-solid fa-qrcode text-gray-800 text-xl"></i>
+                            </div>
+                        </div>
 
-                            <!-- Audience Badge -->
-                            <div class="absolute top-3 right-3">
-                                <span class="px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider bg-black/80 backdrop-blur-md text-amber-300 border border-amber-500/30">
-                                    {{ $event->isMahasiswaOnly() ? 'Mahasiswa' : 'Umum & Mhs' }}
+                        <!-- Text Details -->
+                        <div class="px-2">
+                            <span class="text-[11px] font-semibold tracking-wide text-gray-400 mb-1 block uppercase">Campus Agenda</span>
+                            <h3 class="text-[22px] font-bold text-gray-900 leading-[1.1] mb-3 group-hover:text-blue-600 transition-colors line-clamp-2 font-sans tracking-tight">
+                                <a href="{{ route('events.show', $event) }}" class="before:absolute before:inset-0">{{ $event->title }}</a>
+                            </h3>
+
+                            <!-- Time Info (Blue like reference) -->
+                            <div class="flex items-center gap-1.5 text-[13px] font-bold text-blue-500">
+                                <i class="fa-solid fa-circle-play text-[11px]"></i>
+                                <span>
+                                    {{ $eventDate ? $eventDate->format('M d') : 'TBA' }}, at {{ $event->time ? \Carbon\Carbon::parse($event->time)->format('H:i') : '09:00' }}
                                 </span>
                             </div>
                         </div>
-
-                        <div class="p-5">
-                            <span class="text-[9px] font-bold uppercase tracking-widest text-amber-400">CAMPUS AGENDA</span>
-                            <h3 class="text-base font-bold font-serif text-white leading-snug mt-1 mb-3 group-hover:text-amber-400 transition line-clamp-2">
-                                <a href="{{ route('events.show', $event) }}">{{ $event->title }}</a>
-                            </h3>
-
-                            <div class="space-y-1.5 text-xs text-gray-400">
-                                <div class="flex items-center gap-2">
-                                    <i class="fa-regular fa-clock text-amber-400 w-3.5 text-[11px]"></i>
-                                    <span class="text-[11px]">
-                                        {{ $event->time ? \Carbon\Carbon::parse($event->time)->format('H:i') . ' WIB' : '09:00 WIB' }}
-                                    </span>
-                                </div>
-
-                                @if($event->location)
-                                    <div class="flex items-center gap-2">
-                                        <i class="fa-solid fa-location-dot text-amber-400 w-3.5 text-[11px]"></i>
-                                        <span class="text-[11px] line-clamp-1">{{ $event->location }}</span>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
                     </div>
 
-                    <!-- Perforated Ticket Divider & Action -->
-                    <div class="p-4 pt-3 border-t border-dashed border-gray-800 flex items-center justify-between gap-2">
-                        <a href="{{ route('events.show', $event) }}"
-                            class="text-xs font-semibold text-gray-400 hover:text-white transition">
-                            Lihat Detail
-                        </a>
-                        <a href="{{ route('events.register', $event) }}"
-                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold transition shadow-md shadow-amber-500/10">
-                            <i class="fa-solid fa-ticket text-[10px]"></i>
-                            <span>Daftar</span>
-                        </a>
+                    <!-- Ticket Cut-out Dividers (Left and Right semicircles) -->
+                    <div class="relative h-px bg-transparent z-20">
+                        <div class="absolute left-0 -top-3 w-6 h-6 bg-[#0d1526] rounded-full -translate-x-1/2"></div>
+                        <div class="absolute right-0 -top-3 w-6 h-6 bg-[#0d1526] rounded-full translate-x-1/2"></div>
+                        <!-- Dashed Line -->
+                        <div class="absolute inset-x-5 top-0 border-t border-dashed border-gray-200"></div>
+                    </div>
+
+                    <!-- Bottom Area (Location/Profile Style like reference) -->
+                    <div class="p-6 bg-white flex items-center gap-4 relative z-10">
+                        <!-- Location Icon / Thumbnail -->
+                        <div class="w-12 h-12 rounded-full bg-gray-100 border border-gray-200 flex-shrink-0 flex items-center justify-center overflow-hidden">
+                             <!-- Using an icon if no location specific image, you could also use a campus map thumbnail -->
+                             <i class="fa-solid fa-map-location-dot text-gray-400 text-lg"></i>
+                        </div>
+                        
+                        <!-- Location Details -->
+                        <div>
+                            <span class="text-[11px] font-medium text-gray-400 block mb-0.5">Location</span>
+                            <span class="text-[14px] font-bold text-gray-900 leading-tight block line-clamp-1">
+                                {{ $event->location ?? 'Main Campus, Huxley' }}
+                            </span>
+                        </div>
                     </div>
                 </article>
             @empty
-                <div class="md:col-span-3 bg-white rounded-3xl p-12 md:p-16 text-center shadow-xl" data-aos="fade-up">
-                    <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-blue-50 text-brand-blue flex items-center justify-center text-2xl">
-                        <i class="fa-regular fa-calendar"></i>
+                <!-- Dark Themed Empty State -->
+                <div class="md:col-span-3 bg-gray-900 border border-gray-800 rounded-[24px] p-12 md:p-16 text-center shadow-xl" data-aos="fade-up">
+                    <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-gray-800 border border-gray-700 text-gray-400 flex items-center justify-center text-2xl">
+                        <i class="fa-regular fa-calendar-xmark"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">No Upcoming Events</h3>
-                    <p class="text-sm text-gray-500">There are currently no upcoming events. Please check back soon.</p>
+                    <h3 class="text-xl font-serif font-bold text-white mb-2">No Upcoming Events</h3>
+                    <p class="text-sm text-gray-400">There are currently no upcoming events scheduled. Please check back later for updates.</p>
                 </div>
             @endforelse
         </div>

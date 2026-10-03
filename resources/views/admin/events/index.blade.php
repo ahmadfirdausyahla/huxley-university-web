@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Daftar Event')
+@section('title', 'Event List')
 @section('page_title', 'KELOLA EVENT KAMPUS')
 
 @section('content')
@@ -9,8 +9,8 @@
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h2 class="text-xl font-bold text-slate-900">Daftar Event & Kegiatan</h2>
-            <p class="text-xs text-slate-400 mt-1">Kelola seluruh agenda dan acara yang tampil pada portal utama kampus.</p>
+            <h2 class="text-xl font-bold text-slate-900">Events & Activities List</h2>
+            <p class="text-xs text-slate-400 mt-1">Manage all events and agenda displayed on the main campus portal.</p>
         </div>
         <a href="{{ route('admin.events.create') }}" 
            class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition shadow-sm">
@@ -37,9 +37,9 @@
             <table class="w-full text-left text-xs text-slate-600">
                 <thead class="bg-slate-50/80 text-slate-400 font-bold uppercase text-[10px] tracking-wider border-b border-slate-100">
                     <tr>
-                        <th class="py-3 px-4">GAMBAR HEADER</th>
+                        <th class="py-3 px-4">HEADER IMAGE</th>
                         <th class="py-3 px-4">JUDUL & TARGET</th>
-                        <th class="py-3 px-4">TANGGAL & LOKASI</th>
+                        <th class="py-3 px-4">DATE & LOCATION</th>
                         <th class="py-3 px-4">STATUS</th>
                         <th class="py-3 px-4 text-center">AKSI</th>
                     </tr>
@@ -84,7 +84,7 @@
                                 <a href="{{ route('admin.events.edit', $event->id) }}" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-blue-600 transition" title="Edit">
                                     <i class="fa-solid fa-pen-to-square text-xs"></i>
                                 </a>
-                                <form action="{{ route('admin.events.destroy', $event->id) }}" method="POST" class="inline" onsubmit="return confirm('Hapus event ini?');">
+                                <form action="{{ route('admin.events.destroy', $event->id) }}" method="POST" class="inline" onsubmit="return confirm('Delete this event?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-red-600 transition" title="Hapus">
@@ -95,13 +95,13 @@
                         </td>
                     </tr>
                     @empty
-                    <!-- Empty State (Sama persis seperti gambar acuan) -->
+                    <!-- Empty State (Same as reference image) -->
                     <tr>
                         <td colspan="5" class="py-20 text-center text-slate-400">
                             <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-xl flex items-center justify-center mx-auto mb-3">
                                 <i class="fa-regular fa-folder-open text-xl"></i>
                             </div>
-                            <p class="font-bold text-slate-700 text-xs">Belum Ada Event Terdaftar</p>
+                            <p class="font-bold text-slate-700 text-xs">No Events Registered Yet</p>
                         </td>
                     </tr>
                     @endforelse

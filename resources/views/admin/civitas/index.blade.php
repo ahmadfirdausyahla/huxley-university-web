@@ -52,9 +52,9 @@
                         <th class="py-3 px-4">NIM / NIP</th>
                         <th class="py-3 px-4">KATEGORI</th>
                         <th class="py-3 px-4">PRODI / FAKULTAS</th>
-                        <th class="py-3 px-4">KONTAK</th>
+                        <th class="py-3 px-4">CONTACT</th>
                         <th class="py-3 px-4">STATUS</th>
-                        <th class="py-3 px-4 text-center">AKSI</th>
+                        <th class="py-3 px-4 text-center">ACTION</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -87,9 +87,9 @@
                         </td>
                         <td class="py-3 px-4">
                             @if($c->is_active)
-                                <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-emerald-100 text-emerald-700">Aktif</span>
+                                <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-emerald-100 text-emerald-700">Active</span>
                             @else
-                                <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-500">Nonaktif</span>
+                                <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-500">Inactive</span>
                             @endif
                         </td>
                         <td class="py-3 px-4 text-center whitespace-nowrap">
@@ -97,7 +97,7 @@
                                 <a href="{{ route('admin.civitas.edit', $c->id) }}" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-blue-600 transition" title="Edit">
                                     <i class="fa-solid fa-pen-to-square text-xs"></i>
                                 </a>
-                                <form action="{{ route('admin.civitas.destroy', $c->id) }}" method="POST" class="inline" onsubmit="return confirm('Hapus data civitas ini?');">
+                                <form action="{{ route('admin.civitas.destroy', $c->id) }}" method="POST" class="inline" onsubmit="return confirm('Delete this civitas data?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-red-600 transition" title="Hapus">
@@ -113,7 +113,7 @@
                             <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-xl flex items-center justify-center mx-auto mb-3">
                                 <i class="fa-solid fa-users text-xl"></i>
                             </div>
-                            <p class="font-bold text-slate-700 text-xs">Belum Ada Data Civitas / Mahasiswa</p>
+                            <p class="font-bold text-slate-700 text-xs">No Civitas / Student Data Yet</p>
                         </td>
                     </tr>
                     @endforelse

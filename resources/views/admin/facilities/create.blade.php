@@ -1,24 +1,24 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Fasilitas')
-@section('page_title', 'TAMBAH FASILITAS KAMPUS')
+@section('title', 'Add Facility')
+@section('page_title', 'ADD NEW CAMPUS FACILITY')
 
 @section('content')
 <div class="max-w-4xl mx-auto">
     <div class="mb-6 flex items-center justify-between">
         <div>
-            <h2 class="text-xl font-bold text-slate-900">Form Fasilitas Baru</h2>
-            <p class="text-xs text-slate-400 mt-1">Daftarkan sarana dan fasilitas baru Huxley University.</p>
+            <h2 class="text-xl font-bold text-slate-900">New Facility Form</h2>
+            <p class="text-xs text-slate-400 mt-1">Register new facilities and infrastructure of Huxley University.</p>
         </div>
         <a href="{{ route('admin.facilities.index') }}" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white border border-slate-200 px-4 py-2 rounded-xl transition">
-            <i class="fa-solid fa-arrow-left"></i> Kembali
+            <i class="fa-solid fa-arrow-left"></i> Back
         </a>
     </div>
 
     @if ($errors->any())
         <div class="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl mb-6 text-xs">
             <div class="font-bold mb-1 flex items-center gap-2">
-                <i class="fa-solid fa-triangle-exclamation"></i> Terdapat kesalahan pengisian:
+                <i class="fa-solid fa-triangle-exclamation"></i> There were input errors:
             </div>
             <ul class="list-disc pl-5 space-y-0.5">
                 @foreach ($errors->all() as $error)
@@ -33,66 +33,66 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Nama Fasilitas <span class="text-red-500">*</span></label>
-                <input type="text" name="name" value="{{ old('name') }}" placeholder="Contoh: Digital Innovation Lab" required
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Facility Name <span class="text-red-500">*</span></label>
+                <input type="text" name="name" value="{{ old('name') }}" placeholder="Example: Digital Innovation Lab" required
                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Kategori Fasilitas <span class="text-red-500">*</span></label>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Facility Category <span class="text-red-500">*</span></label>
                 <select name="category" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
-                    <option value="laboratorium" {{ old('category') == 'laboratorium' ? 'selected' : '' }}>Laboratorium</option>
-                    <option value="perpustakaan" {{ old('category') == 'perpustakaan' ? 'selected' : '' }}>Perpustakaan</option>
-                    <option value="olahraga" {{ old('category') == 'olahraga' ? 'selected' : '' }}>Olahraga & Kebugaran</option>
-                    <option value="aula" {{ old('category') == 'aula' ? 'selected' : '' }}>Aula & Auditorium</option>
-                    <option value="layanan" {{ old('category') == 'layanan' ? 'selected' : '' }}>Layanan Mahasiswa</option>
-                    <option value="umum" {{ old('category') == 'umum' ? 'selected' : '' }}>Fasilitas Umum</option>
+                    <option value="laboratorium" {{ old('category') == 'laboratorium' ? 'selected' : '' }}>Laboratory</option>
+                    <option value="perpustakaan" {{ old('category') == 'perpustakaan' ? 'selected' : '' }}>Library</option>
+                    <option value="olahraga" {{ old('category') == 'olahraga' ? 'selected' : '' }}>Sports & Fitness</option>
+                    <option value="aula" {{ old('category') == 'aula' ? 'selected' : '' }}>Hall & Auditorium</option>
+                    <option value="layanan" {{ old('category') == 'layanan' ? 'selected' : '' }}>Student Services</option>
+                    <option value="umum" {{ old('category') == 'umum' ? 'selected' : '' }}>General Facilities</option>
                 </select>
             </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Lokasi / Gedung <span class="text-red-500">*</span></label>
-                <input type="text" name="location" value="{{ old('location') }}" placeholder="Contoh: Gedung Rektorat Lt. 3" required
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Location / Building <span class="text-red-500">*</span></label>
+                <input type="text" name="location" value="{{ old('location') }}" placeholder="Example: Rector Building Floor 3" required
                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Kapasitas (Orang)</label>
-                <input type="number" name="capacity" value="{{ old('capacity') }}" placeholder="Contoh: 80" min="1"
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Capacity (Persons)</label>
+                <input type="number" name="capacity" value="{{ old('capacity') }}" placeholder="Example: 80" min="1"
                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
             </div>
         </div>
 
         <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Deskripsi Fasilitas</label>
-            <textarea name="description" rows="4" placeholder="Jelaskan mengenai spesifikasi, fungsi, dan fasilitas yang tersedia..."
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Facility Description</label>
+            <textarea name="description" rows="4" placeholder="Explain the specifications, functions, and available facilities..."
                       class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">{{ old('description') }}</textarea>
         </div>
 
         <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Fitur / Kelengkapan (Pisahkan dengan koma)</label>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Features / Facilities (Separate with commas)</label>
             <input type="text" name="features" value="{{ old('features') }}" placeholder="AC, Proyektor 4K, Wi-Fi 6, 60 Unit iMac M3, Sound System"
                    class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
         </div>
 
         <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Foto Fasilitas</label>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Facility Photo</label>
             <input type="file" name="image_file" accept="image/*"
                    class="w-full text-xs text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
-            <p class="text-[11px] text-slate-400 mt-1">Format gambar: JPG, PNG, WEBP (Maks. 3MB). Jika kosong akan menggunakan foto default.</p>
+            <p class="text-[11px] text-slate-400 mt-1">Image format: JPG, PNG, WEBP (Max. 3MB). If empty, will use default photo.</p>
         </div>
 
         <div class="flex items-center gap-2 pt-2">
             <input type="checkbox" id="is_active" name="is_active" value="1" {{ old('is_active', true) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 rounded">
-            <label for="is_active" class="text-xs font-semibold text-slate-700 cursor-pointer">Fasilitas aktif dan siap digunakan</label>
+            <label for="is_active" class="text-xs font-semibold text-slate-700 cursor-pointer">Facility is active and ready to use</label>
         </div>
 
         <div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
-            <a href="{{ route('admin.facilities.index') }}" class="px-5 py-2.5 text-xs font-bold text-slate-600 hover:text-slate-900 transition">Batal</a>
+            <a href="{{ route('admin.facilities.index') }}" class="px-5 py-2.5 text-xs font-bold text-slate-600 hover:text-slate-900 transition">Cancel</a>
             <button type="submit" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition shadow-sm">
-                Simpan Fasilitas
+                Save Facility
             </button>
         </div>
     </form>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Duke University Admin</title>
+    <title>Login - Huxley University Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -29,8 +29,8 @@
             <div class="w-16 h-16 bg-brand-blue text-white rounded-full mx-auto flex items-center justify-center text-2xl font-bold mb-3 shadow-lg shadow-blue-500/30">
                 <i class="fa-solid fa-shield-halved"></i>
             </div>
-            <h2 class="text-2xl font-serif font-bold text-white">Duke Admin</h2>
-            <p class="text-xs text-gray-400 mt-1">Masuk untuk mengelola sistem website</p>
+            <h2 class="text-2xl font-serif font-bold text-white">Huxley Admin</h2>
+            <p class="text-xs text-gray-400 mt-1">Log in to manage the website system</p>
         </div>
 
         @if ($errors->any())
@@ -47,7 +47,7 @@
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
                         <i class="fa-solid fa-user"></i>
                     </span>
-                    <input type="text" name="username" required value="{{ old('username') }}" placeholder="Masukkan username"
+                    <input type="text" name="username" required value="{{ old('username') }}" placeholder="Enter your username"
                         class="w-full bg-black border border-gray-800 rounded-lg pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-brand-blue transition">
                 </div>
             </div>
@@ -65,7 +65,7 @@
 
             <button type="submit" 
                 class="w-full bg-brand-blue hover:bg-blue-600 text-white font-bold py-3 rounded-lg text-sm transition duration-300 shadow-lg shadow-blue-500/20">
-                MASUK DASHBOARD <i class="fa-solid fa-arrow-right ml-1"></i>
+                LOGIN TO DASHBOARD <i class="fa-solid fa-arrow-right ml-1"></i>
             </button>
         </form>
 

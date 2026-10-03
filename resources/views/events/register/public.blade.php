@@ -1,81 +1,75 @@
 @extends('layouts.app')
 
-@section('title', 'Pendaftaran - ' . $event->title)
+@section('title', 'Registration - ' . $event->title)
 
 @section('content')
 
-<section class="pt-32 pb-24 bg-gray-50 min-h-screen">
+<section class="relative pt-32 pb-24 min-h-screen overflow-hidden bg-slate-50">
+    <!-- Premium Background Gradient & Blur -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/60 -z-20"></div>
+    <div class="absolute top-20 right-0 w-[600px] h-[600px] bg-blue-300/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-[-10%] w-[500px] h-[500px] bg-indigo-300/10 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
-    <div class="max-w-5xl mx-auto px-6">
+    <div class="relative z-10 max-w-5xl mx-auto px-6">
 
-        <a
-            href="{{ route('events.show', $event) }}"
-            class="text-xs text-gray-500 hover:text-brand-blue"
-        >
-            <i class="fa-solid fa-arrow-left mr-2"></i>
-            Kembali ke event
+        <a href="{{ route('events.show', $event) }}" class="inline-flex items-center gap-2 text-xs font-semibold text-gray-500 hover:text-blue-600 transition bg-white/60 px-4 py-2 rounded-full backdrop-blur-sm border border-gray-200 shadow-sm">
+            <i class="fa-solid fa-arrow-left"></i> Back to Event
         </a>
-
 
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mt-8">
 
-
-            {{-- event --}}
-
+            {{-- Event Summary Sidebar --}}
             <div class="lg:col-span-2">
-
-                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
-
-                    <img
-                        src="{{ $event->image_url }}"
-                        alt="{{ $event->title }}"
-                        class="w-full h-52 object-cover"
-                    >
-
+                <div class="bg-white/80 backdrop-blur-xl border border-white rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50">
+                    <div class="relative">
+                        <img src="{{ $event->image_url }}" alt="{{ $event->title }}" class="w-full h-52 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                    </div>
+                    
                     <div class="p-6">
-
-                        <span class="text-[10px] font-bold text-brand-blue uppercase">
-                            Untuk Umum
+                        <span class="inline-block px-3 py-1 bg-blue-50/80 backdrop-blur-sm border border-blue-100 text-[10px] font-bold text-blue-600 uppercase tracking-wider rounded-full shadow-sm">
+                            For Public
                         </span>
 
-                        <h1 class="text-2xl font-serif font-bold text-gray-900 mt-2">
+                        <h1 class="text-2xl font-serif font-bold text-gray-900 mt-4 leading-tight">
                             {{ $event->title }}
                         </h1>
 
-                        <p class="text-xs text-gray-500 mt-4">
-                            {{ $event->event_date->format('d F Y') }}
-                        </p>
-
-                        <p class="text-xs text-gray-500 mt-2">
-                            <i class="fa-solid fa-location-dot text-brand-blue mr-2"></i>
-                            {{ $event->location }}
-                        </p>
-
+                        <div class="mt-5 space-y-3 p-4 bg-slate-50/50 rounded-2xl border border-slate-100">
+                            <p class="text-xs text-gray-600 flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-full bg-white flex items-center justify-center text-blue-500 shadow-sm"><i class="fa-solid fa-calendar"></i></span>
+                                <span class="font-semibold">{{ $event->event_date->format('d F Y') }}</span>
+                            </p>
+                            <p class="text-xs text-gray-600 flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-full bg-white flex items-center justify-center text-indigo-500 shadow-sm"><i class="fa-solid fa-location-dot"></i></span>
+                                <span class="font-semibold">{{ $event->location }}</span>
+                            </p>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
 
-
-            {{-- form --}}
-
+            {{-- Registration Form --}}
             <div class="lg:col-span-3">
+                <div class="bg-white/90 backdrop-blur-xl border border-white rounded-3xl p-7 md:p-10 shadow-2xl shadow-blue-900/5">
 
-                <div class="bg-white border border-gray-200 rounded-2xl p-7 md:p-9">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm shadow-md shadow-blue-500/30">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                        </span>
+                        <span class="text-[10px] font-bold tracking-widest text-blue-600 uppercase">
+                            Public Registration
+                        </span>
+                    </div>
 
-                    <span class="text-[10px] font-bold tracking-wider text-brand-blue uppercase">
-                        Pendaftaran Peserta Umum
-                    </span>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mt-2">
-                        Data Peserta
+                    <h2 class="text-2xl font-extrabold text-gray-900 mb-6">
+                        Participant Data
                     </h2>
 
                     @if($errors->any())
-                        <div class="mt-5 bg-red-50 border border-red-200 text-red-600 rounded-xl p-4 text-xs">
-                            <p class="font-bold mb-1">Gagal mengirim pendaftaran:</p>
-                            <ul class="list-disc list-inside space-y-0.5">
+                        <div class="mb-6 bg-red-50 border border-red-200 text-red-600 rounded-2xl p-5 text-xs shadow-sm">
+                            <p class="font-bold mb-2 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> Failed to submit registration:</p>
+                            <ul class="list-disc list-inside space-y-1">
                                 @foreach($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
@@ -83,103 +77,64 @@
                         </div>
                     @endif
 
-
-                    <form
-                        action="{{ route('events.register.public.store', $event) }}"
-                        method="POST"
-                        class="mt-8 space-y-5"
-                    >
-
+                    <form action="{{ route('events.register.public.store', $event) }}" method="POST" class="space-y-5">
                         @csrf
 
-
                         <div>
-                            <label class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
-                                Nama Lengkap <span class="text-red-500">*</span>
+                            <label class="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-2 pl-1">
+                                Full Name <span class="text-red-500">*</span>
                             </label>
-                            <input
-                                type="text"
-                                name="name"
-                                value="{{ old('name') }}"
-                                placeholder="Contoh: Budi Santoso"
-                                class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none transition"
-                                required
-                            >
+                            <input type="text" name="name" value="{{ old('name') }}" placeholder="Example: Budi Santoso" required
+                                class="w-full bg-slate-50/50 border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
-                                Email Aktif <span class="text-red-500">*</span>
+                            <label class="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-2 pl-1">
+                                Active Email <span class="text-red-500">*</span>
                             </label>
-                            <input
-                                type="email"
-                                name="email"
-                                value="{{ old('email') }}"
-                                placeholder="Contoh: budi@gmail.com"
-                                class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none transition"
-                                required
-                            >
+                            <input type="email" name="email" value="{{ old('email') }}" placeholder="Example: budi@gmail.com" required
+                                class="w-full bg-slate-50/50 border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
-                                Nomor WhatsApp / Telepon <span class="text-red-500">*</span>
+                            <label class="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-2 pl-1">
+                                WhatsApp / Phone Number <span class="text-red-500">*</span>
                             </label>
-                            <input
-                                type="text"
-                                name="phone"
-                                value="{{ old('phone') }}"
-                                placeholder="Contoh: 081234567890"
-                                class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none transition"
-                                required
-                            >
+                            <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Example: 081234567890" required
+                                class="w-full bg-slate-50/50 border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
+                            <label class="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-2 pl-1">
                                 Asal Institusi / Perusahaan <span class="text-red-500">*</span>
                             </label>
-                            <input
-                                type="text"
-                                name="institution"
-                                value="{{ old('institution') }}"
-                                placeholder="Sekolah / Universitas / Instansi / Umum"
-                                class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none transition"
-                                required
-                            >
+                            <input type="text" name="institution" value="{{ old('institution') }}" placeholder="Sekolah / Universitas / Instansi / Umum" required
+                                class="w-full bg-slate-50/50 border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-1.5">
-                                Catatan Tambahan (Opsional)
+                            <label class="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-2 pl-1">
+                                Additional Notes (Optional)
                             </label>
-                            <textarea
-                                name="notes"
-                                rows="3"
-                                placeholder="Tuliskan pesan atau catatan tambahan..."
-                                class="w-full bg-white border border-gray-300 rounded-xl p-4 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:border-brand-blue focus:ring-4 focus:ring-blue-50 outline-none resize-none transition"
-                            >{{ old('notes') }}</textarea>
+                            <textarea name="notes" rows="3" placeholder="Write a message or additional note..."
+                                class="w-full bg-slate-50/50 border border-gray-200 rounded-2xl p-5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none resize-none transition-all">{{ old('notes') }}</textarea>
                         </div>
 
-
-                        <button
-                            type="submit"
-                            class="w-full bg-brand-blue text-white py-4 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-blue-600 transition"
-                        >
-                            Kirim Pendaftaran
-                            <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </button>
+                        <div class="pt-4">
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-4 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                Send Registration
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
 
                     </form>
 
                 </div>
-
             </div>
 
         </div>
 
     </div>
-
 </section>
 
 @endsection

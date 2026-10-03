@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Daftar Berita')
+@section('title', 'News List')
 @section('page_title', 'KELOLA BERITA KAMPUS')
 
 @section('content')
@@ -9,8 +9,8 @@
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h2 class="text-xl font-bold text-slate-900">Daftar Artikel & Berita</h2>
-            <p class="text-xs text-slate-400 mt-1">Kelola seluruh berita yang tampil pada portal utama kampus.</p>
+            <h2 class="text-xl font-bold text-slate-900">News & Articles List</h2>
+            <p class="text-xs text-slate-400 mt-1">Manage all news displayed on the main campus portal.</p>
         </div>
         <a href="{{ route('admin.news.create') }}" 
            class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition shadow-sm">
@@ -37,10 +37,10 @@
             <table class="w-full text-left text-xs text-slate-600">
                 <thead class="bg-slate-50/80 text-slate-400 font-bold uppercase text-[10px] tracking-wider border-b border-slate-100">
                     <tr>
-                        <th class="py-3 px-4">GAMBAR HEADER</th>
+                        <th class="py-3 px-4">HEADER IMAGE</th>
                         <th class="py-3 px-4">JUDUL & LABEL</th>
-                        <th class="py-3 px-4">TANGGAL RILIS</th>
-                        <th class="py-3 px-4 text-center">AKSI</th>
+                        <th class="py-3 px-4">RELEASE DATE</th>
+                        <th class="py-3 px-4 text-center">ACTION</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -71,10 +71,10 @@
                                 <a href="{{ route('admin.news.edit', $item->id) }}" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-blue-600 transition" title="Edit">
                                     <i class="fa-solid fa-pen-to-square text-xs"></i>
                                 </a>
-                                <form action="{{ route('admin.news.destroy', $item->id) }}" method="POST" class="inline" onsubmit="return confirm('Hapus berita ini?');">
+                                <form action="{{ route('admin.news.destroy', $item->id) }}" method="POST" class="inline" onsubmit="return confirm('Delete this news?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-red-600 transition" title="Hapus">
+                                    <button type="submit" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-red-600 transition" title="Delete">
                                         <i class="fa-solid fa-trash-can text-xs"></i>
                                     </button>
                                 </form>
@@ -87,7 +87,7 @@
                             <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-xl flex items-center justify-center mx-auto mb-3">
                                 <i class="fa-regular fa-folder-open text-xl"></i>
                             </div>
-                            <p class="font-bold text-slate-700 text-xs">Belum Ada Berita Terdaftar</p>
+                            <p class="font-bold text-slate-700 text-xs">No News Registered Yet</p>
                         </td>
                     </tr>
                     @endforelse
