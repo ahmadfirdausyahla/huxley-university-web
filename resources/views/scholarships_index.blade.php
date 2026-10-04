@@ -7,29 +7,29 @@
         <div class="absolute -top-28 right-0 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl"></div>
         <div class="absolute bottom-0 -left-24 w-72 h-72 rounded-full bg-brand-blue/10 blur-3xl"></div>
 
-        <div class="relative max-w-7xl mx-auto px-6 py-20 md:py-24">
+        <div class="relative max-w-7xl mx-auto px-6 py-16 md:py-20">
             <div class="max-w-3xl" data-aos="fade-up">
-                <div class="inline-flex items-center gap-3 mb-5">
+                <div class="inline-flex items-center gap-3 mb-4">
                     <span class="w-10 h-px bg-blue-500"></span>
                     <span class="text-[11px] font-bold tracking-[0.28em] text-blue-500 uppercase">Endowment & Financial Aid</span>
                 </div>
-                <h1 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">Scholarships & Grants</h1>
-                <p class="max-w-2xl text-gray-400 mt-5 text-sm md:text-base leading-7">
+                <h1 class="text-4xl md:text-5xl font-serif font-bold text-white leading-tight">Scholarships & Grants</h1>
+                <p class="max-w-2xl text-gray-400 mt-4 text-xs md:text-sm leading-relaxed">
                     Huxley University is committed to broadening educational access through academic merit scholarships, research fellowships, and tuition subsidies for the next generation.
                 </p>
 
                 <!-- Filter Bar -->
-                <div class="flex flex-wrap gap-3 mt-8">
+                <div class="flex flex-wrap gap-2.5 mt-6">
                     <a href="{{ route('scholarships.index') }}"
-                       class="px-5 py-2 rounded-lg text-xs font-bold tracking-wide uppercase transition border shadow-sm {{ !request('coverage_type') ? 'bg-blue-600 text-white border-blue-500' : 'bg-gray-800/50 text-gray-400 border-gray-700 hover:border-gray-500 hover:text-white' }}">
+                       class="px-4 py-2 rounded-lg text-xs font-bold tracking-wide uppercase transition {{ !request('coverage_type') ? 'bg-blue-600 text-white' : 'bg-gray-800/60 text-gray-400 hover:text-white' }}">
                         All Programs
                     </a>
                     <a href="{{ route('scholarships.index', ['coverage_type' => 'full']) }}"
-                       class="px-5 py-2 rounded-lg text-xs font-bold tracking-wide uppercase transition border shadow-sm {{ request('coverage_type') == 'full' ? 'bg-blue-600 text-white border-blue-500' : 'bg-gray-800/50 text-gray-400 border-gray-700 hover:border-gray-500 hover:text-white' }}">
+                       class="px-4 py-2 rounded-lg text-xs font-bold tracking-wide uppercase transition {{ request('coverage_type') == 'full' ? 'bg-blue-600 text-white' : 'bg-gray-800/60 text-gray-400 hover:text-white' }}">
                         Full
                     </a>
                     <a href="{{ route('scholarships.index', ['coverage_type' => 'partial']) }}"
-                       class="px-5 py-2 rounded-lg text-xs font-bold tracking-wide uppercase transition border shadow-sm {{ request('coverage_type') == 'partial' ? 'bg-blue-600 text-white border-blue-500' : 'bg-gray-800/50 text-gray-400 border-gray-700 hover:border-gray-500 hover:text-white' }}">
+                       class="px-4 py-2 rounded-lg text-xs font-bold tracking-wide uppercase transition {{ request('coverage_type') == 'partial' ? 'bg-blue-600 text-white' : 'bg-gray-800/60 text-gray-400 hover:text-white' }}">
                         Partial
                     </a>
                 </div>
@@ -38,7 +38,7 @@
     </section>
 
     <!-- Main Content Area -->
-    <main class="max-w-7xl mx-auto px-6 py-14 md:py-20">
+    <main class="max-w-7xl mx-auto px-6 py-12 md:py-16">
 
         @if(session('success'))
             <div class="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 p-4 rounded-xl mb-10 text-xs flex items-center gap-3 shadow-lg" data-aos="fade-down">
@@ -47,7 +47,7 @@
             </div>
         @endif
 
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 pb-6 border-b border-gray-800 mb-10" data-aos="fade-up">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 pb-6 border-b border-gray-800 mb-8" data-aos="fade-up">
             <div>
                 <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-blue-400">Funding Opportunities</span>
                 <h2 class="text-2xl md:text-3xl font-serif font-bold text-white mt-1">Active Scholarship Programs</h2>
@@ -60,7 +60,7 @@
                 <div class="relative w-full sm:w-72">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-gray-500"></i>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Search scholarships..."
-                           class="w-full bg-gray-900 border border-gray-700 rounded-lg pl-9 pr-4 py-2.5 text-xs text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 outline-none transition">
+                           class="w-full bg-gray-900 border border-gray-800 rounded-lg pl-9 pr-4 py-2.5 text-xs text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 outline-none transition">
                 </div>
                 <button type="submit" class="px-5 py-2.5 bg-white hover:bg-gray-200 rounded-lg text-xs font-bold text-black transition">
                     Search
@@ -71,69 +71,74 @@
         @if($scholarships->count())
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($scholarships as $index => $item)
-                    <!-- Premium Dark Card (Style Kiri Referensi) -->
+                    <!-- Premium Dark Card -->
                     <article data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}"
-                             class="relative group rounded-[2rem] overflow-hidden shadow-2xl h-[460px] w-full isolate border border-gray-800">
+                             class="relative group rounded-[2rem] overflow-hidden shadow-2xl h-[470px] w-full isolate bg-zinc-950 flex flex-col justify-end">
                         
                         <!-- Background Image -->
                         <img src="{{ $item->image_url }}" alt="{{ $item->title }}"
                              class="absolute inset-0 w-full h-full object-cover z-0 group-hover:scale-105 transition-transform duration-700 ease-out">
                         
-                        <!-- Gradient Overlay (Solid Dark at bottom) -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#111] via-[#111]/80 to-transparent z-10"></div>
+                        <!-- Gradient Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/85 via-50% to-transparent z-10"></div>
                         
+                        <!-- Coverage Badge (Top Left) -->
+                        <div class="absolute top-5 left-5 z-20">
+                            <span class="px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-blue-400 shadow-md flex items-center gap-1.5">
+                                <i class="fa-solid fa-star text-[9px] text-blue-400"></i> {{ $item->coverage_type_label ?? 'Partial' }}
+                            </span>
+                        </div>
+
                         <!-- Content Box -->
-                        <div class="absolute inset-0 z-20 flex flex-col justify-end p-6">
+                        <div class="relative z-20 p-6 flex flex-col justify-end h-full pt-24">
+                            
                             <!-- Title & Verified Badge -->
-                            <div class="flex items-center gap-2 mb-2">
-                                <h3 class="text-xl font-bold text-white leading-tight line-clamp-1">{{ $item->title }}</h3>
-                                <i class="fa-solid fa-circle-check text-blue-500 text-sm shrink-0"></i>
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="text-lg font-bold text-white leading-snug line-clamp-2" title="{{ $item->title }}">
+                                    {{ $item->title }}
+                                </h3>
+                                <i class="fa-solid fa-circle-check text-blue-500 text-sm shrink-0 mt-1"></i>
                             </div>
                             
                             <!-- Description -->
-                            <p class="text-gray-400 text-xs leading-relaxed line-clamp-2 mb-5 font-medium">
+                            <p class="text-gray-300 text-xs leading-relaxed line-clamp-2 mb-4 font-normal">
                                 {{ $item->description ?: 'Educational financial assistance from Huxley University for highly dedicated and outstanding students.' }}
                             </p>
                             
-                            <!-- Stats Row -->
-                            <div class="flex items-center justify-between px-1 mb-6">
-                                <!-- Stat 1: Rating/Type -->
-                                <div class="text-center flex-1">
-                                    <div class="text-[13px] font-bold text-white flex items-center justify-center gap-1.5">
-                                        <i class="fa-solid fa-star text-amber-500 text-[10px]"></i> {{ $item->coverage_type_label ?? 'Partial' }}
-                                    </div>
-                                    <div class="text-[10px] text-gray-500 mt-1">Coverage</div>
+                            <!-- Info Box Modern (Amount & Deadline) -->
+                            <div class="bg-zinc-900/90 backdrop-blur-md rounded-2xl px-4 py-3 mb-5 flex items-center justify-between gap-3 text-xs">
+                                <div class="min-w-0 flex-1">
+                                    <span class="block text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">AMOUNT / FUNDING</span>
+                                    <span class="font-bold text-white truncate block text-xs mt-0.5" title="{{ $item->amount }}">
+                                        {{ $item->amount ?: 'Full Funded' }}
+                                    </span>
                                 </div>
-                                <div class="w-px h-6 bg-gray-700"></div>
-                                <!-- Stat 2: Amount -->
-                                <div class="text-center flex-1">
-                                    <div class="text-[13px] font-bold text-white truncate px-1">{{ $item->amount ?: 'Full Funded' }}</div>
-                                    <div class="text-[10px] text-gray-500 mt-1">Amount</div>
-                                </div>
-                                <div class="w-px h-6 bg-gray-700"></div>
-                                <!-- Stat 3: Deadline -->
-                                <div class="text-center flex-1">
-                                    <div class="text-[13px] font-bold text-white {{ $item->deadline && $item->deadline->isPast() ? 'text-red-400' : '' }}">
-                                        {{ $item->deadline ? ($item->deadline->isPast() ? 'Closed' : $item->deadline->format('d M y')) : 'Open' }}
-                                    </div>
-                                    <div class="text-[10px] text-gray-500 mt-1">Deadline</div>
+
+                                <!-- Vertical Divider Line -->
+                                <div class="w-px h-7 bg-zinc-700/60 shrink-0 mx-1"></div>
+
+                                <div class="text-right shrink-0">
+                                    <span class="block text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">DEADLINE</span>
+                                    <span class="font-bold text-xs mt-0.5 block {{ $item->deadline && $item->deadline->isPast() ? 'text-red-400' : 'text-white' }}">
+                                        {{ $item->deadline ? ($item->deadline->isPast() ? 'Closed' : $item->deadline->format('d M Y')) : 'Open' }}
+                                    </span>
                                 </div>
                             </div>
                             
                             <!-- Action Buttons -->
-                            <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-2.5">
                                 <a href="{{ route('scholarships.apply', $item) }}" 
-                                   class="flex-1 bg-white hover:bg-gray-200 text-black py-4 rounded-2xl text-[13px] font-bold flex justify-center items-center gap-2 transition-colors">
-                                    <i class="fa-regular fa-envelope"></i> Apply Now
+                                   class="flex-1 bg-white hover:bg-gray-200 text-black py-3.5 px-4 rounded-xl text-xs font-bold flex justify-center items-center gap-2 transition-all shadow-md active:scale-95">
+                                    <i class="fa-regular fa-paper-plane text-xs"></i> Apply Now
                                 </a>
                                 
                                 @if($item->link)
                                     <a href="{{ $item->link }}" target="_blank" 
-                                       class="w-[52px] h-[52px] bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-white transition-colors border border-white/10 shrink-0">
+                                       class="w-11 h-11 bg-zinc-800/80 hover:bg-zinc-700/80 backdrop-blur-md rounded-xl flex items-center justify-center text-white transition-all shrink-0">
                                         <i class="fa-regular fa-bookmark"></i>
                                     </a>
                                 @else
-                                    <button class="w-[52px] h-[52px] bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-white transition-colors border border-white/10 shrink-0 cursor-not-allowed">
+                                    <button class="w-11 h-11 bg-zinc-800/40 opacity-50 cursor-not-allowed backdrop-blur-md rounded-xl flex items-center justify-center text-white shrink-0">
                                         <i class="fa-regular fa-bookmark"></i>
                                     </button>
                                 @endif

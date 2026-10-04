@@ -7,6 +7,8 @@ use App\Models\AcademicProgram;
 use App\Models\Facility;
 use App\Models\Scholarship;
 use App\Models\Civitas;
+use App\Models\News;
+use App\Models\Event;
 
 class ContentSeeder extends Seeder
 {
@@ -272,6 +274,74 @@ class ContentSeeder extends Seeder
                 'phone' => '02188880001',
                 'bio' => 'Guru besar dalam bidang teknologi informasi dan kebijakan pendidikan tinggi internasional.',
                 'is_active' => true,
+            ]);
+        }
+
+        // 5. Berita Kampus (News) - 3 Data
+        if (News::count() === 0) {
+            News::create([
+                'title' => 'Huxley University Resmikan AI & High-Performance Computing Research Center',
+                'label' => 'Riset & Inovasi',
+                'description' => 'Pusat komputasi AI mutakhir kini resmi beroperasi untuk mendukung riset kolaboratif civitas akademika dan mitra industri global.',
+                'content' => '<p>Huxley University secara resmi meluncurkan Pusat Riset Artificial Intelligence dan High-Performance Computing (HPC) yang berlokasi di Gedung Rektorat Baru. Fasilitas ini dilengkapi dengan supercomputer GPU NVIDIA RTX generasi terbaru serta dukungan jaringan Wi-Fi 6 Dedicated.</p><p>Rektor Huxley University menyampaikan bahwa pusat riset ini dihadirkan untuk mendorong percepatan inovasi di bidang Large Language Models, Computer Vision, serta Bioinformatika.</p>',
+                'image' => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+                'col_span' => 'col-span-1 md:col-span-2',
+                'row_span' => 'row-span-1',
+            ]);
+
+            News::create([
+                'title' => 'Tim Mahasiswa Informatika Huxley Sabet Juara 1 Hackathon Nasional 2026',
+                'label' => 'Prestasi',
+                'description' => 'Inovasi platform agritech berbasis IoT dan Machine Learning berhasil mengantarkan tim mahasiswa meraih predikat karya terbaik.',
+                'content' => '<p>Prestasi membanggakan kembali diraih oleh civitas akademika Huxley University. Tim "Huxley Innovators" yang terdiri dari tiga mahasiswa Fakultas Ilmu Komputer meraih Juara 1 dalam kompetisi Hackathon Teknologi Nasional 2026.</p><p>Produk yang dikembangkan adalah sistem monitoring kesehatan tanaman berbasis kecerdasan buatan terdistribusi.</p>',
+                'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
+                'col_span' => 'col-span-1',
+                'row_span' => 'row-span-1',
+            ]);
+
+            News::create([
+                'title' => 'Kerja Sama Strategis Huxley dengan 10 Konsorsium Industri Teknologi Multinasional',
+                'label' => 'Kemitraan',
+                'description' => 'Membuka akses magang industri berbayar dan percepatan penyaluran kerja lulusan di perusahaan teknologi terkemuka.',
+                'content' => '<p>Dalam upaya memperkuat kurikulum berbasis kebutuhan industri, Huxley University menandatangani Nota Kesepahaman (MoU) dengan 10 konsorsium perusahaan teknologi internasional.</p><p>Melalui kemitraan ini, mahasiswa berkesempatan mengikuti program magang selama 1-2 semester yang diakui penuh dalam SKS perkuliahan.</p>',
+                'image' => 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
+                'col_span' => 'col-span-1',
+                'row_span' => 'row-span-1',
+            ]);
+        }
+
+        // 6. Agenda / Event - 2 Data (1 Umum & 1 Khusus Mahasiswa)
+        if (Event::count() === 0) {
+            // Event 1: Untuk Umum (Public)
+            Event::create([
+                'title' => 'Huxley International Technology & AI Summit 2026',
+                'slug' => 'huxley-international-technology-and-ai-summit-2026',
+                'description' => 'Konferensi teknologi tahunan menghadirkan pakar AI, praktisi cloud computing, dan pimpinan industri internasional.',
+                'content' => '<p>Bergabunglah dalam forum diskusi teknologi terbesar tahun ini di Huxley University. Acara ini terbuka untuk mahasiswa, peneliti, praktisi industri, dan masyarakat umum yang tertarik dengan perkembangan teknologi masa depan.</p><p>Sesi utama akan membahas tren Generative AI, Keamanan Siber Enterprise, serta Sustainable Smart Cities.</p>',
+                'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
+                'audience' => 'public',
+                'event_date' => now()->addDays(15)->format('Y-m-d'),
+                'start_time' => '08:30:00',
+                'end_time' => '16:00:00',
+                'location' => 'Grand Chancellor Auditorium Kampus Pusat',
+                'quota' => 500,
+                'registration_open' => true,
+            ]);
+
+            // Event 2: Khusus Mahasiswa (Student Only)
+            Event::create([
+                'title' => 'Workshop Intensif & Preparation Sertifikasi Cloud Practitioner',
+                'slug' => 'workshop-intensif-and-preparation-sertifikasi-cloud-practitioner',
+                'description' => 'Program pelatihan praktis khusus mahasiswa aktif Huxley University untuk persiapan sertifikasi internasional bidang cloud.',
+                'content' => '<p>Workshop praktis 1 hari penuh yang dirancang khusus untuk mahasiswa aktif Huxley University. Peserta akan mempelajari konsep dasar arsitektur cloud, manajemen keamanan jaringan, dan simulasi ujian sertifikasi resmi.</p><p>Setiap peserta yang lolos evaluasi akan mendapatkan voucher potongan biaya ujian sertifikasi sebesar 50%.</p>',
+                'image' => 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80',
+                'audience' => 'student',
+                'event_date' => now()->addDays(20)->format('Y-m-d'),
+                'start_time' => '09:00:00',
+                'end_time' => '15:00:00',
+                'location' => 'Digital Innovation & AI Lab Lt. 3',
+                'quota' => 80,
+                'registration_open' => true,
             ]);
         }
     }
