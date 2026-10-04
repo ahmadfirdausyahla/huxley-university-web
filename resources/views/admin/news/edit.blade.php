@@ -41,7 +41,7 @@
             </div>
 
             <div>
-                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">SHORT DESCRIPTION</label>
+                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">DESKRIPSI SINGKAT</label>
                 <input type="text" name="description" value="{{ old('description', $news->description) }}" placeholder="Ringkasan 1-2 kalimat..." 
                        class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
             </div>

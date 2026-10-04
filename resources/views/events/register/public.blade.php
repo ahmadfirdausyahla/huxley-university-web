@@ -4,15 +4,16 @@
 
 @section('content')
 
-<section class="relative pt-32 pb-24 min-h-screen overflow-hidden bg-slate-50">
-    <!-- Premium Background Gradient & Blur -->
-    <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/60 -z-20"></div>
-    <div class="absolute top-20 right-0 w-[600px] h-[600px] bg-blue-300/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
-    <div class="absolute bottom-0 left-[-10%] w-[500px] h-[500px] bg-indigo-300/10 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+<!-- Background diubah ke slate-900 (Dark Navy/Grey) -->
+<section class="relative pt-28 pb-24 min-h-screen overflow-hidden bg-slate-900 text-slate-800">
+    <!-- Hiasan blur disesuaikan dengan tema gelap agar lebih menyatu -->
+    <div class="absolute top-20 right-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-[-10%] w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
     <div class="relative z-10 max-w-5xl mx-auto px-6">
 
-        <a href="{{ route('events.show', $event) }}" class="inline-flex items-center gap-2 text-xs font-semibold text-gray-500 hover:text-blue-600 transition bg-white/60 px-4 py-2 rounded-full backdrop-blur-sm border border-gray-200 shadow-sm">
+        <!-- Tombol Back disesuaikan agar terbaca di bg gelap -->
+        <a href="{{ route('events.show', $event) }}" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition bg-white/10 px-4 py-2 rounded-full backdrop-blur-md border border-white/20 shadow-sm">
             <i class="fa-solid fa-arrow-left"></i> Back to Event
         </a>
 
@@ -20,22 +21,23 @@
 
             {{-- Event Summary Sidebar --}}
             <div class="lg:col-span-2">
-                <div class="bg-white/80 backdrop-blur-xl border border-white rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50">
-                    <div class="relative">
-                        <img src="{{ $event->image_url }}" alt="{{ $event->title }}" class="w-full h-52 object-cover">
+                <!-- Card Sidebar Putih -->
+                <div class="bg-white border-0 rounded-3xl overflow-hidden shadow-2xl shadow-black/30">
+                    <div class="relative aspect-video">
+                        <img src="{{ filter_var($event->image_url, FILTER_VALIDATE_URL) ? $event->image_url : asset('storage/' . $event->image_url) }}" alt="{{ $event->title }}" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
                     </div>
                     
                     <div class="p-6">
-                        <span class="inline-block px-3 py-1 bg-blue-50/80 backdrop-blur-sm border border-blue-100 text-[10px] font-bold text-blue-600 uppercase tracking-wider rounded-full shadow-sm">
+                        <span class="inline-block px-3 py-1 bg-blue-50 border border-blue-100 text-[10px] font-bold text-blue-600 uppercase tracking-wider rounded-full shadow-sm">
                             For Public
                         </span>
 
-                        <h1 class="text-2xl font-serif font-bold text-gray-900 mt-4 leading-tight">
+                        <h1 class="text-2xl font-extrabold text-gray-900 mt-4 leading-tight">
                             {{ $event->title }}
                         </h1>
 
-                        <div class="mt-5 space-y-3 p-4 bg-slate-50/50 rounded-2xl border border-slate-100">
+                        <div class="mt-5 space-y-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
                             <p class="text-xs text-gray-600 flex items-center gap-3">
                                 <span class="w-7 h-7 rounded-full bg-white flex items-center justify-center text-blue-500 shadow-sm"><i class="fa-solid fa-calendar"></i></span>
                                 <span class="font-semibold">{{ $event->event_date->format('d F Y') }}</span>
@@ -51,7 +53,8 @@
 
             {{-- Registration Form --}}
             <div class="lg:col-span-3">
-                <div class="bg-white/90 backdrop-blur-xl border border-white rounded-3xl p-7 md:p-10 shadow-2xl shadow-blue-900/5">
+                <!-- Card Form Putih -->
+                <div class="bg-white border-0 rounded-3xl p-7 md:p-10 shadow-2xl shadow-black/30">
 
                     <div class="flex items-center gap-3 mb-2">
                         <span class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm shadow-md shadow-blue-500/30">
@@ -85,7 +88,7 @@
                                 Full Name <span class="text-red-500">*</span>
                             </label>
                             <input type="text" name="name" value="{{ old('name') }}" placeholder="Example: Budi Santoso" required
-                                class="w-full bg-slate-50/50 border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all">
+                                class="w-full bg-slate-50 border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all">
                         </div>
 
                         <div>
@@ -93,7 +96,7 @@
                                 Active Email <span class="text-red-500">*</span>
                             </label>
                             <input type="email" name="email" value="{{ old('email') }}" placeholder="Example: budi@gmail.com" required
-                                class="w-full bg-slate-50/50 border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all">
+                                class="w-full bg-slate-50 border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all">
                         </div>
 
                         <div>
@@ -101,7 +104,7 @@
                                 WhatsApp / Phone Number <span class="text-red-500">*</span>
                             </label>
                             <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Example: 081234567890" required
-                                class="w-full bg-slate-50/50 border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all">
+                                class="w-full bg-slate-50 border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all">
                         </div>
 
                         <div>
@@ -109,7 +112,7 @@
                                 Asal Institusi / Perusahaan <span class="text-red-500">*</span>
                             </label>
                             <input type="text" name="institution" value="{{ old('institution') }}" placeholder="Sekolah / Universitas / Instansi / Umum" required
-                                class="w-full bg-slate-50/50 border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all">
+                                class="w-full bg-slate-50 border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all">
                         </div>
 
                         <div>
@@ -117,7 +120,7 @@
                                 Additional Notes (Optional)
                             </label>
                             <textarea name="notes" rows="3" placeholder="Write a message or additional note..."
-                                class="w-full bg-slate-50/50 border border-gray-200 rounded-2xl p-5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none resize-none transition-all">{{ old('notes') }}</textarea>
+                                class="w-full bg-slate-50 border border-gray-200 rounded-2xl p-5 text-sm text-gray-900 font-medium placeholder:text-gray-400 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none resize-none transition-all">{{ old('notes') }}</textarea>
                         </div>
 
                         <div class="pt-4">

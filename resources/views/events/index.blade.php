@@ -39,7 +39,7 @@
                     <tr>
                         <th class="py-3 px-4">HEADER IMAGE</th>
                         <th class="py-3 px-4">JUDUL & LABEL</th>
-                        <th class="py-3 px-4">RELEASE DATE</th>
+                        <th class="py-3 px-4">TANGGAL RILIS</th>
                         <th class="py-3 px-4 text-center">AKSI</th>
                     </tr>
                 </thead>

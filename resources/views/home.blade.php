@@ -64,7 +64,7 @@
     <div class="max-w-6xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             @foreach($features as $index => $feature)
-                <a href="{{ $feature['url'] }}"
+                <a href="{{ url('/kampus') }}"
                     data-aos="fade-up"
                     data-aos-delay="{{ $index * 100 }}"
                     class="group relative bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_15px_50px_rgba(0,0,0,0.15)] hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.22)] transition-all duration-500 overflow-hidden">

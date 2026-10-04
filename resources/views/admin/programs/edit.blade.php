@@ -18,7 +18,7 @@
     @if ($errors->any())
         <div class="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl mb-6 text-xs">
             <div class="font-bold mb-1 flex items-center gap-2">
-                <i class="fa-solid fa-triangle-exclamation"></i> There were input errors:
+                <i class="fa-solid fa-triangle-exclamation"></i> Terdapat kesalahan pengisian:
             </div>
             <ul class="list-disc pl-5 space-y-0.5">
                 @foreach ($errors->all() as $error)
@@ -52,7 +52,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Faculty <span class="text-red-500">*</span></label>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Fakultas <span class="text-red-500">*</span></label>
                 <input type="text" name="faculty" value="{{ old('faculty', $program->faculty) }}" required
                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
             </div>
@@ -66,20 +66,20 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Normal Study Duration</label>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Masa Studi Normal</label>
                 <input type="text" name="duration_years" value="{{ old('duration_years', $program->duration_years) }}"
                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Estimated Tuition Cost (UKT)</label>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Estimasi Biaya Kuliah (UKT)</label>
                 <input type="text" name="tuition_fee" value="{{ old('tuition_fee', $program->tuition_fee) }}"
                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
             </div>
         </div>
 
         <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Short Description</label>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Deskripsi Singkat</label>
             <textarea name="description" rows="4"
                       class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">{{ old('description', $program->description) }}</textarea>
         </div>
@@ -91,7 +91,7 @@
         </div>
 
         <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Program Cover Photo</label>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Foto / Cover Program</label>
             @if($program->image)
                 <div class="mb-3 w-40 h-24 rounded-xl overflow-hidden border border-slate-200">
                     <img src="{{ $program->image_url }}" class="w-full h-full object-cover">
@@ -110,7 +110,7 @@
         <div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
             <a href="{{ route('admin.programs.index') }}" class="px-5 py-2.5 text-xs font-bold text-slate-600 hover:text-slate-900 transition">Cancel</a>
             <button type="submit" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition shadow-sm">
-                Update Study Program
+                Perbarui Program Studi
             </button>
         </div>
     </form>

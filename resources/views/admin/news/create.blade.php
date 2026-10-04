@@ -39,9 +39,9 @@
                 </div>
             </div>
 
-            <!-- Short Description -->
+            <!-- Deskripsi Singkat -->
             <div>
-                <label class="block text-xs font-bold text-slate-800 mb-1.5 uppercase tracking-wider">Short Description</label>
+                <label class="block text-xs font-bold text-slate-800 mb-1.5 uppercase tracking-wider">Deskripsi Singkat</label>
                 <input type="text" name="description" placeholder="Ringkasan 1-2 kalimat..." 
                        class="w-full bg-white border border-slate-300 rounded-xl p-3 text-xs text-slate-900 focus:border-brand-blue outline-none placeholder-slate-400">
             </div>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Dashboard')
-@section('page_title', 'Admin System Overview')
+@section('page_title', 'Overview Sistem Admin')
 
 @section('content')
 <div class="space-y-6">
@@ -47,7 +47,7 @@
                     {{ class_exists('App\Models\Event') ? \App\Models\Event::count() : 0 }}
                 </h3>
                 <p class="text-[10px] text-slate-500 mt-1 flex items-center gap-1">
-                    <i class="fa-regular fa-calendar-check text-[9px]"></i> Registered events
+                    <i class="fa-regular fa-calendar-check text-[9px]"></i> Agenda terdaftar
                 </p>
             </div>
             <div class="w-11 h-11 bg-slate-100 text-slate-500 rounded-xl flex items-center justify-center text-base border border-slate-200">
@@ -55,10 +55,10 @@
             </div>
         </div>
 
-        <!-- Scholarship Program -->
+        <!-- Program Beasiswa -->
         <div class="bg-white border border-slate-200 p-5 rounded-xl flex items-center justify-between">
             <div>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Scholarship Programs</p>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Program Beasiswa</p>
                 <h3 class="text-2xl font-bold text-slate-900 mt-1">
                     {{ class_exists('App\Models\Scholarship') ? \App\Models\Scholarship::count() : 0 }}
                 </h3>
@@ -130,7 +130,7 @@
                             @php $eventRegCount = \App\Models\EventRegistration::count(); @endphp
                             <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded">{{ $eventRegCount }}</span>
                         </div>
-                        <p class="text-[10px] text-slate-400 mt-0.5">Registrant summary</p>
+                        <p class="text-[10px] text-slate-400 mt-0.5">Rekap pendaftar</p>
                     </div>
                 </a>
 
@@ -157,7 +157,7 @@
             <div>
                 <h3 class="font-bold text-slate-900 text-sm mb-2">Panduan Pengelolaan</h3>
                 <p class="text-xs text-slate-500 leading-relaxed">
-                    Ensure news and event header images have landscape aspect ratio (16:9) with maximum size 2MB for optimal display.
+                    Pastikan gambar header berita dan event memiliki aspek rasio lanskap (16:9) dengan ukuran maksimal 2MB untuk hasil tampilan optimal.
                 </p>
             </div>
             <div class="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">

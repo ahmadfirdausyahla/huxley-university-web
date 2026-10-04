@@ -48,7 +48,7 @@
                 <p class="text-xs font-bold uppercase tracking-[0.2em] text-brand-blue">Curriculum & Degrees</p>
                 <h2 class="text-2xl md:text-3xl font-serif font-bold text-white mt-1">Available Study Programs</h2>
             </div>
-            
+
             <form method="GET" action="{{ route('programs.index') }}" class="flex items-center gap-2">
                 @if(request('degree'))
                     <input type="hidden" name="degree" value="{{ request('degree') }}">
@@ -67,55 +67,69 @@
         @if($programs->count())
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($programs as $index => $prog)
+                    <!-- White Modern Card Design -->
                     <article data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}"
-                             class="group bg-gray-900/90 rounded-2xl border border-gray-800 overflow-hidden shadow-xl hover:shadow-brand-blue/10 hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between">
+                             class="group bg-white rounded-3xl border border-gray-200 overflow-hidden shadow-lg hover:shadow-[0_8px_30px_rgb(59,130,246,0.15)] hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between p-3">
+                        
                         <div>
-                            <div class="relative h-52 bg-gray-800 overflow-hidden">
+                            <!-- Image Container -->
+                            <div class="relative h-60 rounded-2xl bg-gray-100 overflow-hidden">
                                 <img src="{{ $prog->image_url }}" alt="{{ $prog->name }}"
                                      class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-black/30"></div>
-                                
-                                <div class="absolute top-4 left-4 flex gap-2">
-                                    <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-blue text-white shadow-md">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+
+                                <!-- Floating Badges -->
+                                <div class="absolute top-3 left-3 flex gap-2">
+                                    <span class="px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-brand-blue shadow-sm border border-gray-100">
                                         {{ $prog->degree }}
                                     </span>
-                                    <span class="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider bg-black/60 backdrop-blur-md text-emerald-400 border border-emerald-500/30">
+                                    <span class="px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider bg-white/95 backdrop-blur-md text-emerald-600 shadow-sm border border-gray-100">
                                         Accreditation {{ $prog->accreditation }}
                                     </span>
                                 </div>
                             </div>
 
-                            <div class="p-6">
+                            <!-- Content Section (Dark Text on White) -->
+                            <div class="p-4 pt-5">
                                 <span class="text-[10px] font-bold uppercase tracking-widest text-brand-blue">{{ $prog->faculty }}</span>
-                                <h3 class="text-xl font-bold font-serif text-white mt-1 group-hover:text-blue-400 transition">{{ $prog->name }}</h3>
-                                
-                                <p class="text-xs text-gray-400 mt-3 line-clamp-3 leading-relaxed">
+                                <h3 class="text-xl font-bold font-serif text-gray-900 mt-1.5 group-hover:text-brand-blue transition line-clamp-1">{{ $prog->name }}</h3>
+
+                                <p class="text-xs text-gray-600 mt-2.5 line-clamp-2 leading-relaxed">
                                     {{ $prog->description ?: 'A premier Huxley University study program designed to produce competent graduates ready to work globally.' }}
                                 </p>
 
+                                <!-- Supporting Features/Careers Tags -->
                                 @if($prog->career_prospects)
-                                    <div class="mt-4 pt-4 border-t border-gray-800/80">
+                                    <div class="mt-4 pt-3 border-t border-gray-100">
                                         <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">Career Prospects:</p>
                                         <div class="flex flex-wrap gap-1.5">
                                             @foreach(array_slice(explode(',', $prog->career_prospects), 0, 3) as $career)
-                                                <span class="text-[10px] bg-gray-800 px-2.5 py-1 rounded-lg text-gray-300">
+                                                <span class="text-[10px] bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-lg text-gray-600 font-medium">
                                                     {{ trim($career) }}
                                                 </span>
                                             @endforeach
+                                            @if(count(explode(',', $prog->career_prospects)) > 3)
+                                                <span class="text-[10px] bg-gray-50 px-2 py-1 rounded-lg text-gray-400 font-medium">
+                                                    +{{ count(explode(',', $prog->career_prospects)) - 3 }} more
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="p-6 pt-0 border-t border-gray-800/50 flex items-center justify-between mt-4">
-                            <div>
-                                <span class="text-[10px] text-gray-500 uppercase block tracking-wider">Study Duration</span>
-                                <span class="text-xs font-bold text-gray-300">{{ $prog->duration_years }}</span>
-                            </div>
-                            <div class="text-right">
-                                <span class="text-[10px] text-gray-500 uppercase block tracking-wider">Tuition / Semester</span>
-                                <span class="text-xs font-bold text-brand-blue">{{ $prog->tuition_fee ?: 'Based on Classification' }}</span>
+                        <!-- Card Footer -->
+                        <div class="px-4 pb-2 pt-2">
+                            <div class="w-full py-2.5 px-4 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-between text-xs">
+                                <div>
+                                    <span class="text-[10px] text-gray-500 uppercase block tracking-wider mb-0.5">Study Duration</span>
+                                    <span class="text-[11px] font-bold text-gray-800">{{ $prog->duration_years }}</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[10px] text-gray-500 uppercase block tracking-wider mb-0.5">Tuition / Semester</span>
+                                    <span class="text-[11px] font-bold text-brand-blue">{{ $prog->tuition_fee ?: 'Based on Classification' }}</span>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -128,7 +142,8 @@
                 </div>
             @endif
         @else
-            <div class="py-24 text-center rounded-2xl border border-gray-800 bg-gray-900/50">
+            <!-- Empty State (Kept Dark) -->
+            <div class="py-24 text-center rounded-3xl border border-gray-800 bg-gray-900/50">
                 <i class="fa-solid fa-graduation-cap text-4xl text-gray-600 mb-4"></i>
                 <h3 class="text-lg font-bold text-white">No Study Programs Found</h3>
                 <p class="text-xs text-gray-400 mt-1">Try using different search keywords or change the degree filter.</p>

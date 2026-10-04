@@ -9,13 +9,13 @@
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h2 class="text-xl font-bold text-slate-900">Study Programs & Academics</h2>
+            <h2 class="text-xl font-bold text-slate-900">Program Studi & Akademik</h2>
             <p class="text-xs text-slate-400 mt-1">Manage diploma, bachelor, and postgraduate degree levels at Huxley University.</p>
         </div>
         <a href="{{ route('admin.programs.create') }}" 
            class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition shadow-sm">
             <i class="fa-solid fa-plus"></i>
-            <span>Add Study Program</span>
+            <span>Tambah Program Studi</span>
         </a>
     </div>
 
@@ -48,7 +48,7 @@
                 <thead class="bg-slate-50/80 text-slate-400 font-bold uppercase text-[10px] tracking-wider border-b border-slate-100">
                     <tr>
                         <th class="py-3 px-4">IMAGE / ICON</th>
-                        <th class="py-3 px-4">STUDY PROGRAM</th>
+                        <th class="py-3 px-4">PROGRAM STUDI</th>
                         <th class="py-3 px-4">FAKULTAS</th>
                         <th class="py-3 px-4">ACCREDITATION</th>
                         <th class="py-3 px-4">BIAYA / SEMESTER</th>

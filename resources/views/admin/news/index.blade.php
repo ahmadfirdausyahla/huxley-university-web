@@ -37,10 +37,10 @@
             <table class="w-full text-left text-xs text-slate-600">
                 <thead class="bg-slate-50/80 text-slate-400 font-bold uppercase text-[10px] tracking-wider border-b border-slate-100">
                     <tr>
-                        <th class="py-3 px-4">HEADER IMAGE</th>
+                        <th class="py-3 px-4">GAMBAR HEADER</th>
                         <th class="py-3 px-4">JUDUL & LABEL</th>
-                        <th class="py-3 px-4">RELEASE DATE</th>
-                        <th class="py-3 px-4 text-center">ACTION</th>
+                        <th class="py-3 px-4">TANGGAL RILIS</th>
+                        <th class="py-3 px-4 text-center">AKSI</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">

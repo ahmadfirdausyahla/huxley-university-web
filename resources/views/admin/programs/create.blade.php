@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Add Study Program')
-@section('page_title', 'ADD NEW STUDY PROGRAM')
+@section('title', 'Tambah Program Studi')
+@section('page_title', 'TAMBAH PROGRAM STUDI BARU')
 
 @section('content')
 <div class="max-w-4xl mx-auto">
     <div class="mb-6 flex items-center justify-between">
         <div>
-            <h2 class="text-xl font-bold text-slate-900">New Study Program Form</h2>
+            <h2 class="text-xl font-bold text-slate-900">Form Program Studi Baru</h2>
             <p class="text-xs text-slate-400 mt-1">Complete information for the new study program to be published.</p>
         </div>
         <a href="{{ route('admin.programs.index') }}" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white border border-slate-200 px-4 py-2 rounded-xl transition">
@@ -18,7 +18,7 @@
     @if ($errors->any())
         <div class="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl mb-6 text-xs">
             <div class="font-bold mb-1 flex items-center gap-2">
-                <i class="fa-solid fa-triangle-exclamation"></i> There were input errors:
+                <i class="fa-solid fa-triangle-exclamation"></i> Terdapat kesalahan pengisian:
             </div>
             <ul class="list-disc pl-5 space-y-0.5">
                 @foreach ($errors->all() as $error)
@@ -51,7 +51,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Faculty <span class="text-red-500">*</span></label>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Fakultas <span class="text-red-500">*</span></label>
                 <input type="text" name="faculty" value="{{ old('faculty') }}" placeholder="Example: Faculty of Computer Science" required
                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
             </div>
@@ -65,20 +65,20 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Normal Study Duration</label>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Masa Studi Normal</label>
                 <input type="text" name="duration_years" value="{{ old('duration_years', '4 Years (8 Semester)') }}" placeholder="Example: 4 Years (8 Semester)"
                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Estimated Tuition Cost (UKT)</label>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Estimasi Biaya Kuliah (UKT)</label>
                 <input type="text" name="tuition_fee" value="{{ old('tuition_fee') }}" placeholder="Example: Rp 6,500,000 / semester"
                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
             </div>
         </div>
 
         <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Short Description</label>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Deskripsi Singkat</label>
             <textarea name="description" rows="4" placeholder="Explain the curriculum, subject focus, and advantages of this study program..."
                       class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">{{ old('description') }}</textarea>
         </div>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Detail Berita')
-@section('page_title', 'News Preview - Admin')
+@section('page_title', 'Preview Berita Admin')
 
 @section('content')
 <div class="max-w-4xl mx-auto space-y-6">

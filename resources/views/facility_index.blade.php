@@ -71,64 +71,76 @@
         @if($facilities->count())
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($facilities as $index => $fac)
+                    <!-- White Modern Card Design -->
                     <article data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}"
-                             class="group bg-gray-900/90 rounded-2xl border border-gray-800 overflow-hidden shadow-xl hover:shadow-brand-blue/10 hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between">
+                             class="group bg-white rounded-3xl border border-gray-200 overflow-hidden shadow-lg hover:shadow-[0_8px_30px_rgb(59,130,246,0.15)] hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between p-3">
+                        
                         <div>
-                            <div class="relative h-56 bg-gray-800 overflow-hidden">
+                            <!-- Image Container -->
+                            <div class="relative h-60 rounded-2xl bg-gray-100 overflow-hidden">
                                 <img src="{{ $fac->image_url }}" alt="{{ $fac->name }}"
                                      class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-black/30"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                                 
-                                <div class="absolute top-4 left-4">
-                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/70 backdrop-blur-md text-blue-400 border border-blue-500/30">
-                                        <i class="{{ $fac->category_icon }} text-[9px]"></i>
+                                <!-- Floating Category Badge -->
+                                <div class="absolute top-3 left-3">
+                                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-gray-900 shadow-sm border border-gray-100">
+                                        <i class="{{ $fac->category_icon }} text-[9px] text-brand-blue"></i>
                                         {{ $fac->category_label }}
                                     </span>
                                 </div>
 
+                                <!-- Floating Capacity Badge -->
                                 @if($fac->capacity)
-                                    <div class="absolute top-4 right-4">
-                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/10 backdrop-blur-md text-gray-200">
-                                        <i class="fa-solid fa-users text-[9px]"></i> {{ $fac->capacity }} People
+                                    <div class="absolute top-3 right-3">
+                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/95 backdrop-blur-md text-gray-900 shadow-sm border border-gray-100">
+                                            <i class="fa-solid fa-users text-[9px] text-brand-blue"></i> {{ $fac->capacity }} Pax
                                         </span>
                                     </div>
                                 @endif
                             </div>
 
-                            <div class="p-6">
-                                <div class="flex items-center gap-1.5 text-xs text-brand-blue font-medium mb-1">
-                                    <i class="fa-solid fa-location-dot text-[11px]"></i>
-                                    <span>{{ $fac->location }}</span>
+                            <!-- Content Section (Dark Text on White) -->
+                            <div class="p-4 pt-5">
+                                <div class="flex items-center gap-1.5 text-xs text-gray-500 font-medium mb-1.5">
+                                    <i class="fa-solid fa-location-dot text-[11px] text-brand-blue"></i>
+                                    <span class="truncate">{{ $fac->location }}</span>
                                 </div>
 
-                                <h3 class="text-xl font-bold font-serif text-white group-hover:text-blue-400 transition">{{ $fac->name }}</h3>
+                                <h3 class="text-xl font-bold font-serif text-gray-900 group-hover:text-brand-blue transition line-clamp-1">{{ $fac->name }}</h3>
                                 
-                                <p class="text-xs text-gray-400 mt-3 line-clamp-3 leading-relaxed">
+                                <p class="text-xs text-gray-600 mt-2.5 line-clamp-2 leading-relaxed">
                                     {{ $fac->description ?: 'International-standard facilities supporting research activities, learning, and developing the potential of academic community members.' }}
                                 </p>
 
+                                <!-- Supporting Features Tags -->
                                 @if($fac->features)
-                                    <div class="mt-4 pt-4 border-t border-gray-800/80">
-                                        <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">Supporting Facilities:</p>
+                                    <div class="mt-4 pt-3 border-t border-gray-100">
                                         <div class="flex flex-wrap gap-1.5">
-                                            @foreach(explode(',', $fac->features) as $item)
-                                                <span class="text-[10px] bg-gray-800/90 px-2.5 py-1 rounded-lg text-gray-300">
+                                            @foreach(array_slice(explode(',', $fac->features), 0, 3) as $item)
+                                                <span class="text-[10px] bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-lg text-gray-600 font-medium">
                                                     {{ trim($item) }}
                                                 </span>
                                             @endforeach
+                                            @if(count(explode(',', $fac->features)) > 3)
+                                                <span class="text-[10px] bg-gray-50 px-2 py-1 rounded-lg text-gray-400 font-medium">
+                                                    +{{ count(explode(',', $fac->features)) - 3 }} more
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="p-6 pt-0 mt-3">
-                            <div class="w-full py-2.5 px-4 rounded-xl bg-gray-800/50 border border-gray-700/50 flex items-center justify-between text-xs">
-                                <span class="text-gray-400 flex items-center gap-1.5">
+                        <!-- Card Footer Status -->
+                        <div class="px-4 pb-2 pt-2">
+                            <div class="w-full py-2.5 px-4 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-between text-xs">
+                                <span class="text-gray-700 flex items-center gap-2">
                                     <span class="w-2 h-2 rounded-full {{ $fac->is_active ? 'bg-emerald-500' : 'bg-amber-500' }}"></span>
-                                    {{ $fac->is_active ? 'Ready to Use' : 'Under Maintenance' }}
+                                    <span class="text-[11px] font-semibold">{{ $fac->is_active ? 'Ready to Use' : 'Under Maintenance' }}</span>
                                 </span>
-                                <span class="text-brand-blue font-bold text-[11px]">Huxley Campus</span>
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Huxley Campus</span>
                             </div>
                         </div>
                     </article>
@@ -141,7 +153,7 @@
                 </div>
             @endif
         @else
-            <div class="py-24 text-center rounded-2xl border border-gray-800 bg-gray-900/50">
+            <div class="py-24 text-center rounded-3xl border border-gray-800 bg-gray-900/50">
                 <i class="fa-solid fa-building-columns text-4xl text-gray-600 mb-4"></i>
                 <h3 class="text-lg font-bold text-white">No Facilities Found</h3>
                 <p class="text-xs text-gray-400 mt-1">Try using different search keywords or select a different facility category.</p>

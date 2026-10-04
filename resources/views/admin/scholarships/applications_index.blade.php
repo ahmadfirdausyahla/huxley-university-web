@@ -33,7 +33,7 @@
         </div>
         <div class="bg-blue-50/60 border border-blue-200 p-4 rounded-xl shadow-sm">
             <p class="text-[10px] font-bold text-blue-700 uppercase tracking-wider flex items-center gap-1">
-                <i class="fa-solid fa-magnifying-glass"></i> Selection
+                <i class="fa-solid fa-magnifying-glass"></i> Seleksi
             </p>
             <p class="text-xl font-extrabold text-blue-800 mt-0.5">{{ $stats['under_review'] }}</p>
         </div>
@@ -77,8 +77,8 @@
                         class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 focus:border-blue-500 outline-none transition">
                     <option value="">Semua Status</option>
                     <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Waiting for Verification</option>
-                    <option value="under_review" {{ request('status') == 'under_review' ? 'selected' : '' }}>Under Review</option>
-                    <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Accepted</option>
+                    <option value="under_review" {{ request('status') == 'under_review' ? 'selected' : '' }}>Sedang Diseleksi</option>
+                    <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Diterima</option>
                     <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Rejected</option>
                 </select>
 
@@ -104,7 +104,7 @@
                         <th class="py-3.5 px-4">PROGRAM BEASISWA</th>
                         <th class="py-3.5 px-4">STATUS AKADEMIK</th>
                         <th class="py-3.5 px-4">CONTACT</th>
-                        <th class="py-3.5 px-4">SELECTION STATUS</th>
+                        <th class="py-3.5 px-4">STATUS SELEKSI</th>
                         <th class="py-3.5 px-4">REGISTRATION TIME</th>
                         <th class="py-3.5 px-4 text-center">AKSI</th>
                     </tr>

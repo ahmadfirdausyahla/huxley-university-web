@@ -3,9 +3,10 @@
 @section('content')
 <div class="min-h-screen bg-black text-white pt-24 pb-20">
     <!-- Header Section -->
-    <section class="relative overflow-hidden bg-[#0a0a0a] border-b border-gray-900">
-        <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-blue-600/10 blur-[100px]"></div>
-        <div class="absolute -bottom-32 -left-20 w-80 h-80 rounded-full bg-blue-500/10 blur-[100px]"></div>
+    <section class="relative overflow-hidden bg-gray-900 border-b border-gray-800">
+        <div class="absolute -top-28 right-0 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl"></div>
+        <div class="absolute bottom-0 -left-24 w-72 h-72 rounded-full bg-brand-blue/10 blur-3xl"></div>
+
         <div class="relative max-w-7xl mx-auto px-6 py-20 md:py-24">
             <div class="max-w-3xl" data-aos="fade-up">
                 <div class="inline-flex items-center gap-3 mb-5">

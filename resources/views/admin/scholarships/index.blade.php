@@ -32,7 +32,7 @@
                 </div>
                 <select name="coverage_type" onchange="this.form.submit()" 
                         class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 focus:border-blue-500 outline-none transition">
-                    <option value="">All Coverage Types</option>
+                    <option value="">Semua Cakupan</option>
                     <option value="full" {{ request('coverage_type') == 'full' ? 'selected' : '' }}>Beasiswa Penuh (Full)</option>
                     <option value="partial" {{ request('coverage_type') == 'partial' ? 'selected' : '' }}>Sebagian (Partial)</option>
                     <option value="living_allowance" {{ request('coverage_type') == 'living_allowance' ? 'selected' : '' }}>Tunjangan Hidup</option>
@@ -49,7 +49,7 @@
                         <th class="py-3 px-4">POSTER</th>
                         <th class="py-3 px-4">PROGRAM BEASISWA</th>
                         <th class="py-3 px-4">PENYELENGGARA</th>
-                        <th class="py-3 px-4">COVERAGE</th>
+                        <th class="py-3 px-4">CAKUPAN</th>
                         <th class="py-3 px-4">BATAS AKHIR</th>
                         <th class="py-3 px-4">STATUS</th>
                         <th class="py-3 px-4 text-center">AKSI</th>
@@ -112,7 +112,7 @@
                             <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-xl flex items-center justify-center mx-auto mb-3">
                                 <i class="fa-solid fa-graduation-cap text-xl"></i>
                             </div>
-                            <p class="font-bold text-slate-700 text-xs">No Scholarship Programs Yet</p>
+                            <p class="font-bold text-slate-700 text-xs">Belum Ada Program Beasiswa</p>
                         </td>
                     </tr>
                     @endforelse

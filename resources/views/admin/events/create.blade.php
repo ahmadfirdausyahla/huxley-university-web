@@ -37,7 +37,7 @@
                        class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
             </div>
 
-            <!-- Target & Quota -->
+            <!-- Target & Kuota -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">EVENT CATEGORY *</label>
@@ -48,48 +48,48 @@
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">PARTICIPANT QUOTA</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">KUOTA PESERTA</label>
                     <input type="number" name="quota" value="{{ old('quota') }}" placeholder="Contoh: 100" 
                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
                 </div>
             </div>
 
-            <!-- Date & Location -->
+            <!-- Tanggal & Lokasi -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">EVENT DATE *</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">TANGGAL EVENT *</label>
                     <input type="date" name="event_date" value="{{ old('event_date') }}" required 
                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 focus:border-blue-500 outline-none transition">
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">EVENT LOCATION *</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">LOKASI PELAKSANAAN *</label>
                     <input type="text" name="location" value="{{ old('location') }}" placeholder="Contoh: Auditorium Gedung Utama" required 
                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
                 </div>
             </div>
 
-            <!-- Short Description -->
+            <!-- Deskripsi Singkat -->
             <div>
-                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">SHORT DESCRIPTION</label>
+                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">DESKRIPSI SINGKAT</label>
                 <input type="text" name="description" value="{{ old('description') }}" placeholder="Ringkasan 1-2 kalimat..." 
                        class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
             </div>
 
-            <!-- Drag & Drop Upload Header Image -->
+            <!-- Drag & Drop Upload Gambar Header -->
             <div>
-                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">HEADER / COVER IMAGE</label>
+                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">GAMBAR HEADER / COVER</label>
                 <div class="relative border-2 border-dashed border-blue-200 bg-blue-50/20 hover:bg-blue-50/40 rounded-2xl p-8 text-center transition cursor-pointer group">
                     <input type="file" name="image_file" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
                     <div class="w-10 h-10 bg-blue-500/10 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition">
                         <i class="fa-solid fa-cloud-arrow-up text-lg"></i>
                     </div>
                     <p class="text-xs font-bold text-slate-800">Click or drag image here</p>
-                    <p class="text-[10px] text-slate-400 mt-1">Format PNG, JPG, WEBP (Maximum 2MB)</p>
+                    <p class="text-[10px] text-slate-400 mt-1">Format PNG, JPG, WEBP (Maksimal 2MB)</p>
                 </div>
             </div>
 
-            <!-- Complete Event Information (Editor Toolbar Simulation) -->
+            <!-- Isi Lengkap Acara (Simulasi Editor Toolbar) -->
             <div>
                 <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">ISI DETAIL EVENT LENGKAP</label>
                 <div class="border border-slate-200 rounded-xl overflow-hidden focus-within:border-blue-500 transition">

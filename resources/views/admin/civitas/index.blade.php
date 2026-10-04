@@ -54,7 +54,7 @@
                         <th class="py-3 px-4">PRODI / FAKULTAS</th>
                         <th class="py-3 px-4">CONTACT</th>
                         <th class="py-3 px-4">STATUS</th>
-                        <th class="py-3 px-4 text-center">ACTION</th>
+                        <th class="py-3 px-4 text-center">AKSI</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -97,7 +97,7 @@
                                 <a href="{{ route('admin.civitas.edit', $c->id) }}" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-blue-600 transition" title="Edit">
                                     <i class="fa-solid fa-pen-to-square text-xs"></i>
                                 </a>
-                                <form action="{{ route('admin.civitas.destroy', $c->id) }}" method="POST" class="inline" onsubmit="return confirm('Delete this civitas data?')">
+                                <form action="{{ route('admin.civitas.destroy', $c->id) }}" method="POST" class="inline" onsubmit="return confirm('Hapus data civitas ini?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-red-600 transition" title="Hapus">
@@ -113,7 +113,7 @@
                             <div class="w-12 h-12 bg-slate-100 text-slate-400 rounded-xl flex items-center justify-center mx-auto mb-3">
                                 <i class="fa-solid fa-users text-xl"></i>
                             </div>
-                            <p class="font-bold text-slate-700 text-xs">No Civitas / Student Data Yet</p>
+                            <p class="font-bold text-slate-700 text-xs">Belum Ada Data Civitas / Mahasiswa</p>
                         </td>
                     </tr>
                     @endforelse

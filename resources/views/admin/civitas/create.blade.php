@@ -8,7 +8,7 @@
     <div class="mb-6 flex items-center justify-between">
         <div>
             <h2 class="text-xl font-bold text-slate-900">Form Data Civitas Baru</h2>
-            <p class="text-xs text-slate-400 mt-1">Register students, lecturers, or education personnel into the campus database.</p>
+            <p class="text-xs text-slate-400 mt-1">Daftarkan mahasiswa, dosen, atau tenaga kependidikan ke database kampus.</p>
         </div>
         <a href="{{ route('admin.civitas.index') }}" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white border border-slate-200 px-4 py-2 rounded-xl transition">
             <i class="fa-solid fa-arrow-left"></i> Back
@@ -18,7 +18,7 @@
     @if ($errors->any())
         <div class="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl mb-6 text-xs">
             <div class="font-bold mb-1 flex items-center gap-2">
-                <i class="fa-solid fa-triangle-exclamation"></i> There were input errors:
+                <i class="fa-solid fa-triangle-exclamation"></i> Terdapat kesalahan pengisian:
             </div>
             <ul class="list-disc pl-5 space-y-0.5">
                 @foreach ($errors->all() as $error)
@@ -54,7 +54,7 @@
                 <label class="block text-xs font-bold text-slate-700 uppercase mb-2">NIM / NIP / ID Pengenal <span class="text-red-500">*</span></label>
                 <input type="text" name="nip" value="{{ old('nip') }}" placeholder="Contoh: 202610370311001" required
                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
-                <p class="text-[11px] text-slate-400 mt-1">Used to validate registration for student-specific events.</p>
+                <p class="text-[11px] text-slate-400 mt-1">Digunakan untuk validasi pendaftaran event khusus mahasiswa.</p>
             </div>
 
             <div>
@@ -66,7 +66,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Study Program / Major</label>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Program Studi / Jurusan</label>
                 <input type="text" name="department" value="{{ old('department') }}" placeholder="Contoh: Teknik Informatika"
                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
             </div>
@@ -93,7 +93,7 @@
         </div>
 
         <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Bio / Special Notes</label>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Bio / Catatan Khusus</label>
             <textarea name="bio" rows="3" placeholder="Informasi singkat atau riwayat pendidikan..."
                       class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">{{ old('bio') }}</textarea>
         </div>
@@ -111,7 +111,7 @@
         </div>
 
         <div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
-            <a href="{{ route('admin.civitas.index') }}" class="px-5 py-2.5 text-xs font-bold text-slate-600 hover:text-slate-900 transition">Cancel</a>
+            <a href="{{ route('admin.civitas.index') }}" class="px-5 py-2.5 text-xs font-bold text-slate-600 hover:text-slate-900 transition">Batal</a>
             <button type="submit" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition shadow-sm">
                 Save Civitas
             </button>

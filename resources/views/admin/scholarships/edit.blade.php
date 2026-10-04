@@ -18,7 +18,7 @@
     @if ($errors->any())
         <div class="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl mb-6 text-xs">
             <div class="font-bold mb-1 flex items-center gap-2">
-                <i class="fa-solid fa-triangle-exclamation"></i> There were input errors:
+                <i class="fa-solid fa-triangle-exclamation"></i> Terdapat kesalahan pengisian:
             </div>
             <ul class="list-disc pl-5 space-y-0.5">
                 @foreach ($errors->all() as $error)
@@ -40,7 +40,7 @@
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Coverage Type <span class="text-red-500">*</span></label>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Jenis Cakupan <span class="text-red-500">*</span></label>
                 <select name="coverage_type" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:bg-white focus:border-blue-500 outline-none transition">
                     <option value="full" {{ old('coverage_type', $scholarship->coverage_type) == 'full' ? 'selected' : '' }}>Beasiswa Penuh (Full)</option>
                     <option value="partial" {{ old('coverage_type', $scholarship->coverage_type) == 'partial' ? 'selected' : '' }}>Sebagian (Partial)</option>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Edit Event')
-@section('page_title', 'EDIT CAMPUS EVENT')
+@section('page_title', 'EDIT EVENT KAMPUS')
 
 @section('content')
 <div class="max-w-4xl mx-auto space-y-4">
@@ -12,7 +12,7 @@
 
     <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm">
         
-        <h3 class="font-bold text-slate-900 text-sm pb-5 mb-6 border-b border-slate-100">Event Edit Form</h3>
+        <h3 class="font-bold text-slate-900 text-sm pb-5 mb-6 border-b border-slate-100">Form Edit Event</h3>
 
         @if($errors->any())
             <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs">
@@ -48,7 +48,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">PARTICIPANT QUOTA</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">KUOTA PESERTA</label>
                     <input type="number" name="quota" value="{{ old('quota', $event->quota) }}" placeholder="Contoh: 100" 
                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
                 </div>
@@ -56,26 +56,26 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">EVENT DATE *</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">TANGGAL EVENT *</label>
                     <input type="date" name="event_date" value="{{ old('event_date', \Carbon\Carbon::parse($event->event_date)->format('Y-m-d')) }}" required 
                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-800 focus:border-blue-500 outline-none transition">
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">EVENT LOCATION *</label>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">LOKASI PELAKSANAAN *</label>
                     <input type="text" name="location" value="{{ old('location', $event->location) }}" placeholder="Contoh: Auditorium Gedung Utama" required 
                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
                 </div>
             </div>
 
             <div>
-                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">SHORT DESCRIPTION</label>
+                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">DESKRIPSI SINGKAT</label>
                 <input type="text" name="description" value="{{ old('description', $event->description) }}" placeholder="Ringkasan 1-2 kalimat..." 
                        class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-900 focus:border-blue-500 outline-none placeholder-slate-400 transition">
             </div>
 
             <div>
-                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">HEADER / COVER IMAGE</label>
+                <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-2">GAMBAR HEADER / COVER</label>
                 
                 @if($event->image)
                 <div class="mb-3 flex items-center gap-3 p-3 bg-slate-50 border border-slate-200 rounded-xl">
@@ -90,7 +90,7 @@
                         <i class="fa-solid fa-cloud-arrow-up text-lg"></i>
                     </div>
                     <p class="text-xs font-bold text-slate-800">Click or drag image here</p>
-                    <p class="text-[10px] text-slate-400 mt-1">Format PNG, JPG, WEBP (Maximum 2MB)</p>
+                    <p class="text-[10px] text-slate-400 mt-1">Format PNG, JPG, WEBP (Maksimal 2MB)</p>
                 </div>
             </div>
 
